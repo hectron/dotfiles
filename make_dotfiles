@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for dotfile in *.dotfile; do
+    if [ -f "${dotfile}" ]; then
+      newname=`echo ${dotfile} | cut -d'.' -f1`
+      echo "${dotfile} => .${newname}"
+      cp "$dotfile" ".$newname"
+    fi
+done
