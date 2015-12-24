@@ -6,7 +6,7 @@ if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
 
-if [ -f ~/.aliases.local]; then
+if [ -f ~/.aliases.local ]; then
   . ~/.aliases.local
 fi
 
