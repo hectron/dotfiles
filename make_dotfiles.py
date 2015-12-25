@@ -6,7 +6,9 @@ from argparse import ArgumentParser
 
 # These are all the files that are within this directory which are end with the
 # file extension `.dotfile`.
-FILES = glob.glob('*.dotfile')
+this_file_dir = os.path.dirname(os.path.abspath(__file__))
+file_dir = os.path.join(this_file_dir, 'dotfiles')
+FILES = glob.glob(os.path.join(file_dir, '*.dotfile'))
 
 
 def move_files(files_selected, destination):
@@ -16,11 +18,11 @@ def move_files(files_selected, destination):
     the folder where they should be placed. This does not have a return value.
     '''
     for name in files_selected:
-        new_name = '.{0}'.format(name.replace('.dotfile', ''))
+        new_name = '.{0}'.format(os.path.basename(name).replace('.dotfile', ''))
         new_path = os.path.join(destination, new_name)
         old_path = os.path.join(destination, name)
         copy(old_path, new_path)
-        print('Copied {0} => {1}'.format(old_path, new_path))
+        print('Copied {0} => {1}\n'.format(old_path, new_path))
 
 
 def ask_for_files():
@@ -38,7 +40,7 @@ def should_move(filename):
     '''
     answer = None
 
-    while answer == None:
+    while not answer:
         answer = raw_input('Want to move `%s`? [y/n] ' % filename).lower()
         if not answer or (answer != 'y' and answer != 'n'):
             print('`%s` is not a valid answer.' % answer)
@@ -55,10 +57,9 @@ def just_do_it(args = {}):
     files to copy over. It also provides the option to directly copy the
     dotfile(s) to the user's home directory.
     '''
-    this_file_dir = os.path.dirname(os.path.abspath(__file__))
 
     files = ask_for_files() if args.pick_some_files else FILES
-    destination = os.path.expanduser('~') if args.go_for_it else this_file_dir
+    destination = os.path.expanduser('~') if args.go_for_it else file_dir
 
     if len(files) > 0:
         move_files(files, destination)
