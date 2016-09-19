@@ -25,12 +25,29 @@ parse_git_branch() {
 # Node requires sudo for some reason; this disables needing to use sudo
 export PATH=$HOME/npm/bin:$PATH
 
+# added by Anaconda2 2.4.1 installer
 # export PATH="/home/hectron/anaconda3/bin:$PATH"
 
-# added by Anaconda2 2.4.1 installer
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 export WORKON_HOME=~/.virtualenvs
-VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.4' # find python3
-source ~/.local/bin/virtualenvwrapper.sh
+#VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.5' # find python3
+# source ~/.local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# Colorized man pages
+man() {
+      LESS_TERMCAP_mb=$'\e'"[1;31m" \
+      LESS_TERMCAP_md=$'\e'"[1;31m" \
+      LESS_TERMCAP_me=$'\e'"[0m" \
+      LESS_TERMCAP_se=$'\e'"[0m" \
+      LESS_TERMCAP_so=$'\e'"[1;44;33m" \
+      LESS_TERMCAP_ue=$'\e'"[0m" \
+      LESS_TERMCAP_us=$'\e'"[1;32m" \
+      command man "$@"
+}
+

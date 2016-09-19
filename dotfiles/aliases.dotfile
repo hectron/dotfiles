@@ -40,8 +40,8 @@ alias gpr='git pull --rebase'
 
 # Pushing
 alias gp='git push'
-alias fuckit='git push -f'
-alias justdoit='git push -f'
+alias fuckit='git push --force-with-lease'
+alias justdoit='git push --force-with-lease'
 
 # Committing
 alias gc='git commit -v'
@@ -84,4 +84,4 @@ up() {
 # Personal Aliases
 # ==============================================================================
 alias dev='cd ~/dev/'
-
+alias me='cd ~/personal/'

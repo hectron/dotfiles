@@ -163,16 +163,33 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically open NERDTree
 " autocmd vimenter * NERDTree
+"
 " Expand if called on a directory e.g. `vim .`
 " if isdirectory(argv(0))
 "     bd
 "     autocmd vimenter * exe "cd" argv(0)
 "     autocmd vimenter * NERDTree
 " endif
-"
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
+" 
+" " Close NERDTree if it's the last thing open
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 
+" " Ignore these kinds of files in NERDTree
 " let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
+" 
+" " Ignore these kinds of files in CtrlP, if in a .gitignore file
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
-"
-" colorscheme railscasts
+" 
+" let g:pymode_options_max_line_length = 120 " For some stupid reason, this does not recognize the pylint.rc file
+" let g:pymode_doc = 0
+" 
+" autocmd FileType python set colorcolumn=120
+" 
+" colorscheme badwolf
+" 
+" let g:badwolf_darkgutter = 1
+" 
+" " When you type `jj` it escapes.
+" inoremap jj <Esc>
+
