@@ -1,0 +1,14 @@
+[user]
+	email = that.hector@gmail.com
+	name = Hector Rios
+[core]
+	editor = vim
+[push]
+	default = simple
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
