@@ -160,26 +160,34 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins and what has you
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Automatically open NERDTree
-" autocmd vimenter * NERDTree
 "
+" ack
+" ctrlp
+" gitgutter
+" nerdtree
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" git clone git://github.com/mileszs/ack.vim.git ~/.vim/bundle/ack.vim
+" git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
+" git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle
+" git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+
 " Expand if called on a directory e.g. `vim .`
-" if isdirectory(argv(0))
-"     bd
-"     autocmd vimenter * exe "cd" argv(0)
-"     autocmd vimenter * NERDTree
-" endif
-" 
-" " Close NERDTree if it's the last thing open
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 
-" " Ignore these kinds of files in NERDTree
-" let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
-" 
-" " Ignore these kinds of files in CtrlP, if in a .gitignore file
-" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
+"if isdirectory(argv(0))
+"  bd
+"  autocmd vimenter * exe "cd" argv(0)
+"  autocmd vimenter * NERDTree
+"endif
+
+" Close NERDTree if it's the last thing open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Ignore these kinds of files in NERDTree
+let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
+
+" Ignore these kinds of files in CtrlP, if in a .gitignore file
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 " 
 " let g:pymode_options_max_line_length = 120 " For some stupid reason, this does not recognize the pylint.rc file
 " let g:pymode_doc = 0
@@ -191,5 +199,5 @@ endif
 " let g:badwolf_darkgutter = 1
 " 
 " " When you type `jj` it escapes.
-" inoremap jj <Esc>
+inoremap jj <Esc>
 

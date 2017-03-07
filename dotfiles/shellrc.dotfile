@@ -15,15 +15,15 @@ fi
 # ==============================================================================
 
 # The following shows the git branch in your PS1 when you are in a git directory.
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+# parse_git_branch() {
+#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+# }
 
 # export PS1='\[\033[0;32m\]λ\[\033[0;36m\] \w\[\033[0;33m\]$(parse_git_branch)\[\033[00m\]: '
 
 
 # Node requires sudo for some reason; this disables needing to use sudo
-export PATH=$HOME/npm/bin:$PATH
+# export PATH=$HOME/npm/bin:$PATH
 
 # added by Anaconda2 2.4.1 installer
 # export PATH="/home/hectron/anaconda3/bin:$PATH"
@@ -31,13 +31,13 @@ export PATH=$HOME/npm/bin:$PATH
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 
-export WORKON_HOME=~/.virtualenvs
+# export WORKON_HOME=~/.virtualenvs
 #VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.5' # find python3
 # source ~/.local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# source /usr/local/bin/virtualenvwrapper.sh
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Colorized man pages
 man() {
