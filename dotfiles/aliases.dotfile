@@ -85,3 +85,9 @@ up() {
 # ==============================================================================
 alias dev='cd ~/dev/'
 alias me='cd ~/personal/'
+
+# =======================================
+# Mac vim does not have clipboard support
+# brew install vim
+# =======================================
+# alias vim='/usr/local/bin/vim'

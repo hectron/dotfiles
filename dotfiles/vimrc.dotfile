@@ -1,8 +1,8 @@
 " This config uses pathogen
 
 " Pathogen
-" execute pathogen#infect()
-" call pathogen#helptags()
+execute pathogen#infect()
+call pathogen#helptags()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General

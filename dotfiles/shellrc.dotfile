@@ -2,52 +2,75 @@
 # Set up any custom aliases
 # ==============================================================================
 
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
-
-if [ -f ~/.aliases.local ]; then
-  . ~/.aliases.local
-fi
+[[ -s "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -s "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
 
 # ==============================================================================
 # Utilities
 # ==============================================================================
 
-# The following shows the git branch in your PS1 when you are in a git directory.
-# parse_git_branch() {
-#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-# }
+# ==================
+# Functions
+# ==================
 
+# Colorized man pages
+man() {
+  LESS_TERMCAP_mb=$'\e'"[1;31m" \
+  LESS_TERMCAP_md=$'\e'"[1;31m" \
+  LESS_TERMCAP_me=$'\e'"[0m" \
+  LESS_TERMCAP_se=$'\e'"[0m" \
+  LESS_TERMCAP_so=$'\e'"[1;44;33m" \
+  LESS_TERMCAP_ue=$'\e'"[0m" \
+  LESS_TERMCAP_us=$'\e'"[1;32m" \
+  command man "$@"
+}
+
+# The following shows the git branch in your PS1 when you are in a git directory.
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# ==============
+# Exports
+# ==============
+
+# Used for tmuxinator
+export EDITOR='vim'
+
+# Custom command line look
 # export PS1='\[\033[0;32m\]λ\[\033[0;36m\] \w\[\033[0;33m\]$(parse_git_branch)\[\033[00m\]: '
 
-
+################################################################################
+# JavaScript/NodeJS
+################################################################################
 # Node requires sudo for some reason; this disables needing to use sudo
 # export PATH=$HOME/npm/bin:$PATH
-
-# added by Anaconda2 2.4.1 installer
-# export PATH="/home/hectron/anaconda3/bin:$PATH"
 
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 
-# export WORKON_HOME=~/.virtualenvs
+################################################################################
+# Python
+################################################################################
+# Virtualenvwrapper settings
+export WORKON_HOME=$HOME/.virtualenvs
 #VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.5' # find python3
-# source ~/.local/bin/virtualenvwrapper.sh
-# source /usr/local/bin/virtualenvwrapper.sh
+# source $HOME/.local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
+
+################################################################################
+# Ruby
+################################################################################
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 # export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
-# Colorized man pages
-man() {
-      LESS_TERMCAP_mb=$'\e'"[1;31m" \
-      LESS_TERMCAP_md=$'\e'"[1;31m" \
-      LESS_TERMCAP_me=$'\e'"[0m" \
-      LESS_TERMCAP_se=$'\e'"[0m" \
-      LESS_TERMCAP_so=$'\e'"[1;44;33m" \
-      LESS_TERMCAP_ue=$'\e'"[0m" \
-      LESS_TERMCAP_us=$'\e'"[1;32m" \
-      command man "$@"
-}
+# This is a weird bug where ZSH does not work with rake nicely
+# https://github.com/robbyrussell/oh-my-zsh/issues/433
+alias rake='noglob bundle exec rake'
 
+################################################################################
+# Go
+################################################################################
+export GOPATH=$HOME/personal/go
+export PATH=$PATH:$GOPATH/bin
