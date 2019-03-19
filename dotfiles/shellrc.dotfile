@@ -4,6 +4,7 @@
 
 [[ -s "$HOME/.aliases" ]] && source "$HOME/.aliases"
 [[ -s "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
+[[ -s "$HOME/.functions" ]] && source "$HOME/.functions"
 
 # ==============================================================================
 # Utilities

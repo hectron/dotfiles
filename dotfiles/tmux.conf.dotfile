@@ -1,5 +1,4 @@
 set -g default-terminal "screen-256color"
-# This was disabled for OS X and copy/paste functionality
 # setw -g xterm-keys on
 set -g history-limit 100000
 
@@ -59,5 +58,5 @@ set-window-option -g clock-mode-colour colour64 #green
 # To enable skipping around in iTerm 2, you'll need to change the way that codes are being sent
 # https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x
 # ======================================================================================================================
-# set -g default-shell $SHELL
-# set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+set -g default-shell $SHELL
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"

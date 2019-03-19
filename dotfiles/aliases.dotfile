@@ -80,6 +80,31 @@ up() {
   cd $d
 }
 
+function run-tests() {
+  local current_directory
+
+  current_directory="${PWD##*/}"
+
+  if [ -z "$TEST_COMMAND" ]; then
+    bundle exec rspec "$@"
+  else
+    eval "$TEST_COMMAND" "$@"
+  fi
+}
+
+function run-command() {
+  local current_directory
+
+  current_directory="${PWD##*/}"
+
+  if [ -z "$RUN_COMMAND" ]; then
+    bundle exec "$@"
+  else
+    eval "$RUN_COMMAND" "$@"
+  fi
+}
+
+
 # ==============================================================================
 # Personal Aliases
 # ==============================================================================
@@ -90,4 +115,6 @@ alias me='cd ~/personal/'
 # Mac vim does not have clipboard support
 # brew install vim
 # =======================================
-# alias vim='/usr/local/bin/vim'
+alias vim='/usr/local/bin/vim'
+alias t='run-tests'
+alias r='run-command'
