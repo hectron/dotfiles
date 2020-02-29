@@ -1,8 +1,11 @@
-" This config uses pathogen
-
-" Pathogen
-execute pathogen#infect()
-call pathogen#helptags()
+" This config uses Plug (https://github.com/junegunn/vim-plug)
+" Heavily inspired by Zach Taylor's [init.vim](https://github.com/taylorzr/dotfiles/blob/master/.config/nvim/init.vim)
+"
+" Auto install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -35,7 +38,7 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Space and tabs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nu
+set number
 set cursorline
 set autoindent
 set smartindent
@@ -167,10 +170,35 @@ endif
 " nerdtree
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" git clone git://github.com/mileszs/ack.vim.git ~/.vim/bundle/ack.vim
-" git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
-" git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle
-" git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+" Install with :PlugInstall
+" Clean with :PlugClean
+call plug#begin('~/.config/nvim/plugged') " Need to update?
+
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-commentary' " Easily comment
+
+Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
+  nnoremap <Leader>gd :Gdiff<CR>
+  nnoremap <Leader>gb :Gblame<CR>
+  nnoremap <Leader>gw :Gbrowse-<CR>
+  nnoremap <Leader>gr :Gread<CR>
+
+Plug 'tpope/vim-rhubarb'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'junegunn/goyo.vim'
+
+call plug#end()
 
 " Expand if called on a directory e.g. `vim .`
 "if isdirectory(argv(0))
@@ -187,8 +215,7 @@ let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 
 " Ignore these kinds of files in CtrlP, if in a .gitignore file
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" 
+
 " let g:pymode_options_max_line_length = 120 " For some stupid reason, this does not recognize the pylint.rc file
 " let g:pymode_doc = 0
 " 
@@ -201,3 +228,26 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " " When you type `jj` it escapes.
 inoremap jj <Esc>
 
+set clipboard=unnamed
+
+let g:LanguageClient_serverCommands = {
+    \ 'go':         ['gopls'],
+    \ 'ruby':       ['solargraph', 'stdio'],
+    \ 'typescript': ['typescript-language-server', '--stdio'],
+    \ }
+
+" A cool function to add a timestamp to a file on save
+" Usage: :SWT <filename>
+function! SaveWithTimestamp(filename) range
+  let l:extension = '.' .fnamemodify(a:filename, ':e')
+
+  if len(l:extension) == 1
+    let l:extension = '.md'
+  endif
+
+  let l:filename = escape( fnamemodify(a:filename, ':r') . strftime("-%Y%m%d") . l:extension, ' ')
+
+  execute "write " . l:filename
+endfunction
+
+command! -nargs=1 SWT call SaveWithTimestamp( <q-args> )
