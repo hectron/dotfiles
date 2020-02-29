@@ -9,6 +9,8 @@
 # ==============================================================================
 # Utilities
 # ==============================================================================
+# Helps with some shit with LESS
+export LESS="FSRX"
 
 # ==================
 # Functions
@@ -26,10 +28,11 @@ man() {
   command man "$@"
 }
 
+
 # The following shows the git branch in your PS1 when you are in a git directory.
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+# parse_git_branch() {
+#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+# }
 
 # ==============
 # Exports
@@ -37,9 +40,6 @@ parse_git_branch() {
 
 # Used for tmuxinator
 export EDITOR='vim'
-
-# Custom command line look
-# export PS1='\[\033[0;32m\]λ\[\033[0;36m\] \w\[\033[0;33m\]$(parse_git_branch)\[\033[00m\]: '
 
 ################################################################################
 # JavaScript/NodeJS
@@ -57,7 +57,7 @@ export EDITOR='vim'
 export WORKON_HOME=$HOME/.virtualenvs
 #VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.5' # find python3
 # source $HOME/.local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 ################################################################################
 # Ruby
@@ -66,12 +66,27 @@ source /usr/local/bin/virtualenvwrapper.sh
 # eval "$(rbenv init -)"
 # export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
-# This is a weird bug where ZSH does not work with rake nicely
-# https://github.com/robbyrussell/oh-my-zsh/issues/433
-alias rake='noglob bundle exec rake'
-
 ################################################################################
 # Go
 ################################################################################
 export GOPATH=$HOME/personal/go
 export PATH=$PATH:$GOPATH/bin
+
+# source ~/.iterm2_shell_integration.zsh
+
+##
+# asdf
+##
+#. $(brew --prefix asdf)/asdf.sh
+. /usr/local/opt/asdf/asdf.sh
+
+# TLDR
+export TLDR_COLOR_BLANK="white"
+export TLDR_COLOR_NAME="cyan"
+export TLDR_COLOR_DESCRIPTION="white"
+export TLDR_COLOR_EXAMPLE="green"
+export TLDR_COLOR_COMMAND="red"
+export TLDR_COLOR_PARAMETER="white"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720
+
