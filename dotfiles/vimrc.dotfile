@@ -182,10 +182,10 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-commentary' " Easily comment
 
 Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
-  nnoremap <Leader>gd :Gdiff<CR>
-  nnoremap <Leader>gb :Gblame<CR>
-  nnoremap <Leader>gw :Gbrowse-<CR>
-  nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gw :Gbrowse-<CR>
+nnoremap <Leader>gr :Gread<CR>
 
 Plug 'tpope/vim-rhubarb'
 Plug 'autozimu/LanguageClient-neovim', {

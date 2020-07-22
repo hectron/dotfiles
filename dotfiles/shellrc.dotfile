@@ -28,17 +28,10 @@ man() {
   command man "$@"
 }
 
-
-# The following shows the git branch in your PS1 when you are in a git directory.
-# parse_git_branch() {
-#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-# }
-
 # ==============
 # Exports
 # ==============
 
-# Used for tmuxinator
 export EDITOR='vim'
 
 ################################################################################
@@ -69,18 +62,23 @@ export WORKON_HOME=$HOME/.virtualenvs
 ################################################################################
 # Go
 ################################################################################
-export GOPATH=$HOME/personal/go
-export PATH=$PATH:$GOPATH/bin
+# export GOPATH=$HOME/personal/go
+# export PATH=$PATH:$GOPATH/bin
 
 # source ~/.iterm2_shell_integration.zsh
 
-##
+################################################################################
 # asdf
-##
-#. $(brew --prefix asdf)/asdf.sh
-. /usr/local/opt/asdf/asdf.sh
+#   @see https://github.com/asdf-vm/asdf
+################################################################################
 
+#. $(brew --prefix asdf)/asdf.sh
+# . /usr/local/opt/asdf/asdf.sh
+
+################################################################################
 # TLDR
+#   @see https://github.com/tldr-pages/tldr
+################################################################################
 export TLDR_COLOR_BLANK="white"
 export TLDR_COLOR_NAME="cyan"
 export TLDR_COLOR_DESCRIPTION="white"
