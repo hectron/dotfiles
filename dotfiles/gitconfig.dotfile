@@ -13,6 +13,7 @@
 	co = checkout
 	ci = commit
 	st = status
+  ap = add -p
 
   # typos
   comimt = commit
@@ -23,6 +24,8 @@
   ull = pull
   dif = diff
   og = log
+  lo = log
+  lg = log
 
   # extra tools
   cb = !git branch | grep '*' | awk '{print $2}'
@@ -34,3 +37,4 @@
   or = !git reset origin/$(git cb) --hard
 	unstage = reset HEAD --
 	last = log -1 HEAD
+  awk = "!f() { git log -p -S\"$1\"; }; f"
