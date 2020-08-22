@@ -1,14 +1,10 @@
 set -g default-terminal "screen-256color"
-# setw -g xterm-keys on
 set -g history-limit 100000
 
 bind C-d detach
 bind r source-file ~/.tmux.conf
 
 set -g prefix C-z
-
-if-shell 'test "$(tmux -V)" = "tmux 1.5"' 'set -g prefix C-a,C-z'
-if-shell 'test "$(tmux -V)" != "tmux 1.5"' 'set -g prefix2 C-a'
 
 unbind C-b
 bind C-a send-keys C-a
