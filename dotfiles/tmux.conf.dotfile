@@ -18,10 +18,6 @@ bind -n S-Left previous-window
 
 set-window-option -g mode-keys vi
 
-# ==============================================================================
-# Color is set to Solarized 256
-# ==============================================================================
-
 # default statusbar colors
 set-option -g status-style bg=colour235,fg=colour136,default
 
@@ -56,7 +52,15 @@ set-window-option -g clock-mode-colour colour64 #green
 set -g default-shell $SHELL
 # set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
-# Using TPM: https://github.com/tmux-plugins/tpm
+# ======================================================================================================================
+# Tmux Plugin Manager Plugins
+#   @see https://github.com/tmux-plugins/tpm
+#
+# Install plugins by running either prefix + I within a tmux session or
+# using the command line to manage plugins:
+#   @see https://github.com/tmux-plugins/tpm/blob/master/docs/managing_plugins_via_cmd_line.md
+# ======================================================================================================================
+
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -70,6 +74,10 @@ set -g @resurrect-save 'X'
 # set -g @plugin 'github_username/plugin_name'
 # set -g @plugin 'git@github.com/user/plugin'
 # set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Auto install TPM
+if "test ! -d ~/.tmux/plugins/tpm" \
+     "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
