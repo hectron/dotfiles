@@ -17,16 +17,16 @@
   ap = add -p
 
   # typos
-  comimt = commit
-  comit = commit
-  stats = status
-  stauts = status
-  pul = pull
-  ull = pull
-  dif = diff
-  og = log
-  lo = log
-  lg = log
+  comimt  = commit
+  comit   = commit
+  stats   = status
+  stauts  = status
+  pul     = pull
+  ull     = pull
+  dif     = diff
+  og      = log
+  lo      = log
+  lg      = log
 
   # extra tools
   cb = !git branch | grep '*' | awk '{print $2}'
