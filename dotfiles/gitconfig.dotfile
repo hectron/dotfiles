@@ -1,5 +1,6 @@
 [user]
-	name = Hector Rios
+	name  = Hector Rios
+	email = that.hector@gmail.com
 
 [core]
 	editor = vim
