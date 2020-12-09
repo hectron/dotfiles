@@ -1,166 +1,59 @@
-" This config uses Plug (https://github.com/junegunn/vim-plug)
-" Heavily inspired by Zach Taylor's [init.vim](https://github.com/taylorzr/dotfiles/blob/master/.config/nvim/init.vim)
-
 " Auto install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Install plugins
-if filereadable(expandpath($MYVIMRC))
-  source $MYVIMRC
-endif
+" === plugins ===
 
-if filereadable(expandpath("~/.vimrc.plugins"))
+if filereadable(expand("~/.vimrc.plugins"))
   source ~/.vimrc.plugins
+elseif filereadable(expand("~/.vim/vimrc.plugins"))
+  source ~/.vim/vimrc.plugins
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" === general ===
 
-" Set how many lines of history VIM has to remember
-set history=500
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+compiler ruby
 syntax on
-
-" Set utf-8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use unix as the standard file type
-set ffs=unix,dos,mac
-
-" 256 color term
-set t_Co=256
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Space and tabs
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hlsearch
 set number
-set cursorline
-set autoindent
-set smartindent
-set textwidth=80
-
-" Apply automatic 80 width of characters
-au BufRead,BufNewFile *.md setlocal textwidth=80
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UI Config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Always show current position
+set showmatch
+set incsearch
+set background=dark
+set hidden
+set backspace=indent,eol,start
+set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set ruler
-set cmdheight=2
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Searching
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Ignore case when searching
+set wrap
+set dir=/tmp//
+set scrolloff=5
 set ignorecase
 set smartcase
-
-" Highlight results
-set hlsearch
-set incsearch
-
-" Don't redraw while executing macros
-set lazyredraw
-set magic
-set showmatch
-
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" don't wrap lines
-set nowrap
-
-" 1 tab == 4 spaces
-set shiftwidth=2
-set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" Show invisble characters
-set list
-
-" backspace through everything in insert mode
-set backspace=indent,eol,start
-
-" List Chars
-
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the left of the screen
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Wild settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Ignore librarian-chef, vagrant, test-kitchen and Berkshelf cache
-set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
-
-" Ignore rails temporary asset caches
-set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
-
-" Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-
-" Ignore node + python files
 set wildignore+=*.pyc,*.o,*.class,*.lo,.git,vendor/*,node_modules/**,bower_components/**,*/build_gradle/*,*/build_intellij/*,*/build/*,*/cassandra_data/*
+set tags+=gems.tags
+set mouse=
+if !has('nvim')
+  set ttymouse=
+endif
+set backupcopy=yes " Setting backup copy preserves file inodes, which are needed for Docker file mounting
+if v:version > 704 || v:version == 704 && has('patch2201') " signcolumn wasn't added until vim 7.4.2201
+  set signcolumn=yes
+endif
+set complete-=f " Don't use tags for autocomplete
+set updatetime=200
 
-""
-"" Backup and swap files
-""
+if version >= 703
+  set undodir=~/.vim/undodir
+  set undofile
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
+set undolevels=1000 "maximum number of changes that can be undone
 
-set backupdir^=~/.vim/_backup//    " where to put backup files.
-set directory^=~/.vim/_temp//      " where to put swap files.
+set encoding=utf8
+set ffs=unix,dos,mac
+set clipboard=unnamed
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows, buffers
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("statusline")
   " Always show the status line
   set laststatus=2
@@ -173,52 +66,50 @@ if has("statusline")
   set statusline+=[%b][0x%B]
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins and what has you
-"
-" ack
-" ctrlp
-" gitgutter
-" nerdtree
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Install with :PlugInstall
-" Clean with :PlugClean
-call plug#begin('~/.config/nvim/plugged') " Need to update?
+" === Functions ===
 
-Plug 'mileszs/ack.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-commentary' " Easily comment
+function! SmartFuzzy()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')
+  if len(root) == 0 || v:shell_error
+    Files
+  else
+    GFiles -co --exclude-standard -- . ':!:vendor/*'
+  endif
+endfunction
 
-Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
+command! -nargs=* SmartFuzzy :call SmartFuzzy()
+
+function! GitGrepWord()
+  cgetexpr system("git grep -n '" . expand("<cword>") . "'")
+  cwin
+  echo 'Number of matches: ' . len(getqflist())
+endfunction
+
+command! -nargs=0 GitGrepWord :call GitGrepWord()
+
+" === Shortcuts ===
+
+map j gj
+map k gk
+map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
+map <silent> <LocalLeader>nr :NERDTree<CR>
+map <silent> <LocalLeader>nf :NERDTreeFind<CR>
+map <silent> <leader>ff :SmartFuzzy<CR>
+map <silent> <leader>fg :GFiles<CR>
+map <silent> <leader>fb :Buffers<CR>
+map <silent> <leader>ft :Tags<CR>
+
+" normal mode mappings
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gw :Gbrowse-<CR>
 nnoremap <Leader>gr :Gread<CR>
 
-Plug 'tpope/vim-rhubarb'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+" insert mode mappings
+inoremap jj <Esc>
 
-Plug 'leafgarland/typescript-vim'
-Plug 'junegunn/goyo.vim'
-
-call plug#end()
-
-" Expand if called on a directory e.g. `vim .`
-"if isdirectory(argv(0))
-"  bd
-"  autocmd vimenter * exe "cd" argv(0)
-"  autocmd vimenter * NERDTree
-"endif
-
+" Apply automatic 80 width of characters
+au BufRead,BufNewFile *.md setlocal textwidth=80
 " Close NERDTree if it's the last thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -228,19 +119,6 @@ let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 " Ignore these kinds of files in CtrlP, if in a .gitignore file
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" let g:pymode_options_max_line_length = 120 " For some stupid reason, this does not recognize the pylint.rc file
-" let g:pymode_doc = 0
-" 
-" autocmd FileType python set colorcolumn=120
-" 
-" colorscheme badwolf
-" 
-" let g:badwolf_darkgutter = 1
-" 
-" " When you type `jj` it escapes.
-inoremap jj <Esc>
-
-set clipboard=unnamed
 
 let g:LanguageClient_serverCommands = {
     \ 'go':         ['gopls'],
@@ -248,18 +126,16 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['typescript-language-server', '--stdio'],
     \ }
 
-" A cool function to add a timestamp to a file on save
-" Usage: :SWT <filename>
-function! SaveWithTimestamp(filename) range
-  let l:extension = '.' .fnamemodify(a:filename, ':e')
+let wiki = {}
+let wiki.path = "~/me/wiki"
+let wiki.auto_toc = 1
+let wiki.auto_tags = 1
+let wiki.auto_diary_index = 1
+let wiki.auto_generate_links = 1
+let wiki.auto_generate_tags = 1
 
-  if len(l:extension) == 1
-    let l:extension = '.md'
-  endif
+let g:vimwiki_list = [wiki]
+let g:vimwiki_listsyms = "✗○◐●✓"
 
-  let l:filename = escape( fnamemodify(a:filename, ':r') . strftime("-%Y%m%d") . l:extension, ' ')
+nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
-  execute "write " . l:filename
-endfunction
-
-command! -nargs=1 SWT call SaveWithTimestamp( <q-args> )

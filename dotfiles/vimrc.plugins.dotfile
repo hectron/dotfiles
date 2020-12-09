@@ -1,0 +1,39 @@
+if &compatible
+  set nocompatible
+end
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'jlanzarotta/bufexplorer'
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-commentary' " Easily comment
+Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-endwise'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'leafgarland/typescript-vim'
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+Plug 'junegunn/goyo.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vimwiki/vimwiki'
+" Plug 'maralla/completor.vim'
+
+" Go plugins
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+if filereadable(expand("~/.vimrc.plugins.local"))
+  source ~/.vimrc.plugins.local
+endif
+
+call plug#end()
