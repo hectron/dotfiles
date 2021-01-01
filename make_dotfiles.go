@@ -77,6 +77,6 @@ func main() {
 
 		ExitIfError(err, 1)
 
-		fmt.Printf("Symlinked %q to %q", dotfile, newFilepath)
+		fmt.Printf("Symlinked %q to %q\n", dotfile, newFilepath)
 	}
 }
