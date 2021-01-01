@@ -1,49 +1,16 @@
 # ==============================================================================
-# General Unix stuff
+# General
 # ==============================================================================
 alias l='ls -CFlh'
+alias vim='nvim'
 
 # ==============================================================================
 # Git Aliases
 # ==============================================================================
 
-# Adding
 alias gap='git add -p'
-# alias gnap='git add -N . && git add -p'
-
-# Logging
-# alias glp='git log -p'
-# alias glg='git log --graph --oneline --decorate --color --all'
-# alias glod='git log --oneline --decorate'
-# alias whathappened='git log -p'
-
-# Branch actions
 alias gb='git branch'
-# alias gcl='git clean -f -d'
-# alias reset-authors='git commit --amend --reset-author -C HEAD'
 alias prune='git remote prune origin'
-
-# Pulling
 alias gl='git pull'
-# alias gpr='git pull --rebase'
-
-# Pushing
-# alias gp='git push'
 alias fuckit='git push --force-with-lease'
-# alias justdoit='git push --force-with-lease'
-
-# Committing
-# alias gc='git commit -v'
-# alias gca='git commit -a -v'
-# alias gr='git rebase'
-# alias grc='git rebase --continue'
-# alias gra='git rebase --abort'
-# alias loljk='git rebase --abort'
-
-# Diff tools
-# alias gd='git diff'
-# alias gdc='git diff --cached'
-# alias gdh='git diff HEAD'
-# alias gst='git status'
-# alias waitwhat='git diff HEAD'
 

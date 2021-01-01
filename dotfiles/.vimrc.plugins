@@ -15,6 +15,9 @@ Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 
+Plug 'benmills/vimux'
+Plug 'vim-test/vim-test' " Run tests in conjuction with vimux
+
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',

@@ -98,15 +98,27 @@ map <silent> <leader>ff :SmartFuzzy<CR>
 map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
+map <silent> <LocalLeader>rb :wa<CR> :TestFile<CR>
+
+" Vimux
+map <silent> <LocalLeader>vl :wa<CR> :VimuxRunLastCommand<CR>
+map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
+map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
+map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
+map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
 
 " normal mode mappings
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gw :Gbrowse-<CR>
 nnoremap <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
 " insert mode mappings
 inoremap jj <Esc>
+
+let g:VimuxUseNearestPane = 1
+let test#strategy = "vimux"
 
 " Apply automatic 80 width of characters
 au BufRead,BufNewFile *.md setlocal textwidth=80
@@ -118,7 +130,6 @@ let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 
 " Ignore these kinds of files in CtrlP, if in a .gitignore file
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
 
 let g:LanguageClient_serverCommands = {
     \ 'go':         ['gopls'],
@@ -136,6 +147,4 @@ let wiki.auto_generate_tags = 1
 
 let g:vimwiki_list = [wiki]
 let g:vimwiki_listsyms = "✗○◐●✓"
-
-nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
