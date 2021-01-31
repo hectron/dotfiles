@@ -48,7 +48,7 @@ func main() {
 		Reader: os.Stdin,
 	}
 
-	response, err := ui.Ask("Symlink dotfiles?", &input.Options{
+	response, err := ui.Ask("Symlink dotfiles? (y/n)", &input.Options{
 		Required: true,
 		Loop:     true,
 		ValidateFunc: func(input string) error {
@@ -72,11 +72,46 @@ func main() {
 	for _, dotfile := range dotfiles {
 		baseFilename := filepath.Base(dotfile)
 		newFilepath := filepath.Join(userHomeDir, baseFilename)
+    fileDescriptor, _ := os.Stat(newFilepath)
+    shouldCopy := true
 
-		err = os.Symlink(dotfile, newFilepath)
+    if fileDescriptor != nil {
+      question := fmt.Sprintf("%s exists. Override with repo version? (y/n)", newFilepath)
 
-		ExitIfError(err, 1)
+      response, err := ui.Ask(question, &input.Options{
+        Required: true,
+        Loop:     true,
+        ValidateFunc: func(input string) error {
+          downcasedInput := strings.ToLower(input)
 
-		fmt.Printf("Symlinked %q to %q\n", dotfile, newFilepath)
+          if downcasedInput != "y" && downcasedInput != "n" {
+            return fmt.Errorf("please enter y or n")
+          }
+
+          return nil
+        },
+      })
+
+      ExitIfError(err, 1)
+
+      if response == "y" {
+        err := os.Remove(newFilepath)
+
+        ExitIfError(err, 1)
+
+        shouldCopy = true
+      } else {
+        shouldCopy = false
+        fmt.Sprintln("Not copying %s", baseFilename)
+      }
+    }
+
+    if shouldCopy {
+      err = os.Symlink(dotfile, newFilepath)
+
+      ExitIfError(err, 1)
+
+      fmt.Printf("Symlinked %q to %q\n", dotfile, newFilepath)
+    }
 	}
 }
