@@ -99,6 +99,7 @@ map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
 map <silent> <LocalLeader>rb :wa<CR> :TestFile<CR>
+map <silent> <C-p> :Files<CR>
 
 " Vimux
 map <silent> <LocalLeader>vl :wa<CR> :VimuxRunLastCommand<CR>

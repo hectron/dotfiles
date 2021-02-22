@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'jlanzarotta/bufexplorer'
 Plug 'mileszs/ack.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-ruby/vim-ruby'
@@ -25,7 +24,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'leafgarland/typescript-vim'
 
 " (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
