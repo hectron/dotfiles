@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo -e "Installing latest version of nvim\n"
+
+sudo apt-install nvim -y
+
+echo -e "✔ Done!\n"
