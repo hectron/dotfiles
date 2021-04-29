@@ -166,4 +166,3 @@ endif
 
 let g:vimwiki_list = wiki_list
 let g:vimwiki_listsyms = "✗○◐●✓"
-

@@ -1,4 +1,5 @@
-stow_dirs := $(filter-out installers/*, $(wildcard */))
+stow_dirs := $(wildcard */)
+stow_dirs := $(stow_dirs) .config
 
 .PHONY: *
 
