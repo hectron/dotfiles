@@ -1,7 +1,13 @@
-# Hectron's Dotfiles
+# Dotfiles
 
-Symlinks dotfiles
+## Installing
 
-```bash
-go run symlink_dotfiles.go
+```shell
+git clone git@github.com:hectron/dotfiles.git ~/dotfiles && cd $_
+
+# Test installing the dotfiles
+make dry-run
+
+# Install dotfiles
+make install
 ```
