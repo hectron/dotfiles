@@ -35,6 +35,9 @@ Plug 'vimwiki/vimwiki'
 " Go plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Themes
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 " Colors
 " Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 " Plug 'dracula/vim', { 'as': 'dracula' }
