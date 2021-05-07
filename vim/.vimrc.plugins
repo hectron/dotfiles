@@ -35,6 +35,10 @@ Plug 'vimwiki/vimwiki'
 " Go plugins
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Colors
+" Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
+
 if filereadable(expand("~/.vimrc.plugins.local"))
   source ~/.vimrc.plugins.local
 endif
