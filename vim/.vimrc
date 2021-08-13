@@ -133,8 +133,10 @@ inoremap jj <Esc>
 let g:VimuxUseNearestPane = 1
 let test#strategy = "vimux"
 
-" Apply automatic 80 width of characters
-au BufRead,BufNewFile *.md setlocal textwidth=80
+" Ruby-specific vimux bindings (@see dotfiles for how to setup)
+autocmd FileType ruby runtime ruby_mappings.vim
+" Apply automatic 120 width of characters
+autocmd BufRead,BufNewFile *.md setlocal textwidth=120
 " Close NERDTree if it's the last thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -142,7 +144,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 
 " Ignore these kinds of files in CtrlP, if in a .gitignore file
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 let g:LanguageClient_serverCommands = {
     \ 'go':         ['gopls'],
