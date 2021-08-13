@@ -1,22 +1,22 @@
 [user]
-	name  = Hector Rios
-	email = that.hector@gmail.com
+  name  = Hector Rios
+  email = that.hector@gmail.com
 [color]
   ui = auto
 [core]
-	editor = vim
+  editor = vim
 [push]
-	default = current
+  default = current
 [rebase]
   autosquash = true
 [grep]
   lineNumber = true
 [alias]
   # shorthands
-	br = branch
-	co = checkout
-	ci = commit
-	st = status
+  br = branch
+  co = checkout
+  ci = commit
+  st = status
   ap = add -p
 
   # typos
@@ -39,8 +39,8 @@
   lb = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   fr = !git reset origin/$(git cb) --hard
   or = !git reset origin/$(git cb) --hard
-	unstage = reset HEAD --
-	last = log -1 HEAD
+  unstage = reset HEAD --
+  last = log -1 HEAD
   awk = "!f() { git log -p -S\"$1\"; }; f"
 [alias "push"]
   please = push --force-with-lease
