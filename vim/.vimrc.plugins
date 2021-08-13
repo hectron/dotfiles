@@ -13,6 +13,7 @@ Plug 'tpope/vim-commentary' " Easily comment
 Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
 Plug 'benmills/vimux'
 Plug 'vim-test/vim-test' " Run tests in conjuction with vimux
