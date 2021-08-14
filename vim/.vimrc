@@ -242,6 +242,19 @@ if has('nvim-0.5')
   if status then
     fzf_lsp.setup()
   end
-EOF
 
+  require'nvim-treesitter.configs'.setup{
+    ensure_installed = {"ruby"}, -- this is available in the list of official parsers
+    ignore_install = {}, -- list of parsers to ignore installing
+    highlight = {
+      enable = true
+    },
+    incremental_selection = {
+      enable = true
+    },
+    textobjects = {
+      enable = true
+    },
+  }
+EOF
 endif
