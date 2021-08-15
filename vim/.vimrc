@@ -37,17 +37,13 @@ if !has('nvim')
   set ttymouse=
 endif
 set backupcopy=yes " Setting backup copy preserves file inodes, which are needed for Docker file mounting
-if v:version > 704 || v:version == 704 && has('patch2201') " signcolumn wasn't added until vim 7.4.2201
-  set signcolumn=yes
-endif
+set signcolumn=yes
 set complete-=f " Don't use tags for autocomplete
 set updatetime=200
 
-if version >= 703
-  set undodir=~/.vim/undodir
-  set undofile
-  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-endif
+set undodir=~/.vim/undodir
+set undofile
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set undolevels=1000 "maximum number of changes that can be undone
 
 set encoding=utf8
