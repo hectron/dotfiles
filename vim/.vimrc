@@ -195,7 +195,7 @@ if has('nvim-0.5')
       buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
       -- Mappings.
-      local opts = { noremap=true, silent=true }
+      local opts = { noremap = true, silent = true }
 
       -- Inspired by https://github.com/neovim/nvim-lspconfig/#keybindings-and-completion,
       -- but with <leader> instead of <space>
