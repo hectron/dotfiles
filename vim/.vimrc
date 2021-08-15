@@ -79,13 +79,14 @@ map k gk
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
-map <silent> <LocalLeader>ff :Telescope find_files find_command=fd,-IH,-E.git<CR>
-map <silent> <leader>fb :Telescope buffers<CR>
-map <silent> <leader>ft :Telescope tags<CR>
-map <silent> <LocalLeader>rb :wa<CR> :TestFile<CR>
-map <silent> <C-p> :Telescope find_files find_command=fd,-IH,-E.git<CR>
+map <silent> <LocalLeader>ff :Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>
+map <silent> <LocalLeader>fb :Telescope buffers<CR>
+map <silent> <LocalLeader>ft :Telescope tags<CR>
+map <silent> <LocalLeader>fg :Telescope live_grep<CR>
+map <silent> <C-p> :Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>
 
 " Vimux
+map <silent> <LocalLeader>rb :wa<CR> :TestFile<CR>
 map <silent> <LocalLeader>vl :wa<CR> :VimuxRunLastCommand<CR>
 map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
 map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
@@ -99,7 +100,7 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gw :Gbrowse-<CR>
 nnoremap <Leader>gr :Gread<CR>
-nnoremap <silent> <Leader>gw :GitGrepWord<CR>
+nnoremap <silent> <Leader>gw :Telescope grep_string<CR>
 
 " insert mode mappings
 inoremap jj <Esc>

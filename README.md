@@ -36,8 +36,14 @@ This repository primarily uses neovim (0.5+)
 
 - [sharkdp/bat](https://github.com/sharkdp/bat)
 - [sharkdp/fd](https://github.com/sharkdp/fd)
+- [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 - [junegunn/fzf](https://github.com/junegunn/fzf)
 - [tldr-pages/tldr](https://github.com/tldr-pages/tldr)
+
+## Fonts
+
+My font of choice is PragmataPro, but using a patched font is helpful to get icons. Currently, the one I prefer is
+JetBrains Mono.
 
 ## Colors
 
