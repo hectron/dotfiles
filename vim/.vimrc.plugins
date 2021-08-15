@@ -16,8 +16,6 @@ Plug 'vim-test/vim-test' " Run tests in conjuction with vimux
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
 Plug 'vimwiki/vimwiki'
 
 if has('nvim-0.5')

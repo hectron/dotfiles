@@ -80,17 +80,6 @@ let g:fzf_action = {
 
 " === Functions ===
 
-function! SmartFuzzy()
-  let root = split(system('git rev-parse --show-toplevel'), '\n')
-  if len(root) == 0 || v:shell_error
-    Files
-  else
-    GFiles -co --exclude-standard -- . ':!:vendor/*'
-  endif
-endfunction
-
-command! -nargs=* SmartFuzzy :call SmartFuzzy()
-
 function! GitGrepWord()
   cgetexpr system("git grep -n '" . expand("<cword>") . "'")
   cwin
@@ -106,12 +95,11 @@ map k gk
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
-map <silent> <leader>ff :SmartFuzzy<CR>
-map <silent> <leader>fg :GFiles<CR>
-map <silent> <leader>fb :Buffers<CR>
-map <silent> <leader>ft :Tags<CR>
+map <silent> <LocalLeader>ff :Telescope find_files find_command=fd,-IH,-E.git<CR>
+map <silent> <leader>fb :Telescope buffers<CR>
+map <silent> <leader>ft :Telescope tags<CR>
 map <silent> <LocalLeader>rb :wa<CR> :TestFile<CR>
-map <silent> <C-p> :Files<CR>
+map <silent> <C-p> :Telescope find_files find_command=fd,-IH,-E.git<CR>
 
 " Vimux
 map <silent> <LocalLeader>vl :wa<CR> :VimuxRunLastCommand<CR>
@@ -121,6 +109,8 @@ map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
 map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
 
 " normal mode mappings
+nnoremap <Leader>ev :e $MYVIMRC<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gw :Gbrowse-<CR>
@@ -145,12 +135,6 @@ let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 
 " Ignore these kinds of files in CtrlP, if in a .gitignore file
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-let g:LanguageClient_serverCommands = {
-    \ 'go':         ['gopls'],
-    \ 'ruby':       ['solargraph', 'stdio'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ }
 
 let wiki = {}
 let wiki.path = "~/me/wiki"
@@ -237,13 +221,7 @@ if has('nvim-0.5')
     }
   end
 
-  local status, fzf_lsp = pcall(require 'fzf_lsp')
-
-  if status then
-    fzf_lsp.setup()
-  end
-
-  require'nvim-treesitter.configs'.setup{
+  require('nvim-treesitter.configs').setup{
     ensure_installed = {"ruby"}, -- this is available in the list of official parsers
     ignore_install = {}, -- list of parsers to ignore installing
     highlight = {
