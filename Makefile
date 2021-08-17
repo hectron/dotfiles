@@ -1,5 +1,4 @@
 stow_dirs := $(wildcard */)
-stow_dirs := $(stow_dirs) .config
 
 .PHONY: *
 
@@ -13,3 +12,6 @@ install:
 
 uninstall:
 	stow --target $(HOME) -D $(stow_dirs)
+
+dry-uninstall:
+	stow --no --verbose --target $(HOME) -D $(stow_dirs)
