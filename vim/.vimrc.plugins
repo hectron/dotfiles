@@ -2,7 +2,7 @@ if &compatible
   set nocompatible
 end
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(has("nvim") ? stdpath("data") . "/plugged" : "~/.vim/plugged")
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary' " Easily comment
