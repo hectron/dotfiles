@@ -5,6 +5,8 @@ endif
 lua <<EOF
 require('nvim-treesitter.configs').setup{
   ensure_installed = {
+    "dockerfile",
+    "go",
     "ruby",
     "yaml",
     "json",
