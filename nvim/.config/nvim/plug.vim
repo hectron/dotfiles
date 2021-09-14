@@ -1,6 +1,6 @@
 let g:plug_home = stdpath("data") . "/plugged"
 
-call plug#begin()
+call plug#begin(plug_home)
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary' " Easily comment
@@ -26,11 +26,12 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
 if has('nvim-0.5')
   Plug 'neovim/nvim-lspconfig'
-  Plug 'gfanto/fzf-lsp.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'branch': 'main', 'do': 'make' }
 endif
 
 if filereadable(expand("~/.vimrc.plugins.local"))
