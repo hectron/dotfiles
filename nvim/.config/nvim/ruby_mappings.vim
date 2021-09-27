@@ -1,4 +1,4 @@
-if has_key(plug, 'vimux') 
+if has_key(plugs, 'vimux')
   map <silent> <LocalLeader>rb :wa<CR>:TestFile<CR>
   map <silent> <LocalLeader>rf :wa<CR>:TestNearest<CR>
   map <silent> <LocalLeader>rl :wa<CR>:TestLast<CR>
