@@ -15,7 +15,8 @@ require('nvim-treesitter.configs').setup{
   }, -- this is available in the list of official parsers
   ignore_install = {}, -- list of parsers to ignore installing
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = true,
   },
   incremental_selection = {
     enable = true
