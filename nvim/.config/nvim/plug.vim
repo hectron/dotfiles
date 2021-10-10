@@ -32,6 +32,10 @@ if has('nvim-0.5')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'branch': 'main', 'do': 'make' }
+
+  " Autocomplete for lsp
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
 endif
 
 if filereadable(expand("~/.vimrc.plugins.local"))

@@ -53,6 +53,10 @@ if status then
       filetypes = { "ruby", "rake" }
     }
   }
+
+  nvim_lsp.gopls.setup{
+    on_attach = on_attach,
+  }
 end
 EOF
 
