@@ -52,5 +52,8 @@ runtime maps.vim " generic key mappings, custom ones go in after/plugin/
 autocmd BufRead,BufNewFile *.md setlocal textwidth=120
 
 colorscheme spaceduck
+" spaceduck has a weird highlight where it blends too much with the
+" background, so we use an explicitly darker grey to help
+hi Visual ctermbg=DarkGrey
 
 set exrc
