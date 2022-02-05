@@ -7,7 +7,7 @@ map <silent> <LocalLeader>fb :Telescope buffers<CR>
 map <silent> <LocalLeader>ft :Telescope tags<CR>
 map <silent> <LocalLeader>fg :Telescope live_grep<CR>
 map <silent> <C-p> :Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>
-nnoremap <silent> <Leader>gw :Telescope g
+nnoremap <silent> <Leader>gw :Telescope grep_string<CR>
 
 lua << EOF
 local actions = require("telescope.actions")

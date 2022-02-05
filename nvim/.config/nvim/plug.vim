@@ -26,6 +26,8 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
 if has('nvim-0.5')
   Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer'  " auto-install LSP servers
+
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'

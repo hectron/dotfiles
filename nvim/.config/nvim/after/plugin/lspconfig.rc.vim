@@ -47,16 +47,53 @@ if status then
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
   end
 
-  nvim_lsp.solargraph.setup{
-    on_attach = on_attach,
-    settings = {
-      filetypes = { "ruby", "rake" }
-    }
+  local lsp_installer_servers = require('nvim-lsp-installer.servers')
+
+  local servers = {
+    'gopls',
+    'solargraph',
   }
 
-  nvim_lsp.gopls.setup{
-    on_attach = on_attach,
+  local server_specific_opts = {
+    ["solargraph"] = function(opts)
+      opts.settings = {
+        filetypes = { "ruby", "rake" }
+      }
+    end,
   }
+
+  for _, server_name in pairs(servers) do
+    local server_available, server = lsp_installer_servers.get_server(server_name)
+
+    if server_available then
+      server:on_ready(function()
+        local opts = {
+          on_attach = on_attach,
+        }
+
+        if server_specific_opts[server_name] then
+          server_specific_opts[server_name](opts)
+        end
+
+        server:setup(opts)
+      end)
+
+      if not server:is_installed() then
+        server:install()
+      end
+    end
+  end
+
+  -- nvim_lsp.solargraph.setup{
+  --   on_attach = on_attach,
+  --   settings = {
+  --     filetypes = { "ruby", "rake" }
+  --   }
+  -- }
+
+  -- nvim_lsp.gopls.setup{
+  --   on_attach = on_attach,
+  -- }
 end
 EOF
 
