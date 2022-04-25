@@ -102,6 +102,7 @@ let NERDTreeIgnore = ['\.pyc$'] " can be comma-delimited
 
 let wiki = {}
 let wiki.path = "~/me/wiki"
+let wiki.ext = ".md"
 let wiki.auto_toc = 1
 let wiki.auto_tags = 1
 let wiki.auto_diary_index = 1
@@ -129,7 +130,7 @@ endif
 let g:vimwiki_list = wiki_list
 let g:vimwiki_listsyms = "✗○◐●✓"
 
-colorscheme spaceduck
+" colorscheme spaceduck
 
 if has('nvim-0.5')
   lua << EOF

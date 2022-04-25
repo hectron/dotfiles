@@ -4,6 +4,8 @@ endif
 
 let wiki = {}
 let wiki.path = $HOME . "/wiki"
+let wiki.syntax = "markdown"
+let wiki.ext = ".md"
 let wiki.auto_toc = 1
 let wiki.auto_tags = 1
 let wiki.auto_diary_index = 1

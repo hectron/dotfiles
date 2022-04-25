@@ -52,6 +52,8 @@ if status then
   local servers = {
     'gopls',
     'solargraph',
+    'terraformls',
+    'pyright',
   }
 
   local server_specific_opts = {

@@ -8,6 +8,7 @@ require('nvim-treesitter.configs').setup{
     "bash",
     "dockerfile",
     "go",
+    "hcl",
     "ruby",
     "yaml",
     "json",
