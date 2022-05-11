@@ -12,5 +12,6 @@ alias gb='git branch'
 alias prune='git remote prune origin'
 alias gl='git pull'
 alias fuckit='git push --force-with-lease'
+alias me='cd $HOME/me'
 
 # alias bat="batcat" # https://github.com/sharkdp/bat/issues/982

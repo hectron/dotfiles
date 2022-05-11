@@ -32,8 +32,9 @@ man() {
 # ==============
 # Exports
 # ==============
-export EDITOR='vim'
-export PATH=$PATH:$HOME/bin
+export EDITOR='nvim'
+export PATH=$PATH:$HOME/.local/bin
+export TERM="xterm-256color"
 
 ################################################################################
 # TLDR
@@ -53,8 +54,8 @@ export TLDR_CACHE_MAX_AGE=720
 #   @see https://github.com/asdf-vm/asdf
 ################################################################################
 
-#. $(brew --prefix asdf)/asdf.sh
-[[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+. $(brew --prefix asdf)/libexec/asdf.sh
+# [[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
 
 ################################################################################
 # FZF
