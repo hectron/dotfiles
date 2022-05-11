@@ -54,6 +54,7 @@ if status then
     'solargraph',
     'terraformls',
     'pyright',
+    'jsonnet_ls',
   }
 
   local server_specific_opts = {
@@ -85,17 +86,6 @@ if status then
       end
     end
   end
-
-  -- nvim_lsp.solargraph.setup{
-  --   on_attach = on_attach,
-  --   settings = {
-  --     filetypes = { "ruby", "rake" }
-  --   }
-  -- }
-
-  -- nvim_lsp.gopls.setup{
-  --   on_attach = on_attach,
-  -- }
 end
 EOF
 
