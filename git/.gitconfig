@@ -4,7 +4,7 @@
 [color]
   ui = auto
 [core]
-  editor = vim
+  editor = nvim
 [push]
   default = current
 [rebase]
