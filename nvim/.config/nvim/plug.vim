@@ -11,6 +11,8 @@ Plug 'tpope/vim-endwise'
 Plug 'benmills/vimux'
 Plug 'vim-test/vim-test' " Run tests in conjuction with vimux
 
+Plug 'pgr0ss/vim-github-url'
+
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vimwiki/vimwiki'
