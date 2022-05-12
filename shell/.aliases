@@ -15,6 +15,3 @@ alias fuckit='git push --force-with-lease'
 alias me='cd $HOME/me'
 
 # alias bat="batcat" # https://github.com/sharkdp/bat/issues/982
-
-# A hook for setting custom aliases on a per-machine basis
-[ -f ~/.aliases.local ] && source ~/.aliases.local
