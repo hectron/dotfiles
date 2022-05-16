@@ -72,6 +72,9 @@ if status then
         filetypes = { 'ruby', 'rake' }
       }
     end,
+    ['gopls'] = function(opts)
+      opts.cmd = { 'gopls', '-remote=auto' }
+    end,
   }
 
   for _, server_name in pairs(lsp_servers) do
