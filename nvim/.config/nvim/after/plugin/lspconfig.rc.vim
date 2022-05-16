@@ -3,6 +3,24 @@ if !exists("g:lspconfig")
 endif
 
 lua << EOF
+-- Automatically install these LSP servers and set them up with proper 'on_attach' functions
+local lsp_servers = {
+    'bashls',
+    'dockerls',
+    'gopls',
+    'solargraph',
+    'terraformls',
+    'pyright',
+    'jsonnet_ls',
+    'vimls',
+}
+
+require('nvim-lsp-installer').setup({
+  automatic_installation = true,
+  ensure_installed = lsp_servers
+})
+
+
 local status, nvim_lsp = pcall(require, 'lspconfig')
 
 if status then
@@ -47,44 +65,26 @@ if status then
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
   end
 
-  local lsp_installer_servers = require('nvim-lsp-installer.servers')
-
-  local servers = {
-    'gopls',
-    'solargraph',
-    'terraformls',
-    'pyright',
-    'jsonnet_ls',
-  }
-
+  -- Specify any custom settings for an LSP server here
   local server_specific_opts = {
-    ["solargraph"] = function(opts)
+    ['solargraph'] = function(opts)
       opts.settings = {
-        filetypes = { "ruby", "rake" }
+        filetypes = { 'ruby', 'rake' }
       }
     end,
   }
 
-  for _, server_name in pairs(servers) do
-    local server_available, server = lsp_installer_servers.get_server(server_name)
+  for _, server_name in pairs(lsp_servers) do
+    local opts = {
+      on_attach = on_attach,
+    }
 
-    if server_available then
-      server:on_ready(function()
-        local opts = {
-          on_attach = on_attach,
-        }
-
-        if server_specific_opts[server_name] then
-          server_specific_opts[server_name](opts)
-        end
-
-        server:setup(opts)
-      end)
-
-      if not server:is_installed() then
-        server:install()
-      end
+    if server_specific_opts[server_name] then
+      server_specific_opts[server_name](opts)
     end
+
+    server = require('lspconfig')[server_name]
+    server.setup(opts)
   end
 end
 EOF

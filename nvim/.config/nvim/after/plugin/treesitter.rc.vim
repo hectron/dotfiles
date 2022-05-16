@@ -9,10 +9,18 @@ require('nvim-treesitter.configs').setup{
     "dockerfile",
     "go",
     "hcl",
+    "javascript",
+    "json",
+    "lua",
+    "make",
+    "python",
     "ruby",
     "yaml",
     "json",
     "toml",
+    "tsx",
+    "typescript",
+    "vim",
   }, -- this is available in the list of official parsers
   ignore_install = {}, -- list of parsers to ignore installing
   highlight = {

@@ -52,9 +52,7 @@ export TLDR_CACHE_MAX_AGE=720
 # asdf
 #   @see https://github.com/asdf-vm/asdf
 ################################################################################
-
-. $(brew --prefix asdf)/libexec/asdf.sh
-# [[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+[[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
 
 ################################################################################
 # FZF
