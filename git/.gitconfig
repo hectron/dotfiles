@@ -3,8 +3,15 @@
   email = that.hector@gmail.com
 [color]
   ui = auto
+  branch = auto
+  diff = true
+  status = true
+[init]
+  defaultBranch = main
 [core]
   editor = nvim
+[fetch]
+  prune = true
 [push]
   default = current
 [rebase]
@@ -42,5 +49,8 @@
   unstage = reset HEAD --
   last = log -1 HEAD
   awk = "!f() { git log -p -S\"$1\"; }; f"
+
+  unmerged = branch --no-merge
+  merged = "!git branch -l --format='%(refname:short)' | grep -v -e '^master$' -e '^main$' | while read branch; do [ -z \"$(git diff origin/HEAD...${branch})\" ] && echo \"${branch}\"; done"
 [alias "push"]
   please = push --force-with-lease
