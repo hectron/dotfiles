@@ -10,6 +10,7 @@
   defaultBranch = main
 [core]
   editor = nvim
+	excludesFile = ~/.gitignore_global
 [fetch]
   prune = true
 [push]
