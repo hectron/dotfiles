@@ -60,10 +60,4 @@ export TLDR_CACHE_MAX_AGE=720
 ################################################################################
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# ==============================================================================
-# Hook to extend any custom aliases
-# ==============================================================================
-[[ -s "$HOME/.profile.local" ]] && source "$HOME/.profile.local"
-[[ -s "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
-[[ -s "$HOME/.functions.local" ]] && source "$HOME/.functions.local"
 [[ -s "$HOME/.shellrc.local" ]] && source "$HOME/.shellrc.local"
