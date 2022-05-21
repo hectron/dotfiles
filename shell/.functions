@@ -17,15 +17,44 @@ reload!() {
   fi
 }
 
+# A function to clone a repository in the $CLONE_DIR directory,
+# and change into the newly cloned repository.
 clone-cd() {
+  start_cd=$(pwd)
   repo=$1
-  dest=`echo $repo | sed 's|.*/||'`
+  owner_and_path=`echo $repo | sed 's!/! !'`
+  owner=$(echo $owner_and_path | awk '{ print $1 }')
+  repo_path=$(echo $owner_and_path | awk '{ print $2 }')
 
-  cd ~/ps
+  clone_dir=${CLONE_DIR:-"$HOME/me"}
 
-  if [ ! -d $dest ]; then
-    clone $1
+  if [ ! -d $clone_dir ]; then
+    mkdir $clone_dir
   fi
 
-  cd $dest
+  cd $clone_dir
+
+  # one arg is passed in
+  if [ -z $repo_path ]; then
+    repo_path=$owner
+  fi
+
+  clone_exit_code=1
+  if [ ! -d $repo_path ]; then
+    clone $repo_path
+    # TODO -- fix `clone` to return a non-zero
+    # exit code if it fails to clone
+    # clone_exit_code=$?
+    if [ -d $repo_path ]; then
+      clone_exit_code=0
+    fi
+  else
+    clone_exit_code=0
+  fi
+
+  if [[ $clone_exit_code -eq 0 ]]; then
+    cd $repo_path
+  else
+    cd $start_cd
+  fi
 }
