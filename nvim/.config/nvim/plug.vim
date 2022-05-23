@@ -27,6 +27,7 @@ Plug 'leafgarland/typescript-vim'
 
 " Colors
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'  " auto-install LSP servers

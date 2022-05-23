@@ -82,7 +82,7 @@ let g:vimwiki_listsyms = "✗○◐●✓"
 " Apply automatic 120 width of characters
 autocmd BufRead,BufNewFile *.md setlocal textwidth=120
 
-colorscheme spaceduck
+colorscheme tokyonight
 " spaceduck has a weird highlight where it blends too much with the
 " background, so we use an explicitly darker grey to help
 hi Visual ctermbg=DarkGrey
