@@ -19,15 +19,15 @@ make install
 The top-level directories are organized to group things conceptually. In practice, the directory structure inside the
 top-level directory will be what is set up by `stow`.
 
-In other words, for something like the `vim/` directory -- the `.vim` directory will be setup in the user's `$HOME`
-directory. The files that live inside the `vim/` directory will be placed in the user's `$HOME`.
+In other words, for something like the `nvim/` directory -- the `.config` directory will be setup in the user's `$HOME`
+directory. The files that live inside the `nvim/` directory will be placed in the user's `$HOME/.config`.
 
 After installing, this is what the directory structure will look like:
 
 ```shell
-$HOME/.vim/<whatever>
-$HOME/.vimrc
-$HOME/.vimrc.plugins
+$HOME/.config/nvim/init.vim
+$HOME/.config/nvim/plug.vim
+$HOME/.config/nvim/<whatever>
 ```
 
 ## Tooling
@@ -42,13 +42,10 @@ This repository primarily uses neovim (0.5+)
 
 ## Fonts
 
-My font of choice is PragmataPro, but using a patched font is helpful to get icons. Currently, the one I prefer is
-JetBrains Mono.
+My font of choice is **PragmataPro**, but that is an expensive font and I haven't found a NERD font version of it.
+
+I switch between **Iosevka Nerd Font** or **JetBraints Mono Nerd Font**.
 
 ## Colors
 
-This setup primarily uses SpaceDuck as the theme.
-
-- [SpaceDuck Terminal Config](https://github.com/pineapplegiant/spaceduck-terminal)
-- [SpaceDuck Vim Config](https://github.com/pineapplegiant/spaceduck)
-- [SpaceDuck Tmux Config](https://github.com/pineapplegiant/spaceduck-terminal/tree/main/tmux)
+This setup primarily uses [**Catppucin**](https://github.com/catppuccin/nvim) as the theme.
