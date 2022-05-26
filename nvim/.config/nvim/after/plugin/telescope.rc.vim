@@ -6,9 +6,15 @@ map <silent> <LocalLeader>ff :Telescope find_files find_command=rg,--files,--igl
 map <silent> <LocalLeader>fb :Telescope buffers<CR>
 map <silent> <LocalLeader>ft :Telescope tags<CR>
 map <silent> <LocalLeader>fg :Telescope live_grep<CR>
-map <silent> <LocalLeader>fh :Telescope help_tags<cr>
+map <silent> <LocalLeader>gh :Telescope help_tags<cr>
 map <silent> <C-p> :Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>
 nnoremap <silent> <Leader>gw :Telescope grep_string<CR>
+
+" git navigation
+map <silent> <LocalLeader>gco :Telescope git_commits<cr>
+map <silent> <LocalLeader>ggs :Telescope git_status<cr>
+map <silent> <LocalLeader>ggc :Telescope git_bcommits<cr>
+
 
 lua << EOF
 local actions = require("telescope.actions")
