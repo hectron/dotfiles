@@ -8,6 +8,7 @@ map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
 map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
 map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
 map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
+nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
 vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
 
 let g:VimuxUseNearestPane = 1
