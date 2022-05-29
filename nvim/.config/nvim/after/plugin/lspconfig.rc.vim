@@ -63,6 +63,10 @@ if status then
     buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
+
+    if client.server_capabilities.documentFormattingProvider then
+      vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+    end
   end
 
   -- Specify any custom settings for an LSP server here
