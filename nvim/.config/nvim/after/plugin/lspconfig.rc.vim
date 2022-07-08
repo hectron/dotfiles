@@ -8,11 +8,13 @@ local lsp_servers = {
     'bashls',
     'dockerls',
     'gopls',
-    'solargraph',
-    'terraformls',
-    'pyright',
     'jsonnet_ls',
+    'pyright',
+    'solargraph',
+    'sumneko_lua',
+    'terraformls',
     'vimls',
+    'yamlls',
 }
 
 require('nvim-lsp-installer').setup({
@@ -20,7 +22,7 @@ require('nvim-lsp-installer').setup({
   ensure_installed = lsp_servers
 })
 
-
+local navic = require('nvim-navic')
 local status, nvim_lsp = pcall(require, 'lspconfig')
 
 if status then
@@ -65,8 +67,15 @@ if status then
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
 
     if client.server_capabilities.documentFormattingProvider then
-      vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+      vim.cmd([[
+        augroup FORMATTING
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+        augroup END
+      ]])
     end
+
+    navic.attach(client, bufnr)
   end
 
   -- Specify any custom settings for an LSP server here

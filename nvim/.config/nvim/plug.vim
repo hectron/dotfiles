@@ -14,6 +14,8 @@ Plug 'vim-test/vim-test' " Run tests in conjuction with vimux
 Plug 'pgr0ss/vim-github-url'
 Plug 'sheerun/vim-polyglot' " better syntax highlighting
 Plug 'editorconfig/editorconfig-vim'
+Plug 'SmiteshP/nvim-navic'
+
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -30,6 +32,7 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'rose-pine/neovim', { 'as': 'rose-pine' } " kinda soho/minimalist
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'olimorris/onedarkpro.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'  " auto-install LSP servers
