@@ -2,7 +2,6 @@ let g:plug_home = stdpath("data") . "/plugged"
 
 call plug#begin(plug_home)
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary' " Easily comment
 Plug 'tpope/vim-fugitive'   " Git blame, diff, browse, etc
 Plug 'tpope/vim-rhubarb' " View github commit using :GBrowse
@@ -41,6 +40,7 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'branch': 'main', 'do': 'make' }
 
