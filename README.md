@@ -48,4 +48,4 @@ I switch between **Iosevka Nerd Font** or **JetBraints Mono Nerd Font**.
 
 ## Colors
 
-This setup primarily uses [**Catppucin**](https://github.com/catppuccin/nvim) as the theme.
+This setup primarily uses [**OneDarkPro**](https://github.com/olimorris/onedarkpro.nvim) as the theme.
