@@ -14,7 +14,7 @@ Plug 'pgr0ss/vim-github-url'
 Plug 'sheerun/vim-polyglot' " better syntax highlighting
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SmiteshP/nvim-navic'
-
+Plug 'glepnir/galaxyline.nvim', { 'branch': 'main' }
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -26,7 +26,9 @@ Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafgarland/typescript-vim'
 
-" Colors
+" Icons/Colors
+Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'rose-pine/neovim', { 'as': 'rose-pine' } " kinda soho/minimalist
@@ -39,7 +41,6 @@ Plug 'williamboman/nvim-lsp-installer'  " auto-install LSP servers
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'branch': 'main', 'do': 'make' }

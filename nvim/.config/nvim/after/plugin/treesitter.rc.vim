@@ -13,6 +13,8 @@ require('nvim-treesitter.configs').setup{
     "json",
     "lua",
     "make",
+    "markdown",
+    "markdown_inline",
     "python",
     "ruby",
     "yaml",
