@@ -15,15 +15,39 @@ gls.left[2] = {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
-      local mode_color = { n = colors.red, i = colors.green, v = colors.blue,
-        [''] = colors.blue, V = colors.blue,
-        c = colors.magenta, no = colors.red, s = colors.orange,
-        S = colors.orange, [''] = colors.orange,
-        ic = colors.yellow, R = colors.violet, Rv = colors.violet,
-        cv = colors.red, ce = colors.red, r = colors.cyan,
-        rm = colors.cyan, ['r?'] = colors.cyan,
-        ['!'] = colors.red, t = colors.red }
-      vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
+      local mode_color = {
+        n = colors.red,
+        i = colors.green,
+        v = colors.blue,
+        [''] = colors.blue,
+        -- [''] = colors.orange,
+        V = colors.blue,
+        ['\22'] = colors.blue,
+        c = colors.magenta,
+        no = colors.red,
+        s = colors.orange,
+        S = colors.orange,
+        ic = colors.yellow,
+        R = colors.violet,
+        Rv = colors.violet,
+        cv = colors.red,
+        ce = colors.red,
+        r = colors.cyan,
+        rm = colors.cyan,
+        ['r?'] = colors.cyan,
+        ['!'] = colors.red,
+        t = colors.red,
+      }
+
+      local current_mode = vim.fn.mode()
+      local current_mode_color = mode_color[current_mode]
+
+      if not current_mode_color then
+        print("Could not find color for current mode " .. current_mode .. ". Defaulting to red")
+        current_mode_color = colors.red
+      end
+
+      vim.api.nvim_command('hi GalaxyViMode guifg=' .. current_mode_color)
       return '  '
     end,
     highlight = { colors.red, colors.bg, 'bold' },
