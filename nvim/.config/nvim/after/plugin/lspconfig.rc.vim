@@ -78,6 +78,9 @@ if status then
     navic.attach(client, bufnr)
   end
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
   -- Specify any custom settings for an LSP server here
   local server_specific_opts = {
     ['solargraph'] = function(opts)
@@ -93,6 +96,7 @@ if status then
   for _, server_name in pairs(lsp_servers) do
     local opts = {
       on_attach = on_attach,
+      capabilities = capabilities,
     }
 
     if server_specific_opts[server_name] then
