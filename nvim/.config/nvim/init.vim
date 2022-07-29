@@ -46,7 +46,6 @@ set statusline+=Buf:#%n
 set statusline+=[%b][0x%B]
 
 runtime plug.vim " plugins
-
 runtime maps.vim " generic key mappings, custom ones go in after/plugin/
 
 " HACK -- after/plugin for vimwiki isn't quite working.

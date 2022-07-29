@@ -49,6 +49,9 @@ local server_specific_opts = {
             'vim',
           },
         },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
       },
     }
   end,

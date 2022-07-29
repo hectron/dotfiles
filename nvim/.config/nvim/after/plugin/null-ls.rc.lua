@@ -16,6 +16,7 @@ null_ls.setup({
 		builtins.formatting.fixjson, -- json
 
 		-- diagnostics
+		-- builtins.diagnostics.actionlint, -- static checker for GH Actions
 		builtins.diagnostics.write_good,
 		builtins.diagnostics.flake8,
 	},
