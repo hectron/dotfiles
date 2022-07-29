@@ -20,6 +20,14 @@ lua << EOF
 local actions = require("telescope.actions")
 
 require("telescope").setup{
+  pickers = {
+    live_grep = {
+      additional_args = function(opts)
+        -- show hidden files, respect the .gitignore, and ignore .git dir
+        return { "--hidden", "-g", "!.git/" }
+      end,
+    },
+  },
   defaults = {
     mappings = {
       -- when a menu pops up, press q to close in normal mode

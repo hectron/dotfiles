@@ -41,11 +41,14 @@ function M.on_attach(client, bufnr)
     buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
 
+    -- Formatting
+    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+
     if client.server_capabilities.documentFormattingProvider then
         vim.cmd([[
         augroup FORMATTING
           autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
         augroup END
       ]] )
     end
