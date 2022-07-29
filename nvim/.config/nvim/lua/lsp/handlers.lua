@@ -57,4 +57,14 @@ function M.on_attach(client, bufnr)
     end
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local cmp_installed, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+
+if cmp_installed then
+    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+end
+
+M.capabilities = capabilities
+
 return M

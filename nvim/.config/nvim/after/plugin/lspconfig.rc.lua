@@ -31,15 +31,6 @@ nvim_lsp_installer.setup({
   ensure_installed = lsp_servers,
 })
 
-local on_attach = require("lsp/functions").on_attach
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local cmp_installed, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-
-if cmp_installed then
-  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-end
-
 -- Specify any custom settings for an LSP server here
 local server_specific_opts = {
   ['solargraph'] = function(opts)
@@ -63,10 +54,12 @@ local server_specific_opts = {
   end,
 }
 
+local lsp_handlers = require("lsp/handlers")
+
 for _, server_name in pairs(lsp_servers) do
   local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_attach = lsp_handlers.on_attach,
+    capabilities = lsp_handlers.capabilities,
   }
 
   if server_specific_opts[server_name] then
