@@ -1,9 +1,10 @@
-if !exists("g:loaded_nvim_treesitter")
-  finish
-endif
+local exists, treesitter_config = pcall(require, "nvim-treesitter/configs")
 
-lua <<EOF
-require('nvim-treesitter.configs').setup{
+if not exists then
+  return
+end
+
+treesitter_config.setup {
   ensure_installed = {
     "bash",
     "dockerfile",
@@ -35,4 +36,3 @@ require('nvim-treesitter.configs').setup{
     enable = true
   },
 }
-EOF

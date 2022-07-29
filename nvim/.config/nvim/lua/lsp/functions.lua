@@ -1,33 +1,8 @@
-if !exists("g:lspconfig")
-  finish
-endif
+local M = {}
 
-lua << EOF
--- Automatically install these LSP servers and set them up with proper 'on_attach' functions
-local lsp_servers = {
-    'bashls',
-    'dockerls',
-    'gopls',
-    'jsonnet_ls',
-    'pyright',
-    'solargraph',
-    'sumneko_lua',
-    'terraformls',
-    'vimls',
-    'yamlls',
-}
-
-require('nvim-lsp-installer').setup({
-  automatic_installation = true,
-  ensure_installed = lsp_servers
-})
-
-local navic = require('nvim-navic')
-local status, nvim_lsp = pcall(require, 'lspconfig')
-
-if status then
-  local on_attach = function(client, bufnr)
+function M.on_attach(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -67,45 +42,19 @@ if status then
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
 
     if client.server_capabilities.documentFormattingProvider then
-      vim.cmd([[
+        vim.cmd([[
         augroup FORMATTING
           autocmd! * <buffer>
           autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
         augroup END
-      ]])
+      ]] )
     end
 
-    navic.attach(client, bufnr)
-  end
+    local navic_installed, navic = pcall(require, "nvim-navic")
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-  -- Specify any custom settings for an LSP server here
-  local server_specific_opts = {
-    ['solargraph'] = function(opts)
-      opts.settings = {
-        filetypes = { 'ruby', 'rake' }
-      }
-    end,
-    ['gopls'] = function(opts)
-      opts.cmd = { 'gopls', '-remote=auto' }
-    end,
-  }
-
-  for _, server_name in pairs(lsp_servers) do
-    local opts = {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
-
-    if server_specific_opts[server_name] then
-      server_specific_opts[server_name](opts)
+    if navic_installed then
+        navic.attach(client, bufnr)
     end
-
-    server = require('lspconfig')[server_name]
-    server.setup(opts)
-  end
 end
-EOF
 
+return M
