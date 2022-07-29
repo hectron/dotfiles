@@ -40,7 +40,10 @@ Plug 'rebelot/kanagawa.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'  " auto-install LSP servers
+Plug 'jose-elias-alvarez/null-ls.nvim'  " any missing LSP features can be implemented with other tools
 
+Plug 'j-hui/fidget.nvim'
+Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
