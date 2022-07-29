@@ -6,15 +6,18 @@ endif
 " https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 
 lua << EOF
-  -- Setup lspconfig.
-  local nvim_lsp = require('lspconfig')
-
   -- Set completeopt to have a better completion experience
   vim.o.completeopt = 'menuone,noselect'
 
   local cmp = require('cmp')
+  local luasnip = require("luasnip")
 
   cmp.setup({
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end
+    },
     mapping = {
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -29,6 +32,8 @@ lua << EOF
       ['<Tab>'] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -36,6 +41,8 @@ lua << EOF
       ['<S-Tab>'] = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
@@ -43,6 +50,7 @@ lua << EOF
     },
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'luasnip' },
     }
   })
 EOF
