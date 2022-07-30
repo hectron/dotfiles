@@ -6,13 +6,6 @@ if not cmp_exists then
 	return
 end
 
-print("cmp exists!")
-print("cmp exists!")
-print("cmp exists!")
-print("cmp exists!")
-print("cmp exists!")
-print("cmp exists!")
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
