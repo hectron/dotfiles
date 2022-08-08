@@ -37,12 +37,13 @@ let g:vimwiki_listsyms = "✗○◐●✓"
 " Apply automatic 120 width of characters
 autocmd BufRead,BufNewFile *.md setlocal textwidth=120
 
-" colorscheme catppuccin
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+colorscheme catppuccin
 " colorscheme spaceduck
 " spaceduck has a weird highlight where it blends too much with the
 " background, so we use an explicitly darker grey to help
 " hi Visual ctermbg=DarkGrey
-colorscheme kanagawa
+" colorscheme kanagawa
 
 set statusline+=%{%v:lua.require('nvim-navic').get_location()%}
 set exrc

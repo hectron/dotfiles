@@ -56,6 +56,7 @@ function M.on_attach(client, bufnr)
     local navic_installed, navic = pcall(require, "nvim-navic")
 
     if navic_installed then
+        navic.setup({ highlight = true })
         navic.attach(client, bufnr)
     end
 end
