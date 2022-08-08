@@ -44,14 +44,12 @@ function M.on_attach(client, bufnr)
     -- Formatting
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
 
-    if client.server_capabilities.documentFormattingProvider then
-        vim.cmd([[
+    vim.cmd([[
         augroup FORMATTING
           autocmd! * <buffer>
           autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
         augroup END
-      ]] )
-    end
+      ]])
 
     local navic_installed, navic = pcall(require, "nvim-navic")
 

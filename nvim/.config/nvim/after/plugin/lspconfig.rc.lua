@@ -29,6 +29,7 @@ local lsp_servers = {
   'solargraph',
   'sumneko_lua',
   'terraformls',
+  'tsserver',
   'vimls',
   'yamlls',
 }
