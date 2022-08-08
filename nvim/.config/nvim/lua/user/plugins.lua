@@ -41,7 +41,7 @@ Plug "leafgarland/typescript-vim"
 -- Icons/Colors
 Plug "ryanoasis/vim-devicons"
 Plug "kyazdani42/nvim-web-devicons"
-
+Plug 'Yazeed1s/minimal.nvim'
 Plug "pineapplegiant/spaceduck"
 Plug "folke/tokyonight.nvim"
 Plug("rose-pine/neovim", { as = "rose-pine" }) -- kinda soho/minimalist

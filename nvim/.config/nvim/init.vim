@@ -38,12 +38,11 @@ let g:vimwiki_listsyms = "✗○◐●✓"
 autocmd BufRead,BufNewFile *.md setlocal textwidth=120
 
 " colorscheme catppuccin
-colorscheme onedarkpro
-"
 " colorscheme spaceduck
 " spaceduck has a weird highlight where it blends too much with the
 " background, so we use an explicitly darker grey to help
 " hi Visual ctermbg=DarkGrey
+colorscheme kanagawa
 
 set statusline+=%{%v:lua.require('nvim-navic').get_location()%}
 set exrc
