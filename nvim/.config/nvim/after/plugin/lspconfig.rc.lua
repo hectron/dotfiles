@@ -5,9 +5,16 @@ if not nvim_lsp_installed then
   return
 end
 
-local mason_installed, mason_lspconfig = pcall(require, "mason-lspconfig")
+local mason_installed, mason_config = pcall(require, "mason")
 
 if not mason_installed then
+  print("Unable to install LSP servers because mason is not installed")
+  return
+end
+
+local mason_lspconfig_installed, mason_lspconfig = pcall(require, "mason-lspconfig")
+
+if not mason_lspconfig_installed then
   print("Unable to install LSP servers because mason-lspconfig is not installed")
   return
 end
