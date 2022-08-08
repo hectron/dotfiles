@@ -5,10 +5,10 @@ if not nvim_lsp_installed then
   return
 end
 
-local installer_installed, nvim_lsp_installer = pcall(require, "nvim-lsp-installer")
+local mason_installed, mason_lspconfig = pcall(require, "mason-lspconfig")
 
-if not installer_installed then
-  print("Unable to install LSP servers because nvim-lsp-installer is not installed")
+if not mason_installed then
+  print("Unable to install LSP servers because mason-lspconfig is not installed")
   return
 end
 
@@ -26,7 +26,7 @@ local lsp_servers = {
   'yamlls',
 }
 
-nvim_lsp_installer.setup({
+mason_lspconfig.setup({
   automatic_installation = true,
   ensure_installed = lsp_servers,
 })

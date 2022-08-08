@@ -32,6 +32,7 @@ Plug "vimwiki/vimwiki"
 
 -- Language plugins
 Plug "L3MON4D3/LuaSnip"
+Plug "rafamadriz/friendly-snippets"
 Plug "vim-ruby/vim-ruby"
 Plug "tpope/vim-rails"
 Plug("fatih/vim-go", { ["do"] = ":GoUpdateBinaries" })
@@ -49,7 +50,9 @@ Plug "olimorris/onedarkpro.nvim"
 Plug "rebelot/kanagawa.nvim"
 
 Plug "neovim/nvim-lspconfig"
-Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
+Plug "williamboman/mason.nvim"
+Plug "williamboman/mason-lspconfig.nvim"
+-- Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
 Plug "jose-elias-alvarez/null-ls.nvim" -- any missing LSP features can be implemented with other tools
 
 Plug "j-hui/fidget.nvim"
