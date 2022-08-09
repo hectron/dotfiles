@@ -34,6 +34,7 @@ local lsp_servers = {
   'yamlls',
 }
 
+mason_config.setup({})
 mason_lspconfig.setup({
   automatic_installation = true,
   ensure_installed = lsp_servers,
