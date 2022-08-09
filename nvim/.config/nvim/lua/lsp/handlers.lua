@@ -41,6 +41,29 @@ function M.on_attach(client, bufnr)
     buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     buf_set_keymap('n', '<Leader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
 
+    -- Set up diagnostics
+    vim.diagnostic.config({
+        virtual_text = false, -- Turn off inline diagnostics
+    })
+    vim.api.nvim_create_autocmd({ "CursorHold" }, {
+        callback = function()
+            if vim.lsp.buf.server_ready() then
+                vim.diagnostic.open_float()
+            end
+        end
+    })
+
+    -- set up LSP signs
+    for type, icon in pairs({
+        Error = "",
+        Warn = "",
+        Hint = "",
+        Info = "",
+    }) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end
+
     -- Formatting
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
 
