@@ -67,5 +67,6 @@ Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 -- Autocomplete for lsp
 Plug "hrsh7th/nvim-cmp"
 Plug "hrsh7th/cmp-nvim-lsp"
+Plug "onsails/lspkind.nvim" -- VScode like icons for cmp
 
 vim.call("plug#end")

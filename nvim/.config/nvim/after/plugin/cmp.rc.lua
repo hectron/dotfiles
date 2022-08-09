@@ -2,7 +2,7 @@
 -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 local cmp_exists, cmp = pcall(require, "cmp")
 
-if not cmp_exists then
+if not cmp_exists or not cmp then
   return
 end
 
@@ -11,7 +11,18 @@ vim.o.completeopt = 'menu,menuone,noselect'
 
 local luasnip_installed, luasnip = pcall(require, "luasnip")
 
+local lspkind_installed, lspkind = pcall(require, "lspkind")
+
+local formatting = {}
+
+if lspkind_installed and lspkind then
+  formatting = {
+    format = lspkind.cmp_format(),
+  }
+end
+
 cmp.setup({
+  formatting = formatting,
   snippet = {
     expand = function(args)
       if luasnip_installed then
