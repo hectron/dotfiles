@@ -7,14 +7,18 @@ if not cmp_exists then
 end
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
 
-local luasnip = require("luasnip")
+local luasnip_installed, luasnip = pcall(require, "luasnip")
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      if luasnip_installed then
+        luasnip.lsp_expand(args.body)
+      else
+        print("Could not configure cmp + luasnip :(")
+      end
     end
   },
   mapping = {
@@ -47,8 +51,10 @@ cmp.setup({
       end
     end,
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  }
+  }, {
+    { name = 'buffer' },
+  })
 })
