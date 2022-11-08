@@ -12,7 +12,10 @@ null_ls.setup({
 		-- if pip install isn't working, try reshim asdf
 		builtins.formatting.black.with({ extra_args = { "--fast" } }),
 		builtins.formatting.isort,
-		builtins.formatting.shfmt, -- bash/zsh/etc
+
+		-- format shell scripts, configured via $HOME/.editorconfig
+		-- @see https://github.com/mvdan/sh/blob/65cf6660506dec6b9e736b955640a605387606bb/cmd/shfmt/shfmt.1.scd
+		builtins.formatting.shfmt, -- bash/zsh/etc, configured via $HOME/.editoconfig
 		builtins.formatting.fixjson, -- json
 
 		-- diagnostics

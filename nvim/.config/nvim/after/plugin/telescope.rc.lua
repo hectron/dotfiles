@@ -11,6 +11,7 @@ vim.api.nvim_set_keymap("", "<LocalLeader>ff", find_files_cmd, { silent = true }
 vim.api.nvim_set_keymap("", "<LocalLeader>fb", ":Telescope buffers<CR>", { silent = true })
 vim.api.nvim_set_keymap("", "<LocalLeader>ft", ":Telescope tags<CR>", { silent = true })
 vim.api.nvim_set_keymap("", "<LocalLeader>fg", ":Telescope live_grep<CR>", { silent = true })
+vim.api.nvim_set_keymap("", "<LocalLeader>fm", ":Telescope keymaps<CR>", { silent = true })
 vim.api.nvim_set_keymap("", "<LocalLeader>gh", ":Telescope help_tags<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>gw", ":Telescope grep_string<CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<LocalLeader>gq", ":Telescope diagnostics<CR>", { silent = true })

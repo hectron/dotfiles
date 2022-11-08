@@ -48,7 +48,7 @@ function M.on_attach(client, bufnr)
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = bufnr,
         callback = function()
-            local opts = {
+            local options = {
                 focusable = false,
                 close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
                 border = 'rounded',
@@ -64,7 +64,7 @@ function M.on_attach(client, bufnr)
             if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2]) and
                 #vim.diagnostic.get() > 0
             then
-                vim.diagnostic.open_float(nil, opts)
+                vim.diagnostic.open_float(nil, options)
             end
 
             vim.b.diagnostics_pos = cursor_pos
@@ -105,7 +105,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_installed, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 
 if cmp_installed then
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
 
 M.capabilities = capabilities
