@@ -14,14 +14,19 @@
 # brew "homebrew/cask-fonts"
 # subversion - Version control system designed to be a better CVS
 # (required for the font installation)
+# Requirements for -- well, living
 brew "svn"
-
 brew "git"
 brew "neovim"
 brew "tmux"
+brew "stow"
+brew "jq"
+
+# Environment specific tools
 brew "awscli"
 brew "asdf"
 brew "tealdeer"
 brew "direnv"
-brew "stow"
 brew "ripgrep"
+brew "gh"
+brew "terraform"
