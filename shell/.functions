@@ -21,40 +21,45 @@ reload!() {
 # and change into the newly cloned repository.
 clone-cd() {
   start_cd=$(pwd)
-  repo=$1
-  owner_and_path=`echo $repo | sed 's!/! !'`
-  owner=$(echo $owner_and_path | awk '{ print $1 }')
-  repo_path=$(echo $owner_and_path | awk '{ print $2 }')
+  input=$1
+  owner_and_path=`echo ${input} | sed 's!/! !'`
+  owner=$(echo ${owner_and_path} | awk '{ print $1 }')
+  repo=$(echo ${owner_and_path} | awk '{ print $2 }')
+
+  # one arg is passed in, so it must be the repo
+  if [ -z ${repo} ]; then
+    repo=${owner}
+    unset owner
+    full_path=${repo}
+  else
+    full_path="${owner}/${repo}"
+  fi
 
   clone_dir=${CLONE_DIR:-"$HOME/me"}
 
-  if [ ! -d $clone_dir ]; then
-    mkdir $clone_dir
+  if [ ! -d ${clone_dir} ]; then
+    mkdir ${clone_dir}
   fi
 
-  cd $clone_dir
-
-  # one arg is passed in
-  if [ -z $repo_path ]; then
-    repo_path=$owner
-  fi
+  cd ${clone_dir}
 
   clone_exit_code=1
-  if [ ! -d $repo_path ]; then
-    clone $repo_path
+  if [ ! -d ${full_path} ]; then
+    clone ${full_path}
+
     # TODO -- fix `clone` to return a non-zero
     # exit code if it fails to clone
     # clone_exit_code=$?
-    if [ -d $repo_path ]; then
+    if [ -d ${repo} ]; then
       clone_exit_code=0
     fi
   else
     clone_exit_code=0
   fi
 
-  if [[ $clone_exit_code -eq 0 ]]; then
-    cd $repo_path
+  if [[ ${clone_exit_code} -eq 0 ]]; then
+    cd ${repo}
   else
-    cd $start_cd
+    cd ${start_cd}
   fi
 }
