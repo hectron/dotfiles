@@ -1,6 +1,6 @@
 local options = {
   backupcopy = "yes", -- preserves file inodes, needed for Dockerfile mounting
-  clipboard = "unnamedplus", -- system clipboard
+  clipboard = { "unnamed", "unnamedplus" }, -- system clipboard
   completeopt = { "menuone", "noselect" }, -- for cmp
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
