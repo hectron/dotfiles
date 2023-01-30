@@ -35,9 +35,12 @@ telescope.setup {
   defaults = {
     mappings = {
       -- when a menu pops up, press q to close in normal mode
+      i = {
+        ["<c-d>"] = actions.delete_buffer + actions.move_to_top
+      },
       n = {
         ["q"] = actions.close
-      }
+      },
     }
   }
 }
