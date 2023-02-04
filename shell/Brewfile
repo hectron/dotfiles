@@ -2,16 +2,20 @@
 # Google Chrome - Web browser
 # cask "google-chrome"
 # Discord - Voice and text chat software
-# cask "discord"
+cask "discord"
 # iTerm2 - macOS Terminmal Replacement
-# cask "iterm2"
+cask "iterm2"
 # Docker - Pack, ship and run any application as a lightweight container
 # cask "docker"
 # Rectangle - Move and resize windows in macOS using keyboard shortcuts or snap areas
-# cask "rectangle"
+cask "rectangle"
+cask "firefox"
+cask "slack"
+cask "notion"
+cask "authy"
 
 # Fonts
-# brew "homebrew/cask-fonts"
+tap "homebrew/cask-fonts"
 # subversion - Version control system designed to be a better CVS
 # (required for the font installation)
 # Requirements for -- well, living
