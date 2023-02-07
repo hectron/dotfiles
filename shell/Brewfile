@@ -1,37 +1,39 @@
-# Applications
-# Google Chrome - Web browser
-# cask "google-chrome"
-# Discord - Voice and text chat software
-cask "discord"
-# iTerm2 - macOS Terminmal Replacement
-cask "iterm2"
-# Docker - Pack, ship and run any application as a lightweight container
-# cask "docker"
-# Rectangle - Move and resize windows in macOS using keyboard shortcuts or snap areas
-cask "rectangle"
-cask "firefox"
-cask "slack"
-cask "notion"
-cask "authy"
+# vim: filetype=ruby
 
-# Fonts
-tap "homebrew/cask-fonts"
-# subversion - Version control system designed to be a better CVS
-# (required for the font installation)
-# Requirements for -- well, living
-brew "svn"
-brew "git"
-brew "neovim"
-brew "tmux"
-brew "stow"
-brew "jq"
+# Taps are essentially repos where we can source tools/apps from
+taps = %w(homebrew/cask-fonts)
+native_apps = [
+  "rectangle",
+  "iterm2",
+  "firefox",
+  "discord",
+  "slack",
+  "notion",
+  "authy",
+  "docker",
+  # The following require cask-fonts
+  "font-iosevka-nerd-font",
+  "font-jetbrains-mono-nerd-font",
+  "font-ubuntu-mono-nerd-font",
+]
+tools = [
+  "subversion",
+  "git",
+  "gnupg",
+  "neovim",
+  "tmux",
+  "stow",
+  "jq",
+  "fzf",
+  "awscli",
+  "asdf",
+  "tealdeer",
+  "direnv",
+  "ripgrep",
+  "gh",
+  "terraform",
+]
 
-# Environment specific tools
-brew "awscli"
-brew "asdf"
-brew "tealdeer"
-brew "direnv"
-brew "ripgrep"
-brew "gh"
-brew "terraform"
-brew "postgresql"
+taps.each { |source| tap source }
+native_apps.each { |app| cask app }
+tools.each { |tool| brew tool }

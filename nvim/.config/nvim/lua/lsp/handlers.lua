@@ -45,31 +45,6 @@ function M.on_attach(client, bufnr)
     vim.diagnostic.config({
         virtual_text = false, -- Turn off inline diagnostics
     })
-    vim.api.nvim_create_autocmd({ "CursorHold" }, {
-        buffer = bufnr,
-        callback = function()
-            local options = {
-                focusable = false,
-                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                border = 'rounded',
-                source = 'always', -- show source in diagnostic popup window
-                prefix = ' '
-            }
-
-            if not vim.b.diagnostics_pos then
-                vim.b.diagnostics_pos = { nil, nil }
-            end
-
-            local cursor_pos = vim.api.nvim_win_get_cursor(0)
-            if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2]) and
-                #vim.diagnostic.get() > 0
-            then
-                vim.diagnostic.open_float(nil, options)
-            end
-
-            vim.b.diagnostics_pos = cursor_pos
-        end,
-    })
 
     -- set up LSP signs
     for type, icon in pairs({
@@ -83,12 +58,12 @@ function M.on_attach(client, bufnr)
     end
 
     -- Formatting
-    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
 
     vim.cmd([[
         augroup FORMATTING
           autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
         augroup END
       ]])
 

@@ -1,3 +1,4 @@
+# vim: filetype=sh
 # ==============================================================================
 # Set up any custom aliases
 # ==============================================================================
@@ -52,7 +53,8 @@ export TLDR_CACHE_MAX_AGE=720
 # asdf
 #   @see https://github.com/asdf-vm/asdf
 ################################################################################
-[[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
+[[ -s "${asdf_path}" ]] && source "${asdf_path}"
 
 ################################################################################
 # FZF
