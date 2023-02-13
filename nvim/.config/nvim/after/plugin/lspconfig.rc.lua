@@ -27,7 +27,7 @@ local lsp_servers = {
   'jsonnet_ls',
   'pyright',
   'solargraph',
-  'sumneko_lua',
+  'lua_ls',
   'terraformls',
   'tsserver',
   'vimls',
@@ -50,7 +50,7 @@ local server_specific_opts = {
   ['gopls'] = function(opts)
     opts.cmd = { 'gopls', '-remote=auto' }
   end,
-  ['sumneko_lua'] = function(opts)
+  ['lua_ls'] = function(opts)
     opts.settings = {
       Lua = {
         diagnostics = {
