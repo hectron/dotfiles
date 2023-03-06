@@ -4,69 +4,13 @@ if not installed or not aerial then
   return
 end
 
-config = {
-  -- close_behavior = "global",
-  backends = { "lsp", "treesitter", "markdown" },
+local config = {
+  backends = { "treesitter", "lsp", "markdown" },
   layout = {
     min_width = 28,
   },
   show_guides = true,
-  filter_kind = {
-    "Array",
-    "Boolean",
-    "Class",
-    "Constant",
-    "Constructor",
-    "Enum",
-    "EnumMember",
-    "Event",
-    "Field",
-    "File",
-    "Function",
-    "Interface",
-    "Key",
-    "Method",
-    "Module",
-    "Namespace",
-    "Null",
-    "Number",
-    "Object",
-    "Operator",
-    "Package",
-    "Property",
-    "String",
-    "Struct",
-    "TypeParameter",
-    "Variable",
-  },
-  icons = {
-    Array = "",
-    Boolean = "⊨",
-    Class = "",
-    Constant = "",
-    Constructor = "",
-    Key = "",
-    Function = "",
-    Method = "ƒ",
-    Namespace = "",
-    Null = "NULL",
-    Number = "#",
-    Object = "⦿",
-    Property = "",
-    TypeParameter = "𝙏",
-    Variable = "",
-    Enum = "ℰ",
-    Package = "",
-    EnumMember = "",
-    File = "",
-    Module = "",
-    Field = "",
-    Interface = "ﰮ",
-    String = "𝓐",
-    Struct = "𝓢",
-    Event = "",
-    Operator = "+",
-  },
+  filter_kind = false,
   guides = {
     mid_item = "├ ",
     last_item = "└ ",
@@ -83,4 +27,5 @@ config = {
   end,
 }
 
+vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>")
 aerial.setup(config)
