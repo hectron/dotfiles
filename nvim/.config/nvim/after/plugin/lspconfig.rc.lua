@@ -26,6 +26,7 @@ local lsp_servers = {
   'gopls',
   'jsonnet_ls',
   'pyright',
+  'puppet',
   'solargraph',
   'lua_ls',
   'terraformls',
