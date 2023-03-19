@@ -11,6 +11,7 @@ native_apps = [
   "notion",
   "authy",
   "docker",
+  "zoom",
   # The following require cask-fonts
   "font-iosevka-nerd-font",
   "font-jetbrains-mono-nerd-font",
@@ -32,6 +33,7 @@ tools = [
   "ripgrep",
   "gh",
   "terraform",
+  "libpq",
 ]
 
 taps.each { |source| tap source }

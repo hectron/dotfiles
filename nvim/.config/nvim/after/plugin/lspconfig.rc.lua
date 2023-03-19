@@ -37,8 +37,8 @@ local lsp_servers = {
 
 mason_config.setup({})
 mason_lspconfig.setup({
-  automatic_installation = true,
-  ensure_installed = lsp_servers,
+    automatic_installation = true,
+    ensure_installed = lsp_servers,
 })
 
 -- Specify any custom settings for an LSP server here
@@ -54,25 +54,26 @@ local server_specific_opts = {
   ['lua_ls'] = function(opts)
     opts.settings = {
       Lua = {
-        diagnostics = {
-          globals = {
-            'vim',
-          },
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-      },
+          diagnostics = {
+            globals = {
+              'vim',
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+        }
+      }
     }
-  end,
+    end,
 }
 
 local lsp_handlers = require("lsp/handlers")
 
 for _, server_name in pairs(lsp_servers) do
   local opts = {
-    on_attach = lsp_handlers.on_attach,
-    capabilities = lsp_handlers.capabilities,
+      on_attach = lsp_handlers.on_attach,
+      capabilities = lsp_handlers.capabilities,
   }
 
   if server_specific_opts[server_name] then
