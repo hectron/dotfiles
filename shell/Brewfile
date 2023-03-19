@@ -1,39 +1,44 @@
+# frozen_string_literal: true
+
 # vim: filetype=ruby
 
 # Taps are essentially repos where we can source tools/apps from
-taps = %w(homebrew/cask-fonts)
+taps = %w[homebrew/cask-fonts]
 native_apps = [
-  "rectangle",
-  "iterm2",
-  "firefox",
-  "discord",
-  "slack",
-  "notion",
-  "authy",
-  "docker",
-  "zoom",
+  'authy',
+  'cloudflare-warp',
+  'discord',
+  'docker',
+  'firefox',
+  'iterm2',
+  'notion',
+  'rectangle',
+  'slack',
+  'spotify',
+  'warp',
+  'zoom',
   # The following require cask-fonts
-  "font-iosevka-nerd-font",
-  "font-jetbrains-mono-nerd-font",
-  "font-ubuntu-mono-nerd-font",
+  'font-iosevka-nerd-font',
+  'font-jetbrains-mono-nerd-font',
+  'font-ubuntu-mono-nerd-font'
 ]
-tools = [
-  "subversion",
-  "git",
-  "gnupg",
-  "neovim",
-  "tmux",
-  "stow",
-  "jq",
-  "fzf",
-  "awscli",
-  "asdf",
-  "tealdeer",
-  "direnv",
-  "ripgrep",
-  "gh",
-  "terraform",
-  "libpq",
+tools = %w[
+  asdf
+  awscli
+  direnv
+  fzf
+  gh
+  git
+  gnupg
+  jq
+  libpq
+  neovim
+  ripgrep
+  stow
+  subversion
+  tealdeer
+  terraform
+  tmux
 ]
 
 taps.each { |source| tap source }
