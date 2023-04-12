@@ -13,8 +13,8 @@ vim.call("plug#begin", "~/.config/nvim/plugins")
 
 Plug "airblade/vim-gitgutter"
 Plug "tpope/vim-commentary" -- Easily comment
-Plug "tpope/vim-fugitive" -- Git blame, diff, browse, etc
-Plug "tpope/vim-rhubarb" -- View github commit using :GBrowse
+Plug "tpope/vim-fugitive"   -- Git blame, diff, browse, etc
+Plug "tpope/vim-rhubarb"    -- View github commit using :GBrowse
 Plug "tpope/vim-endwise"
 
 Plug "benmills/vimux"
@@ -64,6 +64,7 @@ Plug "kyazdani42/nvim-tree.lua"
 Plug "stevearc/aerial.nvim"
 Plug "gfanto/fzf-lsp.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
+Plug "rgroli/other.nvim" -- projectionist/a.vim alternative
 
 -- Autocomplete for lsp
 Plug "hrsh7th/nvim-cmp"
