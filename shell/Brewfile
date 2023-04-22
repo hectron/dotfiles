@@ -15,7 +15,6 @@ native_apps = [
   'rectangle',
   'slack',
   'spotify',
-  'warp',
   'zoom',
   # The following require cask-fonts
   'font-iosevka-nerd-font',

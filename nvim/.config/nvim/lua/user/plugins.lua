@@ -25,6 +25,7 @@ Plug "sheerun/vim-polyglot" -- better syntax highlighting
 Plug "editorconfig/editorconfig-vim"
 Plug "SmiteshP/nvim-navic"
 Plug "glepnir/galaxyline.nvim"
+Plug "glepnir/lspsaga.nvim"
 
 -- (Optional) Multi-entry selection UI.
 Plug("junegunn/fzf", { ["do"] = vim.fn["fzf#install"] })
@@ -61,10 +62,11 @@ Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug "nvim-lua/plenary.nvim"
 Plug "nvim-telescope/telescope.nvim"
 Plug "kyazdani42/nvim-tree.lua"
-Plug "stevearc/aerial.nvim"
+-- Plug "stevearc/aerial.nvim"
 Plug "gfanto/fzf-lsp.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 Plug "rgroli/other.nvim" -- projectionist/a.vim alternative
+Plug "mfussenegger/nvim-dap"
 
 -- Autocomplete for lsp
 Plug "hrsh7th/nvim-cmp"
