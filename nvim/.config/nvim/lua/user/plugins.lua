@@ -67,6 +67,8 @@ Plug "gfanto/fzf-lsp.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 Plug "rgroli/other.nvim" -- projectionist/a.vim alternative
 Plug "mfussenegger/nvim-dap"
+Plug "lukas-reineke/indent-blankline.nvim"
+Plug "echasnovski/mini.indentscope" -- complimentary to ^
 
 -- Autocomplete for lsp
 Plug "hrsh7th/nvim-cmp"
