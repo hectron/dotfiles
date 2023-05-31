@@ -1,0 +1,36 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("config.options")
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" }, -- plugins within lua/plugins
+  },
+  install = { colorscheme = { "tokyonight" } },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
+
+-- Checkout the following plugins https://github.com/Wansmer/treesj
