@@ -4,14 +4,14 @@ return {
   -- neovim API docs in Lua
   { "folke/neodev.nvim" },
 
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme tokyonight]])
-    end,
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd([[colorscheme tokyonight]])
+  --   end,
+  -- },
 
   {
     "nvim-telescope/telescope.nvim",
@@ -87,6 +87,13 @@ return {
       },
     },
     opts = {
+      pickers = {
+        live_grep = {
+          additional_args = function(_)
+            return { "--hidden", "-g", "!.git/" }
+          end,
+        },
+      },
       defaults = {
         prompt_prefix = " ",
         selection_caret = " ",

@@ -44,7 +44,7 @@ function M.format(opts)
     filter = function(client)
       return vim.tbl_contains(client_ids, client.id)
     end,
-  }, require("lazyvim.util").opts("nvim-lspconfig").format or {}))
+  }, require("util").opts("nvim-lspconfig").format or {}))
 end
 
 ---@param formatters LazyVimFormatters

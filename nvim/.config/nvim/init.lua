@@ -33,4 +33,4 @@ require("lazy").setup({
   },
 })
 
--- Checkout the following plugins https://github.com/Wansmer/treesj
+vim.cmd.colorscheme = require("config").colorscheme()

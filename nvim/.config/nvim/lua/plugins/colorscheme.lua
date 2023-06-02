@@ -9,9 +9,14 @@ return {
   -- catppuccin
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
     name = "catppuccin",
     opts = {
+      flavour = "macchiato",
+      background = {
+        dark = "macchiato",
+      },
       integrations = {
         alpha = true,
         cmp = true,
