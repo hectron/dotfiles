@@ -21,7 +21,7 @@ null_ls.setup({
 		builtins.formatting.shfmt, -- bash/zsh/etc, configured via $HOME/.editoconfig
 		builtins.formatting.fixjson, -- json
 		builtins.formatting.lua_format,
-		builtins.formatting.rubocop, -- ruby
+		-- builtins.formatting.rubocop, -- ruby
 
 		-- diagnostics
 		-- builtins.diagnostics.actionlint, -- static checker for GH Actions

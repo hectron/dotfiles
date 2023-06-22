@@ -7,6 +7,7 @@
 ##
 # Reloads your current $SHELL
 ##
+
 reload!() {
   if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
     source $HOME/.zshrc
