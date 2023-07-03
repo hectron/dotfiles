@@ -2,8 +2,6 @@ local installed, dap = pcall(require, "dap")
 
 if not installed or not dap then
   return
-else
-  print("DAP my guy")
 end
 
 dap.adapters.ruby = function(callback, config)

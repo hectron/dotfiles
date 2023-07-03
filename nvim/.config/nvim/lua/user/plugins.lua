@@ -56,7 +56,7 @@ Plug "williamboman/mason-lspconfig.nvim"
 -- Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
 Plug "jose-elias-alvarez/null-ls.nvim" -- any missing LSP features can be implemented with other tools
 
-Plug "j-hui/fidget.nvim"
+Plug("j-hui/fidget.nvim", { tag = "legacy" })
 Plug "lewis6991/impatient.nvim"
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug "nvim-lua/plenary.nvim"
@@ -69,6 +69,7 @@ Plug "rgroli/other.nvim" -- projectionist/a.vim alternative
 Plug "mfussenegger/nvim-dap"
 Plug "lukas-reineke/indent-blankline.nvim"
 Plug "echasnovski/mini.indentscope" -- complimentary to ^
+Plug "ellisonleao/glow.nvim"
 
 -- Autocomplete for lsp
 Plug "hrsh7th/nvim-cmp"
