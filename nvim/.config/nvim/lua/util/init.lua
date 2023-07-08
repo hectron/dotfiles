@@ -116,7 +116,7 @@ end
 
 ---@param plugin string
 function M.has(plugin)
-  return require("lazy.core.config").plugins[plugin] ~= nil
+	return require("lazy.core.config").spec.plugins[plugin] ~= nil
 end
 
 function M.fg(name)
