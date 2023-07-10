@@ -1,4 +1,4 @@
-local exists, treesitter_config = pcall(require, "nvim-treesitter/configs")
+local exists, treesitter_config = pcall(require, "nvim-treesitter.configs")
 
 if not exists then
   return
