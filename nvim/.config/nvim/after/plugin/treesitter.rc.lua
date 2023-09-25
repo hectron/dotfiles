@@ -7,6 +7,7 @@ end
 treesitter_config.setup {
   ensure_installed = {
     "bash",
+    "c",
     "dockerfile",
     "go",
     "hcl",
@@ -17,17 +18,21 @@ treesitter_config.setup {
     "markdown",
     "markdown_inline",
     "python",
+    "puppet",
+    "query",
     "ruby",
     "yaml",
     "toml",
     "tsx",
     "typescript",
     "vim",
-  }, -- this is available in the list of official parsers
+    "vimdoc",
+  },                   -- this is available in the list of official parsers
   ignore_install = {}, -- list of parsers to ignore installing
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
+    use_languagetree = true,
   },
   incremental_selection = {
     enable = true

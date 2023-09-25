@@ -75,5 +75,6 @@ Plug "ellisonleao/glow.nvim"
 Plug "hrsh7th/nvim-cmp"
 Plug "hrsh7th/cmp-nvim-lsp"
 Plug "onsails/lspkind.nvim" -- VScode like icons for cmp
+Plug "nathom/filetype.nvim" -- better detection of filetypes
 
 vim.call("plug#end")
