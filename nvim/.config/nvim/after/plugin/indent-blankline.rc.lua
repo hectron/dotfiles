@@ -1,4 +1,4 @@
-local exists, indent_blankline = pcall(require, "indent_blankline")
+local exists, indent_blankline = pcall(require, "ibl")
 
 if not exists then
   return
@@ -13,8 +13,7 @@ end
 vim.opt.list = true
 
 indent_blankline.setup {
-  char = "|",
-  filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-  show_current_context = false,
-  show_trailing_blankline_indent = false,
+  exclude = {
+    filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+  },
 }
