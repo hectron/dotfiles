@@ -49,6 +49,8 @@ Plug("rose-pine/neovim", { as = "rose-pine" }) -- kinda soho/minimalist
 Plug("catppuccin/nvim", { as = "catppuccin" })
 Plug "olimorris/onedarkpro.nvim"
 Plug "rebelot/kanagawa.nvim"
+Plug "AlexvZyl/nordic.nvim"
+Plug "oxfist/night-owl.nvim"
 
 Plug "neovim/nvim-lspconfig"
 Plug "williamboman/mason.nvim"

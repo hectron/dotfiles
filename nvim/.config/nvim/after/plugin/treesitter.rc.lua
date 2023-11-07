@@ -21,6 +21,7 @@ treesitter_config.setup {
     "puppet",
     "query",
     "ruby",
+    "rust",
     "yaml",
     "toml",
     "tsx",
