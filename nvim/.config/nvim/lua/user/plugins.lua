@@ -87,4 +87,4 @@ require("lazy").setup({
   "hrsh7th/cmp-nvim-lsp",
   "onsails/lspkind.nvim", -- VScode like icons for cmp
   "nathom/filetype.nvim", -- better detection of filetypes
-})
+}, { defaults = { lazy = true } })
