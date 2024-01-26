@@ -21,7 +21,6 @@ require("lazy").setup({
   "vim-test/vim-test", -- Run tests in conjuction with vimux
 
   "pgr0ss/vim-github-url",
-  "sheerun/vim-polyglot", -- better syntax highlighting
   "editorconfig/editorconfig-vim",
   "SmiteshP/nvim-navic",
   "glepnir/galaxyline.nvim",
