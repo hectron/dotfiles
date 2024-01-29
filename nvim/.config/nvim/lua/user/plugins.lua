@@ -55,11 +55,20 @@ require("lazy").setup({
   "tpope/vim-fugitive", -- Git blame, diff, browse, etc
   "tpope/vim-rhubarb",  -- View github commit using :GBrowse
   "tpope/vim-endwise",
-  "benmills/vimux",
-  "vim-test/vim-test", -- Run tests in conjuction with vimux
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+  },
+  {
+    "benmills/vimux",
+    event = "VeryLazy",
+  },
+  {
+    "vim-test/vim-test", -- Run tests in conjuction with vimux
+    event = "VeryLazy",
+  },
 
   "pgr0ss/vim-github-url",
-  "editorconfig/editorconfig-vim",
   "SmiteshP/nvim-navic",
   "glepnir/galaxyline.nvim",
   "glepnir/lspsaga.nvim",
@@ -120,6 +129,10 @@ require("lazy").setup({
   --
   -- TODO Plug "stevearc/aerial.nvim"
   --
+  {
+    "stevearc/aerial.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  },
   "gfanto/fzf-lsp.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "rgroli/other.nvim", -- projectionist/a.vim alternative
@@ -200,11 +213,6 @@ require("lazy").setup({
         },
         sorting = defaults.sorting,
       }
-    end,
-    config = function(_, opts)
-      for _, source in ipairs(opts.sources) do
-        source.group_index = source.group_index or 1
-      end
     end,
   },
 }, { defaults = { lazy = true } })
