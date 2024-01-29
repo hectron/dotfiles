@@ -81,28 +81,28 @@ require("lazy").setup({
   "rafamadriz/friendly-snippets",
   "vim-ruby/vim-ruby",
   "tpope/vim-rails",
-  { "fatih/vim-go",     build = ":GoUpdateBinaries" },
+  {
+    "fatih/vim-go",
+    build = ":GoUpdateBinaries",
+    lazy = true,
+  },
   "leafgarland/typescript-vim",
 
   -- Icons/Colors
   "ryanoasis/vim-devicons",
   "kyazdani42/nvim-web-devicons",
   'Yazeed1s/minimal.nvim',
-  "pineapplegiant/spaceduck",
-  "folke/tokyonight.nvim",
-  { "rose-pine/neovim", name = "rose-pine" }, -- kinda soho/minimalist
-  { "catppuccin/nvim",  name = "catppuccin" },
-  "olimorris/onedarkpro.nvim",
-  "rebelot/kanagawa.nvim",
   {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme nordic]])
-    end
+      vim.cmd([[colorscheme catppuccin]])
+    end,
+    opts = {
+      flavour = "mocha",
+    },
   },
-  "oxfist/night-owl.nvim",
 
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
