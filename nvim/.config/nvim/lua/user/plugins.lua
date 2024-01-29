@@ -122,7 +122,55 @@ require("lazy").setup({
   },
   --Plug("j-hui/fidget.nvim", { tag = "legacy" })
   --Plug "lewis6991/impatient.nvim"
-  { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "VeryLazy" },
+    opts = {
+      ensure_installed = {
+        "bash",
+        "c",
+        "dockerfile",
+        "go",
+        "hcl",
+        "javascript",
+        "json",
+        "lua",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "puppet",
+        "query",
+        "ruby",
+        "rust",
+        "yaml",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+      },
+      highlight = { enable = true },
+      indent = { enable = true },
+      incremental_selection = { enable = true },
+      textobjects = { enable = true },
+    },
+    config = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        ---@type table<string, boolean>
+        local added = {}
+        opts.ensure_installed = vim.tbl_filter(function(lang)
+          if added[lang] then
+            return false
+          end
+          added[lang] = true
+          return true
+        end, opts.ensure_installed)
+      end
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
   "nvim-lua/plenary.nvim",
   "nvim-telescope/telescope.nvim",
   "kyazdani42/nvim-tree.lua",
