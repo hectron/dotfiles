@@ -4,7 +4,7 @@ Install all the dotfiles using [`stow`](https://www.gnu.org/software/stow/manual
 
 ## Installing
 
-```shell
+```sh
 git clone git@github.com:hectron/dotfiles.git && cd $_
 
 # Test installing the dotfiles
@@ -24,10 +24,10 @@ directory. The files that live inside the `nvim/` directory will be placed in th
 
 After installing, this is what the directory structure will look like:
 
-```shell
-$HOME/.config/nvim/init.vim
-$HOME/.config/nvim/plug.vim
-$HOME/.config/nvim/<whatever>
+```sh
+$HOME/.config/nvim/init.lua
+$HOME/.config/nvim/lua/user
+$HOME/.config/nvim/lua/lsp/<whatever>
 ```
 
 ## Tooling
@@ -48,4 +48,4 @@ I switch between **Iosevka Nerd Font** or **JetBraints Mono Nerd Font**.
 
 ## Colors
 
-This setup primarily uses [**OneDarkPro**](https://github.com/olimorris/onedarkpro.nvim) as the theme.
+This setup primarily uses [**Catppuccin**](https://github.com/catppuccin/nvim) as the theme.

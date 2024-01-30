@@ -49,6 +49,32 @@ require("lazy").setup({
     },
   },
   {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = {
+      config = {
+        week_header = {
+          enable = true
+        },
+      },
+    },
+    config = function(_, opts)
+      require("dashboard").setup(opts)
+    end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {},
+  },
+  {
     "tpope/vim-commentary", -- Easily comment
     event = "VeryLazy",
   },
@@ -81,29 +107,21 @@ require("lazy").setup({
   "rafamadriz/friendly-snippets",
   "vim-ruby/vim-ruby",
   "tpope/vim-rails",
-  { "fatih/vim-go",     build = ":GoUpdateBinaries" },
+  { "fatih/vim-go",                    build = ":GoUpdateBinaries" },
   "leafgarland/typescript-vim",
 
   -- Icons/Colors
   "ryanoasis/vim-devicons",
-  "kyazdani42/nvim-web-devicons",
-  'Yazeed1s/minimal.nvim',
-  "pineapplegiant/spaceduck",
-  "folke/tokyonight.nvim",
-  { "rose-pine/neovim", name = "rose-pine" }, -- kinda soho/minimalist
-  { "catppuccin/nvim",  name = "catppuccin" },
-  "olimorris/onedarkpro.nvim",
-  "rebelot/kanagawa.nvim",
+  "nvim-tree/nvim-web-devicons",
   {
-    "AlexvZyl/nordic.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme nordic]])
-    end
+      vim.cmd.colorscheme "catppuccin"
+    end,
   },
-  "oxfist/night-owl.nvim",
-
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -122,9 +140,13 @@ require("lazy").setup({
   },
   --Plug("j-hui/fidget.nvim", { tag = "legacy" })
   --Plug "lewis6991/impatient.nvim"
-  { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
-  "nvim-lua/plenary.nvim",
-  "nvim-telescope/telescope.nvim",
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+    },
+  },
   "kyazdani42/nvim-tree.lua",
   --
   -- TODO Plug "stevearc/aerial.nvim"
