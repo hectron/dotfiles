@@ -142,8 +142,6 @@ require("lazy").setup({
       "rcarriga/nvim-notify",
     },
   },
-  --Plug("j-hui/fidget.nvim", { tag = "legacy" })
-  --Plug "lewis6991/impatient.nvim"
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   {
     "nvim-telescope/telescope.nvim",
