@@ -126,9 +126,17 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end,
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      "folke/neodev.nvim",
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
   "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
   --
   -- TODO Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
   --
@@ -239,4 +247,49 @@ require("lazy").setup({
       }
     end,
   },
-}, { defaults = { lazy = true } })
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod",                     lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- custom dbui config?
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+  {
+    "epwalsh/pomo.nvim",
+    version = "*",
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat" },
+    opts = {},
+  },
+  {
+    "nvim-java/nvim-java",
+    dependencies = {
+      'nvim-java/lua-async-await',
+      'nvim-java/nvim-java-core',
+      'nvim-java/nvim-java-test',
+      'nvim-java/nvim-java-dap',
+      'MunifTanjim/nui.nvim',
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          registries = {
+            'github:nvim-java/mason-registry',
+            'github:mason-org/mason-registry',
+          },
+        },
+      }
+    },
+  },
+})
