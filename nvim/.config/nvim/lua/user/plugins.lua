@@ -138,8 +138,6 @@ require("lazy").setup({
   --
   -- TODO Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
   --
-  "jose-elias-alvarez/null-ls.nvim", -- any missing LSP features can be implemented with other tools
-
   {
     "folke/noice.nvim",
     event = "VeryLazy",
