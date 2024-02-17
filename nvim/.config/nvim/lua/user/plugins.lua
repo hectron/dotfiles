@@ -175,7 +175,18 @@ require("lazy").setup({
   },
   "gfanto/fzf-lsp.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  "rgroli/other.nvim", -- projectionist/a.vim alternative
+  {
+    "rgroli/other.nvim", -- projectionist/a.vim alternative
+    ft = { "ruby" },
+    opts = {
+      mappings = {
+        "rails",
+      },
+    },
+    keys = {
+      { "<Leader>OF", "<cmd>Other<CR>" },
+    },
+  },
   "mfussenegger/nvim-dap",
   "lukas-reineke/indent-blankline.nvim",
   "echasnovski/mini.indentscope", -- complimentary to ^
