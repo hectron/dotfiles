@@ -262,8 +262,6 @@ require("lazy").setup({
       ignore_install = {}, -- list of parsers to ignore installing
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,
-        use_languagetree = true,
       },
       incremental_selection = {
         enable = true
