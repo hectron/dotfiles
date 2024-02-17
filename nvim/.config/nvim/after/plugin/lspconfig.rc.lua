@@ -19,6 +19,12 @@ if not mason_lspconfig_installed then
   return
 end
 
+local neoconf_installed, neoconf = pcall(require, "neoconf")
+
+if neoconf_installed then
+  neoconf.setup()
+end
+
 -- Automatically install these LSP servers and set them up with proper 'on_attach' functions
 local lsp_servers = {
   'bashls',
