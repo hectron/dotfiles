@@ -11,8 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local Util = require("user.utils")
+
 require("lazy").setup({
-  -- "airblade/vim-gitgutter",
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -144,7 +145,10 @@ require("lazy").setup({
   "rafamadriz/friendly-snippets",
   "vim-ruby/vim-ruby",
   "tpope/vim-rails",
-  { "fatih/vim-go",                    build = ":GoUpdateBinaries" },
+  {
+    "fatih/vim-go",
+    build = ":GoUpdateBinaries"
+  },
   "leafgarland/typescript-vim",
 
   -- Icons/Colors
@@ -159,7 +163,23 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end,
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neodev.nvim",  opts = {} },
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function(_, _opts)
+      if Util.has("neoconf.nvim") then
+        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+        local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
+        require("neoconf").setup(plugin_opts)
+      end
+    end,
+  },
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   --
@@ -303,8 +323,26 @@ require("lazy").setup({
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
   },
-  "lukas-reineke/indent-blankline.nvim",
-  "echasnovski/mini.indentscope", -- complimentary to ^
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    dependencies = {
+      "echasnovski/mini.indentscope",
+    },
+    opts = {
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+        },
+      },
+    },
+  },
   {
     "ellisonleao/glow.nvim",
     keys = {
@@ -355,8 +393,6 @@ require("lazy").setup({
           ["<Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-              -- elseif luasnip.expand_or_jumpable() then
-              --   luasnip.expand_or_jump()
             else
               fallback()
             end
@@ -364,15 +400,13 @@ require("lazy").setup({
           ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-              -- elseif luasnip.jumpable(-1) then
-              --   luasnip.jump(-1)
             else
               fallback()
             end
           end,
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" }, -- TODO why isn't this working?
+          { name = "nvim_lsp" },
           { name = "path" },
         }, {
           { name = "buffer" },
