@@ -84,7 +84,9 @@ require("lazy").setup({
   "tpope/vim-endwise",
   {
     "echasnovski/mini.pairs",
-    event = "VeryLazy",
+    event = { "VeryLazy" },
+    version = false,
+    opts = {},
   },
   {
     "benmills/vimux",
@@ -137,8 +139,22 @@ require("lazy").setup({
     opts = {},
   },
 
-  -- (Optional) Multi-entry selection UI.
-  -- { "junegunn/fzf", build = vim.fn["fzf#install"] },
+  {
+    "echasnovski/mini.comment",
+    dependencies = {
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {
+          enable_autocmd = false,
+        }
+      }
+    },
+    opts = {
+      custom_commentstring = function()
+        return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+      end,
+    },
+  },
 
   -- Language plugins
   "L3MON4D3/LuaSnip",
@@ -172,7 +188,7 @@ require("lazy").setup({
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-    config = function(_, _opts)
+    config = function(_, _)
       if Util.has("neoconf.nvim") then
         local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
         local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
@@ -191,6 +207,24 @@ require("lazy").setup({
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+    },
+    opts = {
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        bottom_search = true,         -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false,       -- add a border to hover docs and signature help
+      },
     },
   },
   {
