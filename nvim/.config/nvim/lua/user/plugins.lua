@@ -159,12 +159,21 @@ require("lazy").setup({
     },
   },
   "kyazdani42/nvim-tree.lua",
-  --
-  -- TODO Plug "stevearc/aerial.nvim"
-  --
   {
     "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    keys = {
+      { "<Leader>at", "<cmd>AerialToggle!<CR>" },
+      { "{",          "<cmd>AerialPrev<CR>" },
+      { "}",          "<cmd>AerialNext<CR>" },
+      { "[[",         "<cmd>AerialPrevUp<CR>" },
+      { "]]",         "<cmd>AerialNextUp<CR>" },
+    },
+    opts = {},
   },
   "gfanto/fzf-lsp.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
