@@ -63,3 +63,4 @@ target/
 # Neovim artifacts
 nvim/.config/nvim/autoload
 nvim/.config/nvim/plugins
+.luarc.json

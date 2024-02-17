@@ -11,8 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local Util = require("user.utils")
+
 require("lazy").setup({
-  -- "airblade/vim-gitgutter",
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -88,6 +89,17 @@ require("lazy").setup({
   {
     "benmills/vimux",
     event = "VeryLazy",
+    keys = {
+      { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
+      { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
+      { "<Leader>rl", ":wa<CR>:TestLast<CR>" },
+      { "<Leader>rx", ":wa<CR>:VimuxCloseRunner<CR>" },
+      { "<Leader>ri", ":wa<CR>:VimuxInspectRunner<CR>" },
+      { "<Leader>rs", ":!ruby -c %<CR>" },
+      { "<Leader>AA", ":A<CR>" },
+      { "<Leader>AV", ":AV<CR>" },
+      { "<Leader>AS", ":AS<CR>" },
+    },
   },
   {
     "vim-test/vim-test", -- Run tests in conjuction with vimux
@@ -96,8 +108,34 @@ require("lazy").setup({
 
   "pgr0ss/vim-github-url",
   "SmiteshP/nvim-navic",
-  "glepnir/galaxyline.nvim",
-  "glepnir/lspsaga.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons',     -- optional
+    },
+    keys = {
+      -- Actions
+      { "<leader>ca", "<cmd>Lspsaga code_action<CR>",           desc = "[c]ode [a]ction" },
+
+      -- Diagnostics
+      { "<leader>e",  "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "[e]xplain diagnostics" },
+      { "<leader>be", "<cmd>Lspsaga show_buf_diagnostics<CR>",  desc = "[b]uffer [e]xplain diagnostics" },
+      { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
+      { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>" },
+
+      -- Navigation
+      { "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>",            desc = "[f]ind symbol [r]eference" },
+      { "<leader>o",  "<cmd>Lspsaga outline<CR>",               desc = "[o]pen outline" },
+      { "gd",         "<cmd>Lspsaga goto_definition<CR>",       desc = "[g]o to [d]efinition" },
+      { "gp",         "<cmd>Lspsaga peek_definition<CR>",       desc = "[g]o [p]eek definition" },
+
+      -- Terminal
+      { "<leader>tt", "<cmd>Lspsaga term_toggle<CR>",           desc = "[t]erminal [t]oggle" },
+      { "K",          "<cmd>Lspsaga hover_doc ++keep<CR>" },
+    },
+    opts = {},
+  },
 
   -- (Optional) Multi-entry selection UI.
   -- { "junegunn/fzf", build = vim.fn["fzf#install"] },
@@ -107,7 +145,10 @@ require("lazy").setup({
   "rafamadriz/friendly-snippets",
   "vim-ruby/vim-ruby",
   "tpope/vim-rails",
-  { "fatih/vim-go",                    build = ":GoUpdateBinaries" },
+  {
+    "fatih/vim-go",
+    build = ":GoUpdateBinaries"
+  },
   "leafgarland/typescript-vim",
 
   -- Icons/Colors
@@ -122,14 +163,28 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end,
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neodev.nvim",  opts = {} },
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function(_, _opts)
+      if Util.has("neoconf.nvim") then
+        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+        local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
+        require("neoconf").setup(plugin_opts)
+      end
+    end,
+  },
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   --
   -- TODO Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
   --
-  "jose-elias-alvarez/null-ls.nvim", -- any missing LSP features can be implemented with other tools
-
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -138,30 +193,165 @@ require("lazy").setup({
       "rcarriga/nvim-notify",
     },
   },
-  --Plug("j-hui/fidget.nvim", { tag = "legacy" })
-  --Plug "lewis6991/impatient.nvim"
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "c",
+        "dockerfile",
+        "git_config",
+        "git_rebase",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "hcl",
+        "javascript",
+        "json",
+        "lua",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "puppet",
+        "query",
+        "ruby",
+        "rust",
+        "yaml",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+      },                   -- this is available in the list of official parsers
+      ignore_install = {}, -- list of parsers to ignore installing
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+        use_languagetree = true,
+      },
+      incremental_selection = {
+        enable = true
+      },
+      textobjects = {
+        enable = true
+      },
+    },
+    config = function(_, opts)
+      local configs = require("nvim-treesitter.configs")
+      configs.setup(opts)
+    end,
+  },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
+    keys = {
+      { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>" },
+      { "<LocalLeader>fb",  "<cmd>Telescope buffers<CR>" },
+      { "<LocalLeader>fc",  "<cmd>Telescope commands<CR>" },
+      { "<LocalLeader>fg",  "<cmd>Telescope live_grep<CR>" },
+      { "<LocalLeader>fm",  "<cmd>Telescope keymaps<CR>" },
+      { "<LocalLeader>mp",  "<cmd>Telescope man_pages<CR" },
+      { "<LocalLeader>gh",  "<cmd>Telescope help_tags<CR>" },
+      { "<Leader>gw",       "<cmd>Telescope grep_string<CR>" },
+      { "<LocalLeader>gq",  "<cmd>Telescope diagnostics<CR>" },
+      { "<LocalLeader>bd",  "<cmd>Telescope diagnostics bufnr=0<CR>" },
+
+      --  git navigation
+
+      { "<LocalLeader>gco", "<cmd>Telescope git_commits<CR>" },
+      { "<LocalLeader>ggs", "<cmd>Telescope git_status<CR>" },
+      { "<LocalLeader>ggc", "<cmd>Telescope git_bcommits<CR>" },
+    },
+    opts = {
+      pickers = {
+        live_grep = {
+          additional_args = function(_)
+            -- show hidden files, respect the .gitignore, and ignore .git dir
+            return { "--hidden", "-g", "!.git/" }
+          end,
+        },
+      },
+    },
   },
-  "kyazdani42/nvim-tree.lua",
-  --
-  -- TODO Plug "stevearc/aerial.nvim"
-  --
+  {
+    "kyazdani42/nvim-tree.lua",
+    opts = {
+      view = {
+        adaptive_size = true,
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
+    },
+    keys = {
+      { '<Leader>nt', '<cmd>NvimTreeToggle<CR>' },
+      { '<Leader>nf', '<cmd>NvimTreeFindFile<CR>' },
+    },
+  },
   {
     "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    keys = {
+      { "<Leader>at", "<cmd>AerialToggle!<CR>" },
+      { "{",          "<cmd>AerialPrev<CR>" },
+      { "}",          "<cmd>AerialNext<CR>" },
+      { "[[",         "<cmd>AerialPrevUp<CR>" },
+      { "]]",         "<cmd>AerialNextUp<CR>" },
+    },
+    opts = {},
   },
   "gfanto/fzf-lsp.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  "rgroli/other.nvim", -- projectionist/a.vim alternative
-  "mfussenegger/nvim-dap",
-  "lukas-reineke/indent-blankline.nvim",
-  "echasnovski/mini.indentscope", -- complimentary to ^
-  "ellisonleao/glow.nvim",
+  {
+    "rgroli/other.nvim", -- projectionist/a.vim alternative
+    ft = { "ruby" },
+    opts = {
+      mappings = {
+        "rails",
+      },
+    },
+    keys = {
+      { "<Leader>OF", "<cmd>Other<CR>" },
+    },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    dependencies = {
+      "echasnovski/mini.indentscope",
+    },
+    opts = {
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+        },
+      },
+    },
+  },
+  {
+    "ellisonleao/glow.nvim",
+    keys = {
+      { "<leader>mp", "<cmd>Glow<CR>", ft = "markdown" },
+    },
+    opts = {
+      width = 250,
+    },
+  },
 
   -- Autocomplete for lsp
   {
@@ -203,8 +393,6 @@ require("lazy").setup({
           ["<Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-              -- elseif luasnip.expand_or_jumpable() then
-              --   luasnip.expand_or_jump()
             else
               fallback()
             end
@@ -212,15 +400,13 @@ require("lazy").setup({
           ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-              -- elseif luasnip.jumpable(-1) then
-              --   luasnip.jump(-1)
             else
               fallback()
             end
           end,
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" }, -- TODO why isn't this working?
+          { name = "nvim_lsp" },
           { name = "path" },
         }, {
           { name = "buffer" },
@@ -237,4 +423,13 @@ require("lazy").setup({
       }
     end,
   },
-}, { defaults = { lazy = true } })
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        theme = "catppuccin",
+      },
+    },
+  },
+})
