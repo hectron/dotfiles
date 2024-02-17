@@ -153,7 +153,22 @@ require("lazy").setup({
       { "nvim-lua/plenary.nvim" },
     },
   },
-  "kyazdani42/nvim-tree.lua",
+  {
+    "kyazdani42/nvim-tree.lua",
+    opts = {
+      view = {
+        adaptive_size = true,
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
+    },
+    keys = {
+      { '<Leader>nt', '<cmd>NvimTreeToggle<CR>' },
+      { '<Leader>nf', '<cmd>NvimTreeFindFile<CR>' },
+    },
+  },
   {
     "stevearc/aerial.nvim",
     dependencies = {
