@@ -226,7 +226,6 @@ require("lazy").setup({
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
   },
-  "mfussenegger/nvim-dap",
   "lukas-reineke/indent-blankline.nvim",
   "echasnovski/mini.indentscope", -- complimentary to ^
   {
