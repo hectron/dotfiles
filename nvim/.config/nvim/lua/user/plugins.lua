@@ -228,6 +228,34 @@ require("lazy").setup({
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
+    keys = {
+      { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>" },
+      { "<LocalLeader>fb",  "<cmd>Telescope buffers<CR>" },
+      { "<LocalLeader>fc",  "<cmd>Telescope commands<CR>" },
+      { "<LocalLeader>fg",  "<cmd>Telescope live_grep<CR>" },
+      { "<LocalLeader>fm",  "<cmd>Telescope keymaps<CR>" },
+      { "<LocalLeader>mp",  "<cmd>Telescope man_pages<CR" },
+      { "<LocalLeader>gh",  "<cmd>Telescope help_tags<CR>" },
+      { "<Leader>gw",       "<cmd>Telescope grep_string<CR>" },
+      { "<LocalLeader>gq",  "<cmd>Telescope diagnostics<CR>" },
+      { "<LocalLeader>bd",  "<cmd>Telescope diagnostics bufnr=0<CR>" },
+
+      --  git navigation
+
+      { "<LocalLeader>gco", "<cmd>Telescope git_commits<CR>" },
+      { "<LocalLeader>ggs", "<cmd>Telescope git_status<CR>" },
+      { "<LocalLeader>ggc", "<cmd>Telescope git_bcommits<CR>" },
+    },
+    opts = {
+      pickers = {
+        live_grep = {
+          additional_args = function(_)
+            -- show hidden files, respect the .gitignore, and ignore .git dir
+            return { "--hidden", "-g", "!.git/" }
+          end,
+        },
+      },
+    },
   },
   {
     "kyazdani42/nvim-tree.lua",
