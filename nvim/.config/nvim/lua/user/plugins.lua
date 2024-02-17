@@ -172,7 +172,15 @@ require("lazy").setup({
   "mfussenegger/nvim-dap",
   "lukas-reineke/indent-blankline.nvim",
   "echasnovski/mini.indentscope", -- complimentary to ^
-  "ellisonleao/glow.nvim",
+  {
+    "ellisonleao/glow.nvim",
+    keys = {
+      { "<leader>mp", "<cmd>Glow<CR>", ft = "markdown" },
+    },
+    opts = {
+      width = 250,
+    },
+  },
 
   -- Autocomplete for lsp
   {
