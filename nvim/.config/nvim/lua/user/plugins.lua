@@ -273,4 +273,13 @@ require("lazy").setup({
       }
     end,
   },
-}, { defaults = { lazy = true } })
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        theme = "catppuccin",
+      },
+    },
+  },
+})
