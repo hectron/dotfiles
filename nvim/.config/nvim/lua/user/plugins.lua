@@ -88,6 +88,17 @@ require("lazy").setup({
   {
     "benmills/vimux",
     event = "VeryLazy",
+    keys = {
+      { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
+      { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
+      { "<Leader>rl", ":wa<CR>:TestLast<CR>" },
+      { "<Leader>rx", ":wa<CR>:VimuxCloseRunner<CR>" },
+      { "<Leader>ri", ":wa<CR>:VimuxInspectRunner<CR>" },
+      { "<Leader>rs", ":!ruby -c %<CR>" },
+      { "<Leader>AA", ":A<CR>" },
+      { "<Leader>AV", ":AV<CR>" },
+      { "<Leader>AS", ":AS<CR>" },
+    },
   },
   {
     "vim-test/vim-test", -- Run tests in conjuction with vimux
