@@ -107,7 +107,6 @@ require("lazy").setup({
 
   "pgr0ss/vim-github-url",
   "SmiteshP/nvim-navic",
-  "glepnir/galaxyline.nvim",
   "glepnir/lspsaga.nvim",
 
   -- (Optional) Multi-entry selection UI.
