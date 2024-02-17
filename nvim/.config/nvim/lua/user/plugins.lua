@@ -107,7 +107,34 @@ require("lazy").setup({
 
   "pgr0ss/vim-github-url",
   "SmiteshP/nvim-navic",
-  "glepnir/lspsaga.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons',     -- optional
+    },
+    keys = {
+      -- Actions
+      { "<leader>ca", "<cmd>Lspsaga code_action<CR>",           desc = "[c]ode [a]ction" },
+
+      -- Diagnostics
+      { "<leader>e",  "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "[e]xplain diagnostics" },
+      { "<leader>be", "<cmd>Lspsaga show_buf_diagnostics<CR>",  desc = "[b]uffer [e]xplain diagnostics" },
+      { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
+      { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>" },
+
+      -- Navigation
+      { "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>",            desc = "[f]ind symbol [r]eference" },
+      { "<leader>o",  "<cmd>Lspsaga outline<CR>",               desc = "[o]pen outline" },
+      { "gd",         "<cmd>Lspsaga goto_definition<CR>",       desc = "[g]o to [d]efinition" },
+      { "gp",         "<cmd>Lspsaga peek_definition<CR>",       desc = "[g]o [p]eek definition" },
+
+      -- Terminal
+      { "<leader>tt", "<cmd>Lspsaga term_toggle<CR>",           desc = "[t]erminal [t]oggle" },
+      { "K",          "<cmd>Lspsaga hover_doc ++keep<CR>" },
+    },
+    opts = {},
+  },
 
   -- (Optional) Multi-entry selection UI.
   -- { "junegunn/fzf", build = vim.fn["fzf#install"] },
