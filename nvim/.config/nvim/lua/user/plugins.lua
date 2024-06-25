@@ -17,40 +17,13 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    opts = {
-      signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
-      },
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-
-        -- stylua: ignore start
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>ghd", gs.diffthis, "Diff This")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-      end,
-    },
+    opts = {},
   },
   {
     "nvimdev/dashboard-nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
     event = "VimEnter",
     opts = {
       config = {
@@ -58,12 +31,6 @@ require("lazy").setup({
           enable = true
         },
       },
-    },
-    config = function(_, opts)
-      require("dashboard").setup(opts)
-    end,
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
     },
   },
   {
@@ -75,13 +42,9 @@ require("lazy").setup({
     end,
     opts = {},
   },
-  {
-    "tpope/vim-commentary", -- Easily comment
-    event = "VeryLazy",
-  },
-  "tpope/vim-fugitive", -- Git blame, diff, browse, etc
-  "tpope/vim-rhubarb",  -- View github commit using :GBrowse
+  "tpope/vim-rhubarb", -- View github commit using :GBrowse
   "tpope/vim-endwise",
+  { "echasnovski/mini.surround",  event = { "BufReadPost", "BufNewFile", "BufWritePre" }, opts = {} },
   {
     "echasnovski/mini.pairs",
     event = { "VeryLazy" },
@@ -90,7 +53,10 @@ require("lazy").setup({
   },
   {
     "benmills/vimux",
-    event = "VeryLazy",
+    ft = { "ruby" },
+    dependencies = {
+      "vim-test/vim-test", -- Run tests in conjuction with vimux
+    },
     keys = {
       { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
       { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
@@ -103,15 +69,10 @@ require("lazy").setup({
       { "<Leader>AS", ":AS<CR>" },
     },
   },
-  {
-    "vim-test/vim-test", -- Run tests in conjuction with vimux
-    event = "VeryLazy",
-  },
-
-  "pgr0ss/vim-github-url",
   "SmiteshP/nvim-navic",
   {
     "glepnir/lspsaga.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
       'nvim-tree/nvim-web-devicons',     -- optional
@@ -138,9 +99,9 @@ require("lazy").setup({
     },
     opts = {},
   },
-
   {
     "echasnovski/mini.comment",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -157,15 +118,10 @@ require("lazy").setup({
   },
 
   -- Language plugins
-  "L3MON4D3/LuaSnip",
-  "rafamadriz/friendly-snippets",
-  "vim-ruby/vim-ruby",
-  "tpope/vim-rails",
-  {
-    "fatih/vim-go",
-    build = ":GoUpdateBinaries"
-  },
-  "leafgarland/typescript-vim",
+  { "vim-ruby/vim-ruby",          ft = { "ruby" } },
+  { "tpope/vim-rails",            ft = { "ruby" } },
+  { "leafgarland/typescript-vim", ft = { "typescript" } },
+  { "fatih/vim-go",               ft = { "go" },                                          build = ":GoUpdateBinaries" },
 
   -- Icons/Colors
   "ryanoasis/vim-devicons",
@@ -181,7 +137,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim",  opts = {} },
@@ -196,8 +152,12 @@ require("lazy").setup({
       end
     end,
   },
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
   --
   -- TODO Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
   --
@@ -230,6 +190,10 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-context",
+    },
     opts = {
       ensure_installed = {
         "bash",
@@ -278,7 +242,8 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
       { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>" },
@@ -326,24 +291,6 @@ require("lazy").setup({
     },
   },
   {
-    "stevearc/aerial.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    keys = {
-      { "<Leader>at", "<cmd>AerialToggle!<CR>" },
-      { "{",          "<cmd>AerialPrev<CR>" },
-      { "}",          "<cmd>AerialNext<CR>" },
-      { "[[",         "<cmd>AerialPrevUp<CR>" },
-      { "]]",         "<cmd>AerialNextUp<CR>" },
-    },
-    opts = {},
-  },
-  "gfanto/fzf-lsp.nvim",
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  {
     "rgroli/other.nvim", -- projectionist/a.vim alternative
     ft = { "ruby" },
     opts = {
@@ -355,36 +302,6 @@ require("lazy").setup({
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    dependencies = {
-      "echasnovski/mini.indentscope",
-    },
-    opts = {
-      exclude = {
-        filetypes = {
-          "help",
-          "alpha",
-          "dashboard",
-          "neo-tree",
-          "Trouble",
-          "lazy",
-          "mason",
-        },
-      },
-    },
-  },
-  {
-    "ellisonleao/glow.nvim",
-    keys = {
-      { "<leader>mp", "<cmd>Glow<CR>", ft = "markdown" },
-    },
-    opts = {
-      width = 250,
-    },
-  },
-
   -- Autocomplete for lsp
   {
     "hrsh7th/nvim-cmp",
