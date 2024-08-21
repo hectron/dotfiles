@@ -33,15 +33,6 @@ require("lazy").setup({
       },
     },
   },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {},
-  },
   "tpope/vim-rhubarb", -- View github commit using :GBrowse
   "tpope/vim-endwise",
   { "echasnovski/mini.surround",  event = { "BufReadPost", "BufNewFile", "BufWritePre" }, opts = {} },
@@ -131,7 +122,12 @@ require("lazy").setup({
     name = "catppuccin",
     lazy = false,
     priority = 1000,
-    config = function()
+    opts = {
+      flavour = "mocha",
+      transparent_background = true,
+    },
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
       vim.cmd.colorscheme "catppuccin"
     end,
   },
@@ -166,7 +162,12 @@ require("lazy").setup({
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          background_colour = "#1a1b26",
+        },
+      },
     },
     opts = {
       lsp = {
