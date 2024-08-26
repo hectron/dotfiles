@@ -40,6 +40,7 @@ tools = %w[
   terraform
   tmux
   zoxide
+  zsh-autosuggestions
 ]
 
 taps.each { |source| tap source }
