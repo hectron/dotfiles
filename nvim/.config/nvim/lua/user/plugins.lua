@@ -14,11 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local Util = require("user.utils")
 
 require("lazy").setup({
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    opts = {},
-  },
+  -- Intro dashboard
   {
     "nvimdev/dashboard-nvim",
     dependencies = {
@@ -33,90 +29,9 @@ require("lazy").setup({
       },
     },
   },
-  "tpope/vim-rhubarb", -- View github commit using :GBrowse
-  "tpope/vim-endwise",
-  { "echasnovski/mini.surround",  event = { "BufReadPost", "BufNewFile", "BufWritePre" }, opts = {} },
-  {
-    "echasnovski/mini.pairs",
-    event = { "VeryLazy" },
-    version = false,
-    opts = {},
-  },
-  {
-    "benmills/vimux",
-    ft = { "ruby" },
-    dependencies = {
-      "vim-test/vim-test", -- Run tests in conjuction with vimux
-    },
-    keys = {
-      { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
-      { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
-      { "<Leader>rl", ":wa<CR>:TestLast<CR>" },
-      { "<Leader>rx", ":wa<CR>:VimuxCloseRunner<CR>" },
-      { "<Leader>ri", ":wa<CR>:VimuxInspectRunner<CR>" },
-      { "<Leader>rs", ":!ruby -c %<CR>" },
-      { "<Leader>AA", ":A<CR>" },
-      { "<Leader>AV", ":AV<CR>" },
-      { "<Leader>AS", ":AS<CR>" },
-    },
-  },
-  "SmiteshP/nvim-navic",
-  {
-    "glepnir/lspsaga.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter', -- optional
-      'nvim-tree/nvim-web-devicons',     -- optional
-    },
-    keys = {
-      -- Actions
-      { "<leader>ca", "<cmd>Lspsaga code_action<CR>",           desc = "[c]ode [a]ction" },
-
-      -- Diagnostics
-      { "<leader>e",  "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "[e]xplain diagnostics" },
-      { "<leader>be", "<cmd>Lspsaga show_buf_diagnostics<CR>",  desc = "[b]uffer [e]xplain diagnostics" },
-      { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
-      { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>" },
-
-      -- Navigation
-      { "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>",            desc = "[f]ind symbol [r]eference" },
-      { "<leader>o",  "<cmd>Lspsaga outline<CR>",               desc = "[o]pen outline" },
-      { "gd",         "<cmd>Lspsaga goto_definition<CR>",       desc = "[g]o to [d]efinition" },
-      { "gp",         "<cmd>Lspsaga peek_definition<CR>",       desc = "[g]o [p]eek definition" },
-
-      -- Terminal
-      { "<leader>tt", "<cmd>Lspsaga term_toggle<CR>",           desc = "[t]erminal [t]oggle" },
-      { "K",          "<cmd>Lspsaga hover_doc ++keep<CR>" },
-    },
-    opts = {},
-  },
-  {
-    "echasnovski/mini.comment",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    dependencies = {
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        opts = {
-          enable_autocmd = false,
-        }
-      }
-    },
-    opts = {
-      custom_commentstring = function()
-        return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
-      end,
-    },
-  },
-
-  -- Language plugins
-  { "vim-ruby/vim-ruby",          ft = { "ruby" } },
-  { "tpope/vim-rails",            ft = { "ruby" } },
-  { "leafgarland/typescript-vim", ft = { "typescript" } },
-  { "fatih/vim-go",               ft = { "go" },                                          build = ":GoUpdateBinaries" },
-
-  -- Icons/Colors
-  "ryanoasis/vim-devicons",
-  "nvim-tree/nvim-web-devicons",
+  -- UI
+  { "ryanoasis/vim-devicons" },
+  { "nvim-tree/nvim-web-devicons" },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -131,67 +46,39 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end,
   },
+  { "lewis6991/gitsigns.nvim",   event = Util.LazyFileEvents, opts = {} }, -- show line diffs inline
   {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim",  opts = {} },
-      "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-    config = function(_, _)
-      if Util.has("neoconf.nvim") then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
-        require("neoconf").setup(plugin_opts)
-      end
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-    },
-  },
-  --
-  -- TODO Plug "williamboman/nvim-lsp-installer" -- auto-install LSP servers
-  --
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      {
-        "rcarriga/nvim-notify",
-        opts = {
-          background_colour = "#1a1b26",
-        },
-      },
-    },
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
-      lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-        },
-      },
-      -- you can enable a preset for easier configuration
-      presets = {
-        bottom_search = true,         -- use a classic bottom cmdline for search
-        command_palette = true,       -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false,       -- add a border to hover docs and signature help
+      options = {
+        theme = "catppuccin",
       },
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    keys = {
+      { '<Leader>nt', '<cmd>Neotree toggle<CR>' },
+      { '<Leader>nf', '<cmd>Neotree reveal<CR>' },
+    },
+  },
+
+  -- General DevEx
+  { "tpope/vim-rhubarb" },                                                 -- View github commit using :GBrowse
+  { "tpope/vim-endwise" },                                                 -- Adds `end` to Ruby methods
+  { "echasnovski/mini.surround", event = Util.LazyFileEvents, opts = {} }, -- Surrounds text
+  { "echasnovski/mini.pairs",    event = { "VeryLazy" },      opts = {} }, -- Allows for automatic open/close pairs
+  {
+    "nvim-treesitter/nvim-treesitter",                                     -- Syntax highlighting
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    event = Util.LazyFileEvents,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
     },
@@ -241,28 +128,37 @@ require("lazy").setup({
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        window = {
+          normal_hl = "",
+        },
+      },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
-      { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>" },
-      { "<LocalLeader>fb",  "<cmd>Telescope buffers<CR>" },
-      { "<LocalLeader>fc",  "<cmd>Telescope commands<CR>" },
-      { "<LocalLeader>fg",  "<cmd>Telescope live_grep<CR>" },
-      { "<LocalLeader>fm",  "<cmd>Telescope keymaps<CR>" },
-      { "<LocalLeader>mp",  "<cmd>Telescope man_pages<CR" },
-      { "<LocalLeader>gh",  "<cmd>Telescope help_tags<CR>" },
-      { "<Leader>gw",       "<cmd>Telescope grep_string<CR>" },
-      { "<LocalLeader>gq",  "<cmd>Telescope diagnostics<CR>" },
-      { "<LocalLeader>bd",  "<cmd>Telescope diagnostics bufnr=0<CR>" },
+      { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>", desc = "Telescope: File picker" },
+      { "<LocalLeader>fb",  "<cmd>Telescope buffers<CR>",                                                   desc = "Telescope: [f]ind [b]uffers" },
+      { "<LocalLeader>fc",  "<cmd>Telescope commands<CR>",                                                  desc = "Telescope: [f]ind [c]ommands" },
+      { "<LocalLeader>fg",  "<cmd>Telescope live_grep<CR>",                                                 desc = "Telescope: [f]uzzy [g]rep" },
+      { "<LocalLeader>fm",  "<cmd>Telescope keymaps<CR>",                                                   desc = "Telescope: [f]ind key[m]aps" },
+      { "<LocalLeader>mp",  "<cmd>Telescope man_pages<CR",                                                  desc = "Telescope: [m]an [p]ages" },
+      { "<LocalLeader>gh",  "<cmd>Telescope help_tags<CR>",                                                 desc = "Telescope: [g]et [h]elp" },
+      { "<Leader>gw",       "<cmd>Telescope grep_string<CR>",                                               desc = "Telescope: [g]rep highlighted [w]ord" },
+      { "<LocalLeader>gq",  "<cmd>Telescope diagnostics<CR>",                                               desc = "Telescope: workspace diagnostics" },
+      { "<LocalLeader>bd",  "<cmd>Telescope diagnostics bufnr=0<CR>",                                       desc = "Telescope: [b]uffer [d]iagnostics" },
 
       --  git navigation
-
-      { "<LocalLeader>gco", "<cmd>Telescope git_commits<CR>" },
-      { "<LocalLeader>ggs", "<cmd>Telescope git_status<CR>" },
-      { "<LocalLeader>ggc", "<cmd>Telescope git_bcommits<CR>" },
+      { "<LocalLeader>gco", "<cmd>Telescope git_commits<CR>",                                               desc = "Telescope: Show [g]it [c][o]mmits" },
+      { "<LocalLeader>ggs", "<cmd>Telescope git_status<CR>",                                                desc = "Telescope: Show [g]it [g][s]tatus" },
+      { "<LocalLeader>ggc", "<cmd>Telescope git_bcommits<CR>",                                              desc = "Telescope: Show buffer's [g]it [g][c]ommits" },
     },
     opts = {
       pickers = {
@@ -276,36 +172,42 @@ require("lazy").setup({
     },
   },
   {
-    "kyazdani42/nvim-tree.lua",
-    opts = {
-      view = {
-        adaptive_size = true,
-      },
-      update_focused_file = {
-        enable = true,
-        update_root = true,
-      },
-    },
-    keys = {
-      { '<Leader>nt', '<cmd>NvimTreeToggle<CR>' },
-      { '<Leader>nf', '<cmd>NvimTreeFindFile<CR>' },
-    },
-  },
-  {
-    "rgroli/other.nvim", -- projectionist/a.vim alternative
+    "benmills/vimux", -- Sends commands to tmux
     ft = { "ruby" },
-    opts = {
-      mappings = {
-        "rails",
-      },
+    dependencies = {
+      "vim-test/vim-test", -- Run tests in conjuction with vimux
     },
     keys = {
-      { "<Leader>OF", "<cmd>Other<CR>" },
+      { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
+      { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
+      { "<Leader>rl", ":wa<CR>:TestLast<CR>" },
+      { "<Leader>rx", ":wa<CR>:VimuxCloseRunner<CR>" },
+      { "<Leader>ri", ":wa<CR>:VimuxInspectRunner<CR>" },
+      { "<Leader>rs", ":!ruby -c %<CR>" },
+      { "<Leader>AA", ":A<CR>" },
+      { "<Leader>AV", ":AV<CR>" },
+      { "<Leader>AS", ":AS<CR>" },
     },
   },
-  -- Autocomplete for lsp
   {
-    "hrsh7th/nvim-cmp",
+    "echasnovski/mini.comment", -- comments out strings
+    event = Util.LazyFileEvents,
+    dependencies = {
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {
+          enable_autocmd = false,
+        }
+      }
+    },
+    opts = {
+      custom_commentstring = function()
+        return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+      end,
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp", -- auto-completion when typing
     version = false,
     event = "InsertEnter",
     dependencies = {
@@ -374,12 +276,78 @@ require("lazy").setup({
     end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "rgroli/other.nvim", -- projectionist/a.vim alternative
+    ft = { "ruby" },
     opts = {
-      options = {
-        theme = "catppuccin",
+      mappings = {
+        "rails",
       },
     },
+    keys = {
+      { "<Leader>OF", "<cmd>Other<CR>" },
+    },
+    config = function()
+    end,
   },
+
+  -- Language plugins
+  { "vim-ruby/vim-ruby",          ft = { "ruby" } },
+  { "tpope/vim-rails",            ft = { "ruby" } },
+  { "leafgarland/typescript-vim", ft = { "typescript" } },
+  { "fatih/vim-go",               ft = { "go" },        build = ":GoUpdateBinaries" },
+
+  -- LSP setup
+  {
+    "neovim/nvim-lspconfig",
+    event = Util.LazyFileEvents,
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neodev.nvim",  opts = {} },
+      "mason.nvim",
+      "SmiteshP/nvim-navic", -- breadcrumbs
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function(_, _)
+      if Util.has("neoconf.nvim") then
+        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+        local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
+        require("neoconf").setup(plugin_opts)
+      end
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
+  {
+    "glepnir/lspsaga.nvim",
+    event = Util.LazyFileEvents,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons',     -- optional
+    },
+    keys = {
+      -- Actions
+      { "<leader>ca", "<cmd>Lspsaga code_action<CR>",           desc = "[c]ode [a]ction" },
+
+      -- Diagnostics
+      { "<leader>e",  "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "[e]xplain diagnostics" },
+      { "<leader>be", "<cmd>Lspsaga show_buf_diagnostics<CR>",  desc = "[b]uffer [e]xplain diagnostics" },
+      { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
+      { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>" },
+
+      -- Navigation
+      { "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>",            desc = "[f]ind symbol [r]eference" },
+      { "<leader>o",  "<cmd>Lspsaga outline<CR>",               desc = "[o]pen outline" },
+      { "gd",         "<cmd>Lspsaga goto_definition<CR>",       desc = "[g]o to [d]efinition" },
+      { "gp",         "<cmd>Lspsaga peek_definition<CR>",       desc = "[g]o [p]eek definition" },
+
+      -- Terminal
+      { "<leader>tt", "<cmd>Lspsaga term_toggle<CR>",           desc = "[t]erminal [t]oggle" },
+      { "K",          "<cmd>Lspsaga hover_doc ++keep<CR>" },
+    },
+    opts = {},
+  }
 })
