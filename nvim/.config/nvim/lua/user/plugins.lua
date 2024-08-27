@@ -88,6 +88,7 @@ require("lazy").setup({
       ensure_installed = {
         "bash",
         "c",
+        "diff",
         "dockerfile",
         "git_config",
         "git_rebase",
