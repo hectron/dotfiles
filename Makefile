@@ -5,10 +5,10 @@ stow_dirs := $(wildcard */)
 default:
 
 dry-run:
-	stow --simulate --target --restow $(HOME) --verbose $(stow_dirs)
+	stow --simulate --restow --target $(HOME) --verbose $(stow_dirs)
 
 install:
-	stow --target --restow $(HOME) $(stow_dirs)
+	stow --restow --target $(HOME) $(stow_dirs)
 
 uninstall:
 	stow --target $(HOME) -D $(stow_dirs)

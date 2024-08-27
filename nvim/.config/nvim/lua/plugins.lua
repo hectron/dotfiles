@@ -12,8 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local Util = require("user.utils")
-local lsp_handlers = require("../lsp/handlers")
+local Util = require "utils"
+local lsp_handlers = require "lsp_handlers"
 
 require("lazy").setup({
   -- Intro dashboard
