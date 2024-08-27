@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -12,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local Util = require("user.utils")
+local lsp_handlers = require("../lsp/handlers")
 
 require("lazy").setup({
   -- Intro dashboard
@@ -212,6 +214,7 @@ require("lazy").setup({
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim",
@@ -259,12 +262,15 @@ require("lazy").setup({
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "path" },
+          { name = "nvim_lsp_signature_help" },
         }, {
+          { name = "path" },
           { name = "buffer" },
         }),
         formatting = {
-          format = lspkind.cmp_format(),
+          format = lspkind.cmp_format({
+            mode = "symbol_text",
+          }),
         },
         experimental = {
           ghost_text = {
@@ -301,53 +307,43 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     event = Util.LazyFileEvents,
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neoconf.nvim", cmd = "Neoconf", opts = {}, config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim",  opts = {} },
-      "mason.nvim",
       "SmiteshP/nvim-navic", -- breadcrumbs
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          automatic_installation = true,
+          ensure_installed = lsp_handlers.lsp_servers,
+        },
+        dependencies = {
+          {
+            "williamboman/mason.nvim",
+            opts = {},
+          },
+        },
+        lazy = true,
+      }
     },
     config = function(_, _)
+      local lspconfig = require "lspconfig"
+
       if Util.has("neoconf.nvim") then
         local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
         local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
         require("neoconf").setup(plugin_opts)
       end
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      for _, server_name in pairs(lsp_handlers.lsp_servers) do
+        local opts = {
+          on_attach = lsp_handlers.on_attach,
+          capabilities = capabilities,
+        }
+
+        lspconfig[server_name].setup(opts)
+      end
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-    },
-  },
-  {
-    "glepnir/lspsaga.nvim",
-    event = Util.LazyFileEvents,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter', -- optional
-      'nvim-tree/nvim-web-devicons',     -- optional
-    },
-    keys = {
-      -- Actions
-      { "<leader>ca", "<cmd>Lspsaga code_action<CR>",           desc = "[c]ode [a]ction" },
-
-      -- Diagnostics
-      { "<leader>e",  "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "[e]xplain diagnostics" },
-      { "<leader>be", "<cmd>Lspsaga show_buf_diagnostics<CR>",  desc = "[b]uffer [e]xplain diagnostics" },
-      { "[d",         "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
-      { "]d",         "<cmd>Lspsaga diagnostic_jump_next<CR>" },
-
-      -- Navigation
-      { "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>",            desc = "[f]ind symbol [r]eference" },
-      { "<leader>o",  "<cmd>Lspsaga outline<CR>",               desc = "[o]pen outline" },
-      { "gd",         "<cmd>Lspsaga goto_definition<CR>",       desc = "[g]o to [d]efinition" },
-      { "gp",         "<cmd>Lspsaga peek_definition<CR>",       desc = "[g]o [p]eek definition" },
-
-      -- Terminal
-      { "<leader>tt", "<cmd>Lspsaga term_toggle<CR>",           desc = "[t]erminal [t]oggle" },
-      { "K",          "<cmd>Lspsaga hover_doc ++keep<CR>" },
-    },
-    opts = {},
-  }
 })
