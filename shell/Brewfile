@@ -5,6 +5,7 @@
 # Taps are essentially repos where we can source tools/apps from
 taps = %w[homebrew/cask-fonts]
 native_apps = [
+  'alacritty',
   'authy',
   'cloudflare-warp',
   'discord',
@@ -38,6 +39,8 @@ tools = %w[
   tealdeer
   terraform
   tmux
+  zoxide
+  zsh-autosuggestions
 ]
 
 taps.each { |source| tap source }

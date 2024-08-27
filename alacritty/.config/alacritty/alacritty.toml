@@ -1,0 +1,51 @@
+live_config_reload = true
+
+# git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
+import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[env] # This section sets env vars on launch
+TERM = "xterm-256color"
+
+[window] # semi-transparent, minimalist look
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.9
+blur = true
+
+[window.padding]
+x = 25
+y = 20
+
+[font]
+size = 14
+
+[font.normal]
+family = "Iosevka Nerd Font Propo"
+style = "Light"
+
+[font.bold]
+family = "Iosevka Nerd Font Propo"
+style = "Heavy"
+
+[font.bold_italic]
+family = "Iosevka Nerd Font Propo"
+style = "Heavy Italic"
+
+[font.italic]
+family = "Iosevka Nerd Font Propo"
+style = "Italic"
+
+[mouse]
+hide_when_typing = true
+
+[cursor.style]
+blinking = "On"
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+  { key = "Left", mods = "Alt", chars = "\u001BB" },
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+]

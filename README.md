@@ -16,23 +16,21 @@ make install
 
 ## Directory Structure
 
-The top-level directories are organized to group things conceptually. In practice, the directory structure inside the
-top-level directory will be what is set up by `stow`.
+The top-level directories are organized to group things conceptually. In
+practice, the directory structure inside the top-level directory will be what
+is set up by `stow`. Each directory that is stowed contains the folder
+structure **that is relative to the user's home directory**. For example:
 
-In other words, for something like the `nvim/` directory -- the `.config` directory will be setup in the user's `$HOME`
-directory. The files that live inside the `nvim/` directory will be placed in the user's `$HOME/.config`.
-
-After installing, this is what the directory structure will look like:
-
-```sh
-$HOME/.config/nvim/init.lua
-$HOME/.config/nvim/lua/user
-$HOME/.config/nvim/lua/lsp/<whatever>
-```
+| Repo folder | Destination |
+| --- | --- |
+| ./nvim/.config/nvim/ | $HOME/.config/nvim/ |
+| ./shell/Brewfile | $HOME/Brewfile |
+| ./git/.gitconfig | $HOME/.gitconfig |
+| ./alacritty/.config/alacritty/ | $HOME/.config/alacritty/ |
 
 ## Tooling
 
-This repository primarily uses neovim (0.5+)
+This repository primarily uses neovim (>= 0.10)
 
 - [sharkdp/bat](https://github.com/sharkdp/bat)
 - [sharkdp/fd](https://github.com/sharkdp/fd)
@@ -42,9 +40,7 @@ This repository primarily uses neovim (0.5+)
 
 ## Fonts
 
-My font of choice is **PragmataPro**, but that is an expensive font and I haven't found a NERD font version of it.
-
-I switch between **Iosevka Nerd Font** or **JetBraints Mono Nerd Font**.
+My font of choice is **Iosevka Nerd Font Propo**.
 
 ## Colors
 
