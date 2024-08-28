@@ -283,8 +283,6 @@ require("lazy").setup({
     keys = {
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
-    config = function()
-    end,
   },
 
   -- Language plugins
