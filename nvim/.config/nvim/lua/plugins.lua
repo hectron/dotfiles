@@ -51,10 +51,16 @@ require("lazy").setup({
   { "lewis6991/gitsigns.nvim",   event = Util.LazyFileEvents, opts = {} }, -- show line diffs inline
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      { 'stevearc/aerial.nvim', opts = { filter_kind = false } },
+    },
     opts = {
       options = {
         theme = "catppuccin",
+      },
+      winbar = {
+        lualine_b = { "aerial" },
       },
     },
   },
@@ -129,16 +135,6 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
       configs.setup(opts)
     end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      notification = {
-        window = {
-          normal_hl = "",
-        },
-      },
-    },
   },
   {
     "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
@@ -290,11 +286,12 @@ require("lazy").setup({
         "rails",
       },
     },
+    config = function(_, opts)
+      require("other-nvim").setup(opts)
+    end,
     keys = {
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
-    config = function()
-    end,
   },
 
   -- Language plugins
@@ -324,7 +321,17 @@ require("lazy").setup({
           },
         },
         lazy = true,
-      }
+      },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          notification = {
+            window = {
+              winblend = 0, -- transparent background LSP loading
+            },
+          },
+        },
+      },
     },
     config = function(_, _)
       local lspconfig = require "lspconfig"
