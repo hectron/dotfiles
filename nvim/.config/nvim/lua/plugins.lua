@@ -55,20 +55,14 @@ require("lazy").setup({
       'nvim-tree/nvim-web-devicons',
       { 'stevearc/aerial.nvim', opts = { filter_kind = false } },
     },
-    opts = function()
-      local base_config = require("lualine").get_config()
-
-      local conf = vim.tbl_deep_extend("force", base_config, {
-        options = {
-          theme = "catppuccin",
-        },
-        winbar = {
-          lualine_c = { "aerial" },
-        },
-      })
-
-      return conf
-    end,
+    opts = {
+      options = {
+        theme = "catppuccin",
+      },
+      winbar = {
+        lualine_b = { "aerial" },
+      },
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
