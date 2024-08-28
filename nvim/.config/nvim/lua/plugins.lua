@@ -131,16 +131,6 @@ require("lazy").setup({
     end,
   },
   {
-    "j-hui/fidget.nvim",
-    opts = {
-      notification = {
-        window = {
-          normal_hl = "",
-        },
-      },
-    },
-  },
-  {
     "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -324,7 +314,17 @@ require("lazy").setup({
           },
         },
         lazy = true,
-      }
+      },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          notification = {
+            window = {
+              winblend = 0, -- transparent background LSP loading
+            },
+          },
+        },
+      },
     },
     config = function(_, _)
       local lspconfig = require "lspconfig"
