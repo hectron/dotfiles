@@ -292,6 +292,9 @@ require("lazy").setup({
         "rails",
       },
     },
+    config = function(_, opts)
+      require("other-nvim").setup(opts)
+    end,
     keys = {
       { "<Leader>OF", "<cmd>Other<CR>" },
     },
