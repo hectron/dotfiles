@@ -1,6 +1,6 @@
 local M = {}
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -79,7 +79,7 @@ M.lsp_servers = {
   'rust_analyzer',
   'lua_ls',
   'terraformls',
-  'tsserver',
+  'ts_ls',
   'vimls',
   'yamlls',
 }

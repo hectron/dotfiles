@@ -89,6 +89,14 @@ require("lazy").setup({
     event = Util.LazyFileEvents,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown" },
+        opts = {},
+        dependencies = {
+          "nvim-tree/nvim-web-devicons",
+        },
+      },
     },
     opts = {
       ensure_installed = {
