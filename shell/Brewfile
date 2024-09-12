@@ -1,48 +1,59 @@
 # frozen_string_literal: true
-
 # vim: filetype=ruby
 
-# Taps are essentially repos where we can source tools/apps from
-taps = %w[homebrew/cask-fonts]
-native_apps = [
-  'alacritty',
-  'authy',
-  'cloudflare-warp',
-  'discord',
-  'docker',
-  'firefox',
-  'iterm2',
-  'notion',
-  'rectangle',
-  'slack',
-  'spotify',
-  'zoom',
-  # The following require cask-fonts
-  'font-iosevka-nerd-font',
-  'font-jetbrains-mono-nerd-font',
-  'font-ubuntu-mono-nerd-font'
-]
-tools = %w[
-  asdf
-  awscli
-  direnv
-  fzf
-  gh
-  git
-  gnupg
-  jq
-  libpq
-  neovim
-  ripgrep
-  stow
-  subversion
-  tealdeer
-  terraform
-  tmux
-  zoxide
-  zsh-autosuggestions
-]
+# This handles installing software using Homebrew via it's built-in `brew bundle` command.
+# For more information on how to write a `Brewfile` file, check out the following page:
+# https://github.com/Homebrew/homebrew-bundle?tab=readme-ov-file
 
-taps.each { |source| tap source }
-native_apps.each { |app| cask app }
-tools.each { |tool| brew tool }
+# At a high-level:
+#
+# - A `formula` is what is generally available via `brew install`.
+# - A `cask` is an application distributed in binary form (e.g. Firefox, Alacritty, etc).
+# - A `tap` is a git repo containing multiple formulae/casks
+# 
+# As a general rule of thumb, setup taps first so that you can then access
+# formulae/casks that might not be available otherwise.
+#
+# For more information on Homebrew concepts such as formula, kegs, etc check out the following page:
+# https://kb.novaordis.com/index.php/Brew_Concepts
+
+# 'brew tap'
+tap "homebrew/cask-fonts"
+
+# 'brew install'
+brew "asdf"
+brew "awscli"
+brew "direnv"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "gnupg"
+brew "jq"
+brew "libpq"
+brew "neovim"
+brew "ripgrep"
+brew "stow"
+brew "subversion"
+brew "tealdeer"
+brew "terraform"
+brew "tmux"
+brew "zoxide"
+brew "zsh-autosuggestions"
+
+# 'brew install --cask'
+cask "alacritty"
+cask "authy"
+cask "cloudflare-warp"
+cask "discord"
+cask "docker"
+cask "firefox"
+cask "notion"
+cask "rectangle"
+cask "slack"
+cask "spotify"
+cask "zoom"
+
+# Depend on `homebrew/cask-fonts`
+cask "font-iosevka-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-ubuntu-mono-nerd-font"

@@ -1,6 +1,13 @@
 # Dotfiles
 
-Install all the dotfiles using [`stow`](https://www.gnu.org/software/stow/manual/stow.html).
+This is a collection of dotfiles that I tend to use. It also contains a `Brewfile`, which contains instructions on what software and fonts to install via Homebrew.
+
+## Dependencies
+
+| Tool | Reason |
+| --- | --- |
+| [Stow](https://www.gnu.org/software/stow/manual/stow.html) | Symlinking dotfiles |
+| [Make](https://www.gnu.org/software/make/) | Provides commands to help with installation |
 
 ## Installing
 
@@ -14,6 +21,16 @@ make dry-run
 make install
 ```
 
+### Installing/upgrading software
+
+> [!INFO]
+> This repository also provides a `Brewfile`, which can be used by Homebrew to automatically provision software.
+
+```sh
+cd ~
+brew bundle
+```
+
 ## Directory Structure
 
 The top-level directories are organized to group things conceptually. In
@@ -23,24 +40,10 @@ structure **that is relative to the user's home directory**. For example:
 
 | Repo folder | Destination |
 | --- | --- |
-| ./nvim/.config/nvim/ | $HOME/.config/nvim/ |
-| ./shell/Brewfile | $HOME/Brewfile |
-| ./git/.gitconfig | $HOME/.gitconfig |
-| ./alacritty/.config/alacritty/ | $HOME/.config/alacritty/ |
-
-## Tooling
-
-This repository primarily uses neovim (>= 0.10)
-
-- [sharkdp/bat](https://github.com/sharkdp/bat)
-- [sharkdp/fd](https://github.com/sharkdp/fd)
-- [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
-- [junegunn/fzf](https://github.com/junegunn/fzf)
-- [tldr-pages/tldr](https://github.com/tldr-pages/tldr)
-
-## Fonts
-
-My font of choice is **Iosevka Nerd Font Propo**.
+| `./nvim/.config/nvim/` | `$HOME/.config/nvim/` |
+| `./shell/Brewfile` | `$HOME/Brewfile` |
+| `./git/.gitconfig` | `$HOME/.gitconfig` |
+| `./alacritty/.config/alacritty/` | `$HOME/.config/alacritty/` |
 
 ## Colors
 
