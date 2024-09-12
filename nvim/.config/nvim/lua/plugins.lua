@@ -308,7 +308,6 @@ require("lazy").setup({
   { "leafgarland/typescript-vim", ft = { "typescript" } },
   { "fatih/vim-go",               ft = { "go" },        build = ":GoUpdateBinaries" },
 
-
   -- LSP setup
   {
     "neovim/nvim-lspconfig",
