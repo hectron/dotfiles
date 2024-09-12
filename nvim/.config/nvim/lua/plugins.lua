@@ -89,6 +89,14 @@ require("lazy").setup({
     event = Util.LazyFileEvents,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown" },
+        opts = {},
+        dependencies = {
+          "nvim-tree/nvim-web-devicons",
+        },
+      },
     },
     opts = {
       ensure_installed = {
@@ -299,6 +307,7 @@ require("lazy").setup({
   { "tpope/vim-rails",            ft = { "ruby" } },
   { "leafgarland/typescript-vim", ft = { "typescript" } },
   { "fatih/vim-go",               ft = { "go" },        build = ":GoUpdateBinaries" },
+
 
   -- LSP setup
   {
