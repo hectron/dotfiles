@@ -23,7 +23,7 @@ make install
 
 ### Installing/upgrading software
 
-> [!INFO]
+> [!TIP]
 > This repository also provides a `Brewfile`, which can be used by Homebrew to automatically provision software.
 
 ```sh
