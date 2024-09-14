@@ -15,10 +15,13 @@ This is a collection of dotfiles that I tend to use. It also contains a `Brewfil
 git clone git@github.com:hectron/dotfiles.git && cd $_
 
 # Test installing the dotfiles
-make dry-run
+rake dry_install
 
 # Install dotfiles
-make install
+rake clean_install
+
+# Install a sub-set of stowable dirs
+rake "install[tmux, alacritty, neovim]"
 ```
 
 ### Installing/upgrading software
