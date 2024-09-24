@@ -88,6 +88,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     event = Util.LazyFileEvents,
     dependencies = {
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
       {
         "MeanderingProgrammer/render-markdown.nvim",
