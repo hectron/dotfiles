@@ -48,12 +48,21 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end,
   },
-  { "lewis6991/gitsigns.nvim",   event = Util.LazyFileEvents, opts = {} }, -- show line diffs inline
   {
-    'nvim-lualine/lualine.nvim',
+    "lewis6991/gitsigns.nvim",
+    event = Util.LazyFileEvents,
+    opts = {},
+  }, -- show line diffs inline
+  {
+    "nvim-lualine/lualine.nvim",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      { 'stevearc/aerial.nvim', opts = { filter_kind = false } },
+      "nvim-tree/nvim-web-devicons",
+      {
+        "stevearc/aerial.nvim",
+        opts = {
+          filter_kind = false
+        },
+      },
     },
     opts = {
       options = {
@@ -73,18 +82,27 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     },
     keys = {
-      { '<Leader>nt', '<cmd>Neotree toggle<CR>' },
-      { '<Leader>nf', '<cmd>Neotree reveal<CR>' },
+      { "<Leader>nt", "<cmd>Neotree toggle<CR>" },
+      { "<Leader>nf", "<cmd>Neotree reveal<CR>" },
     },
   },
 
   -- General DevEx
-  { "tpope/vim-rhubarb" },                                                 -- View github commit using :GBrowse
-  { "tpope/vim-endwise" },                                                 -- Adds `end` to Ruby methods
-  { "echasnovski/mini.surround", event = Util.LazyFileEvents, opts = {} }, -- Surrounds text
-  { "echasnovski/mini.pairs",    event = { "VeryLazy" },      opts = {} }, -- Allows for automatic open/close pairs
   {
-    "nvim-treesitter/nvim-treesitter",                                     -- Syntax highlighting
+    "tpope/vim-endwise",
+  }, -- Adds `end` to Ruby methods
+  {
+    "echasnovski/mini.surround",
+    event = Util.LazyFileEvents,
+    opts = {},
+  }, -- Surrounds text
+  {
+    "echasnovski/mini.pairs",
+    event = { "VeryLazy" },
+    opts = {},
+  }, -- Allows for automatic open/close pairs
+  {
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = Util.LazyFileEvents,
     dependencies = {
@@ -149,7 +167,10 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
     },
     keys = {
       { "<C-p>",            "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>", desc = "Telescope: File picker" },
@@ -304,10 +325,23 @@ require("lazy").setup({
   },
 
   -- Language plugins
-  { "vim-ruby/vim-ruby",          ft = { "ruby" } },
-  { "tpope/vim-rails",            ft = { "ruby" } },
-  { "leafgarland/typescript-vim", ft = { "typescript" } },
-  { "fatih/vim-go",               ft = { "go" },        build = ":GoUpdateBinaries" },
+  {
+    "vim-ruby/vim-ruby",
+    ft = { "ruby" }
+  },
+  {
+    "tpope/vim-rails",
+    ft = { "ruby" }
+  },
+  {
+    "leafgarland/typescript-vim",
+    ft = { "typescript" }
+  },
+  {
+    "fatih/vim-go",
+    ft = { "go" },
+    build = ":GoUpdateBinaries"
+  },
 
   -- LSP setup
   {

@@ -30,4 +30,4 @@ end
 
 -- this is set by installing nvim install --lts
 -- use nvm's npm packages
-vim.env.PATH = "/home/admin/.nvm/versions/node/v18.16.1/bin:" .. vim.env.PATH
+-- vim.env.PATH = "/home/admin/.nvm/versions/node/v18.16.1/bin:" .. vim.env.PATH
