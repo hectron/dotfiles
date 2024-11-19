@@ -32,8 +32,13 @@ require("lazy").setup({
     },
   },
   -- UI
-  { "ryanoasis/vim-devicons" },
-  { "nvim-tree/nvim-web-devicons" },
+  {
+    "TaDaa/vimade",
+    opts = { ncmode = "windows" },
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
