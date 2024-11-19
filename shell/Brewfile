@@ -18,7 +18,6 @@
 # https://kb.novaordis.com/index.php/Brew_Concepts
 
 # 'brew tap'
-tap "homebrew/cask-fonts"
 
 # 'brew install'
 brew "asdf"
