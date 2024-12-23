@@ -20,11 +20,11 @@ function M.on_attach(_client, bufnr)
   buf_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 
   -- Information
-  buf_set_keymap('n', "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap('n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap('n', "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap('n', "<Leader>ds", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_set_keymap("n", "<Leader>ds", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
 
   -- Diagnostics
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
