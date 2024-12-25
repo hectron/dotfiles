@@ -63,36 +63,35 @@ require("lazy").setup({
     },
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    },
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
     keys = {
-      { "<Leader>nt", "<cmd>Neotree toggle<CR>" },
-      { "<Leader>nf", "<cmd>Neotree reveal<CR>" },
+      { "-", "<cmd>Oil<CR>", { desc = "Open parent directory" } },
     },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
 
   -- General DevEx
   {
-    "echasnovski/mini.surround",
-    event = Util.LazyFileEvents,
+    "echasnovski/mini.surround", -- Surrounds text
+    event = "InsertEnter",
     opts = {},
-  }, -- Surrounds text
+  },
   {
-    "echasnovski/mini.pairs",
-    event = { "VeryLazy" },
+    "echasnovski/mini.pairs", -- Allows for automatic open/close pairs
+    event = "InsertEnter",
     opts = {},
-  }, -- Allows for automatic open/close pairs
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = Util.LazyFileEvents,
     dependencies = {
-      -- "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
       "RRethy/nvim-treesitter-endwise",
       {
@@ -142,7 +141,15 @@ require("lazy").setup({
         enable = true
       },
       textobjects = {
-        enable = true
+        select = {
+          enable = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["av"] = "@block.outer",
+            ["iv"] = "@block.inner",
+          },
+        },
       },
       endwise = {
         enable = true,
