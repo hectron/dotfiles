@@ -16,25 +16,12 @@ local Util = require "utils"
 local lsp_handlers = require "lsp_handlers"
 
 require("lazy").setup({
-  -- Intro dashboard
-  {
-    "nvimdev/dashboard-nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    event = "VimEnter",
-    opts = {
-      config = {
-        week_header = {
-          enable = true
-        },
-      },
-    },
-  },
   -- UI
   {
-    "TaDaa/vimade",
-    opts = { ncmode = "windows" },
+    "TaDaa/vimade", -- dim/fade/tint unfocused windows
+    opts = {
+      ncmode = "windows",
+    },
   },
   {
     "nvim-tree/nvim-web-devicons",
@@ -54,10 +41,10 @@ require("lazy").setup({
     end,
   },
   {
-    "lewis6991/gitsigns.nvim",
+    "lewis6991/gitsigns.nvim", -- show line diffs inline
     event = Util.LazyFileEvents,
     opts = {},
-  }, -- show line diffs inline
+  },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -65,14 +52,11 @@ require("lazy").setup({
       {
         "stevearc/aerial.nvim",
         opts = {
-          filter_kind = false
+          filter_kind = false,
         },
       },
     },
     opts = {
-      options = {
-        theme = "catppuccin",
-      },
       winbar = {
         lualine_b = { "aerial" },
       },
@@ -94,9 +78,6 @@ require("lazy").setup({
 
   -- General DevEx
   {
-    "tpope/vim-endwise",
-  }, -- Adds `end` to Ruby methods
-  {
     "echasnovski/mini.surround",
     event = Util.LazyFileEvents,
     opts = {},
@@ -113,6 +94,7 @@ require("lazy").setup({
     dependencies = {
       -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
+      "RRethy/nvim-treesitter-endwise",
       {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
@@ -161,6 +143,9 @@ require("lazy").setup({
       },
       textobjects = {
         enable = true
+      },
+      endwise = {
+        enable = true,
       },
     },
     config = function(_, opts)
@@ -251,8 +236,9 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim",
     },
+    ---@module "cmp"
+    ---@type cmp.Config
     opts = function()
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
       local lspkind = require("lspkind")
@@ -294,7 +280,6 @@ require("lazy").setup({
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
         }, {
           { name = "path" },
           { name = "buffer" },
@@ -304,12 +289,10 @@ require("lazy").setup({
             mode = "symbol_text",
           }),
         },
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-          },
-        },
         sorting = defaults.sorting,
+        window = {
+          documentation = cmp.config.window.bordered(),
+        },
       }
     end,
   },
