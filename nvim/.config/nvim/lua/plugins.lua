@@ -286,6 +286,7 @@ require("lazy").setup({
           end,
         }),
         sources = cmp.config.sources({
+          { name = "lazydev", group_index = 0 },
           { name = "nvim_lsp" },
         }, {
           { name = "path" },
@@ -343,8 +344,17 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     event = Util.LazyFileEvents,
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", opts = {}, config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim",  opts = {} },
+      {
+        "folke/lazydev.nvim",
+        ft = { "lua" },
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
       "SmiteshP/nvim-navic", -- breadcrumbs
       {
         "williamboman/mason-lspconfig.nvim",
@@ -373,12 +383,6 @@ require("lazy").setup({
     },
     config = function(_, _)
       local lspconfig = require "lspconfig"
-
-      if Util.has("neoconf.nvim") then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        local plugin_opts = require("lazy.core.plugin").values(plugin, "opts", false)
-        require("neoconf").setup(plugin_opts)
-      end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
