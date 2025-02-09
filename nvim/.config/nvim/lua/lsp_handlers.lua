@@ -1,11 +1,11 @@
 local M = {}
 
-function M.on_attach(_client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+function M.on_attach(_, bufnr)
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
   -- Mappings.
   local opts = { noremap = true, silent = true }
@@ -43,9 +43,9 @@ function M.on_attach(_client, bufnr)
   buf_set_keymap("n", "<Leader>ws", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
   -- Set up diagnostics
-  vim.diagnostic.config({
-    virtual_text = false, -- Turn off inline diagnostics
-  })
+  -- vim.diagnostic.config({
+  -- 	virtual_text = false, -- Turn off inline diagnostics
+  -- })
 
   -- set up LSP signs
   for type, icon in pairs({

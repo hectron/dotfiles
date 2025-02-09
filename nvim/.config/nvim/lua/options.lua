@@ -28,6 +28,12 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
+vim.filetype.add({
+  extension = {
+    tf = "terraform",
+  },
+})
+
 -- this is set by installing nvim install --lts
 -- use nvm's npm packages
 -- vim.env.PATH = "/home/admin/.nvm/versions/node/v18.16.1/bin:" .. vim.env.PATH
