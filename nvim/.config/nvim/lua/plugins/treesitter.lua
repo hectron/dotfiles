@@ -12,9 +12,12 @@ return {
       {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
-        opts = {},
+        version = "8.*",
+        opts = {
+          render_modes = true,
+        },
         dependencies = {
-          "nvim-tree/nvim-web-devicons",
+          "echasnovski/mini.icons",
         },
       },
     },

@@ -1,5 +1,17 @@
 return {
   {
+    "echasnovski/mini.hipatterns",
+    config = function(_, opts)
+      local hipatterns = require("mini.hipatterns")
+
+      hipatterns.setup({
+        highlighters = {
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end,
+  },
+  {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
@@ -54,19 +66,6 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   {
-    "echasnovski/mini.icons",
-    lazy = true,
-    opts = {
-      file = {
-        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
-        ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
-      },
-      filetype = {
-        dotenv = { glyph = "", hl = "MiniIconsYellow" },
-      },
-    }
-  },
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -111,6 +110,18 @@ return {
     "TaDaa/vimade", -- dim/fade/tint unfocused windows
     opts = {
       ncmode = "windows",
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      plugins = {
+        tmux = { enabled = true },
+        alacritty = {
+          enabled = true,
+          font = "20",
+        },
+      },
     },
   },
 }

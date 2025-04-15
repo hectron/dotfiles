@@ -5,6 +5,7 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     vscode = true,
+    ---@module "flash"
     ---@type Flash.Config
     opts = {
       modes = {
@@ -42,21 +43,18 @@ return {
     },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
-  {
-    "rgroli/other.nvim", -- projectionist/a.vim alternative
-    ft = { "ruby" },
-    opts = {
-      mappings = {
-        "rails",
-      },
-    },
-    config = function(_, opts)
-      require("other-nvim").setup(opts)
-    end,
-    keys = {
-      { "<Leader>OF", "<cmd>Other<CR>" },
-    },
-  },
+  -- {
+  --   "rgroli/other.nvim", -- projectionist/a.vim alternative
+  --   ft = { "ruby" },
+  --   opts = {
+  --     mappings = {
+  --       "rails",
+  --     },
+  --   },
+  --   keys = {
+  --     { "<Leader>OF", "<cmd>Other<CR>" },
+  --   },
+  -- },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

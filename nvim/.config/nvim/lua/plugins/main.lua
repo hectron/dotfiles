@@ -3,20 +3,6 @@ local Util = require("utils")
 return {
   -- General DevEx
   {
-    "ibhagwan/fzf-lua",
-    dependencies = { "echasnovski/mini.icons" },
-    opts = {},
-    keys = {
-      {
-        "<Leader><Leader>",
-        function()
-          require("fzf-lua").files()
-        end,
-        { desc = "fzf files" },
-      },
-    },
-  },
-  {
     "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
     dependencies = {
       "nvim-lua/plenary.nvim",

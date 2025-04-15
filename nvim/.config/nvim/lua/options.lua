@@ -2,9 +2,11 @@ local options = {
   backupcopy = "yes",                       -- preserves file inodes, needed for Dockerfile mounting
   clipboard = { "unnamed", "unnamedplus" }, -- system clipboard
   completeopt = { "menuone", "noselect" },  -- for cmp
+  conceallevel = 1,
   cursorline = true,                        -- highlight the current line
   expandtab = true,                         -- convert tabs to spaces
   ignorecase = true,                        -- ignore case in searches
+  linebreak = true,                         -- visually split long lines
   number = true,                            -- set numbered lines
   pumheight = 10,                           -- popup menu height
   scrolloff = 8,
@@ -36,4 +38,4 @@ vim.filetype.add({
 
 -- this is set by installing nvim install --lts
 -- use nvm's npm packages
--- vim.env.PATH = "/home/admin/.nvm/versions/node/v18.16.1/bin:" .. vim.env.PATH
+-- vim.env.PATH = "/home/admin/.nvm/versions/node/v19.16.1/bin:" .. vim.env.PATH
