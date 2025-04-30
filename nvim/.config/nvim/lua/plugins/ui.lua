@@ -1,7 +1,7 @@
 return {
   {
     "echasnovski/mini.hipatterns",
-    config = function(_, opts)
+    config = function(_, _opts)
       local hipatterns = require("mini.hipatterns")
 
       hipatterns.setup({
@@ -105,12 +105,6 @@ return {
         vim.o.laststatus = 0
       end
     end,
-  },
-  {
-    "TaDaa/vimade", -- dim/fade/tint unfocused windows
-    opts = {
-      ncmode = "windows",
-    },
   },
   {
     "folke/zen-mode.nvim",

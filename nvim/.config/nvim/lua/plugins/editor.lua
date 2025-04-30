@@ -62,6 +62,10 @@ return {
     ---@type wk.Opts
     opts = {
       preset = "helix",
+      spec = {
+        { "<leader>b", desc = "Buffer" },
+        { "<leader>o", desc = "Obsidian" },
+      },
     },
     keys = {
       {
