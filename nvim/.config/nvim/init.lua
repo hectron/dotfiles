@@ -18,6 +18,9 @@ require("keymaps")
 require("lazy").setup({
   spec = {
     { import = "plugins" },
-    { dir = "~/me/lua/inkline" },
+    -- { dir = "~/me/lua/inkline" },
+  },
+  change_detection = {
+    notify = false,
   },
 })

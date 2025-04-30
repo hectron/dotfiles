@@ -1,8 +1,15 @@
 local M = {}
 
 function M.on_attach(_, bufnr)
+  -- TODO switch this to use vim.keymap.set
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
+
+  local function set(modes, lhs, rhs, opts)
+    local local_opts = vim.tbl_deep_extend("force", {}, opts, { buffer = bufnr })
+
+    vim.keymap.set(modes, lhs, rhs, local_opts)
   end
 
   vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
@@ -20,16 +27,17 @@ function M.on_attach(_, bufnr)
   buf_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 
   -- Information
-  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "Hover" })
+  set({ "n", "i" }, "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
+    { desc = "Signature help" })
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "<Leader>ds", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
 
   -- Diagnostics
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  buf_set_keymap("n", "<Leader>le", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 
   -- Refactoring
@@ -43,28 +51,26 @@ function M.on_attach(_, bufnr)
   buf_set_keymap("n", "<Leader>ws", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
   -- Set up diagnostics
-  -- vim.diagnostic.config({
-  -- 	virtual_text = false, -- Turn off inline diagnostics
-  -- })
-
-  -- set up LSP signs
-  for type, icon in pairs({
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
-  }) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
+  vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = { current_line = true },
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.HINT] = "",
+        [vim.diagnostic.severity.INFO] = "",
+      }
+    }
+  })
 
   -- Formatting
-  vim.cmd([[
-        augroup FORMATTING
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-        augroup END
-      ]])
+  -- vim.cmd([[
+  --       augroup FORMATTING
+  --         autocmd! * <buffer>
+  --         autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+  --       augroup END
+  --     ]])
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
