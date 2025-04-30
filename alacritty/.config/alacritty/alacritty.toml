@@ -8,7 +8,7 @@ import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
 TERM = "xterm-256color"
 
 [window] # semi-transparent, minimalist look
-# decorations = "buttonless"
+decorations = "buttonless"
 dynamic_padding = false
 opacity = 0.9
 blur = true
