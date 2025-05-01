@@ -22,7 +22,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         opts = {
           automatic_installation = true,
-          ensure_installed = lsp_handlers.lsp_servers,
+          ensure_installed = lsp_handlers.lsp_servers_to_install(),
         },
         dependencies = {
           {
@@ -37,15 +37,21 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      for _, server_name in pairs(lsp_handlers.lsp_servers) do
+      for _, server in pairs(lsp_handlers.lsp_servers) do
         local opts = {
           on_attach = lsp_handlers.on_attach,
           capabilities = capabilities,
         }
 
+        local server_name = server
+
+        if type(server) == "table" then
+          server_name = server[1]
+          opts = vim.tbl_deep_extend("force", opts, {}, server.opts or {})
+        end
+
         lspconfig[server_name].setup(opts)
       end
     end,
   },
-
 }

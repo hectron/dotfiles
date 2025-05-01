@@ -31,6 +31,7 @@ function M.on_attach(_, bufnr)
   set({ "n", "i" }, "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
     { desc = "Signature help" })
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  set("n", "gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "<Leader>ds", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
 
@@ -54,6 +55,7 @@ function M.on_attach(_, bufnr)
   vim.diagnostic.config({
     virtual_text = false,
     virtual_lines = { current_line = true },
+    severity_sort = true,
     signs = {
       text = {
         [vim.diagnostic.severity.ERROR] = "",
@@ -83,11 +85,33 @@ M.lsp_servers = {
   "puppet",
   "ruby_lsp",
   "rust_analyzer",
-  "lua_ls",
+  {
+    "lua_ls",
+    opts = {
+      settings = {
+        Lua = {
+          hint = {
+            enable = true,
+          },
+        },
+      },
+    },
+  },
   "terraformls",
   "ts_ls",
   "vimls",
   "yamlls",
 }
+
+function M.lsp_servers_to_install()
+  local servers = {}
+
+  for _, server in pairs(M.lsp_servers) do
+    local server_name = (type(server) == "table" and server[1]) or server
+    table.insert(servers, server_name)
+  end
+
+  return servers
+end
 
 return M
