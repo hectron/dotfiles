@@ -117,5 +117,18 @@ return {
         },
       },
     },
+    dependencies = {
+      { "folke/snacks.nvim" },
+    },
+    keys = {
+      {
+        "<leader>uZ",
+        function()
+          require("zen-mode").toggle()
+          require("snacks").zen()
+        end,
+        desc = "[u]i [Z]en mode"
+      }
+    }
   },
 }
