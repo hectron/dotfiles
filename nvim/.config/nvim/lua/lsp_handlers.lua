@@ -55,14 +55,6 @@ function M.on_attach(_, bufnr)
       }
     }
   })
-
-  -- Formatting
-  -- vim.cmd([[
-  --       augroup FORMATTING
-  --         autocmd! * <buffer>
-  --         autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-  --       augroup END
-  --     ]])
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

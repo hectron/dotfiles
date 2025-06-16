@@ -6,7 +6,6 @@ return {
       flavour = "mocha",
       transparent_background = true,
     },
-    priority = 1000,
     lazy = false,
     config = function(_, opts)
       require("catppuccin").setup(opts)
@@ -36,5 +35,12 @@ return {
   {
     "echasnovski/mini.colors",
     opts = {},
+  },
+  {
+    "hectron/spinel.nvim",
+    opts = {
+      transparent = true,
+      style = "dark",
+    },
   },
 }

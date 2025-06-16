@@ -1,7 +1,46 @@
-local Util = require("utils")
-
 return {
   -- General DevEx
+
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = { enabled = true },
+    },
+    keys = {
+      -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
+      { "<leader>be", function() Snacks.picker.buffers() end, desc = "[b]uffer [e]xplore" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- find
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      {
+        "<leader>N",
+        desc = "Neovim News",
+        function()
+          Snacks.win({
+            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+            width = 0.6,
+            height = 0.6,
+            wo = {
+              spell = false,
+              wrap = false,
+              signcolumn = "yes",
+              statuscolumn = " ",
+              conceallevel = 3,
+            },
+          })
+        end,
+      },
+    },
+  },
   {
     "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
     dependencies = {
@@ -61,11 +100,6 @@ return {
         "<LocalLeader>bd",
         "<cmd>Telescope diagnostics bufnr=0<CR>",
         desc = "Telescope: [b]uffer [d]iagnostics",
-      },
-      {
-        "<Leader>be",
-        "<cmd>Telescope buffers<CR>",
-        desc = "Telescope: [b]uffer [e]xplore",
       },
 
       --  git navigation

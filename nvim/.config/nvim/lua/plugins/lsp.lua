@@ -14,6 +14,8 @@ return {
             -- See the configuration section for more details
             -- Load luvit types when the `vim.uv` word is found
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            { path = "snacks.nvim", words = { "Snacks" } },
+            { path = "lazy.nvim", words = { "LazyVim" } },
           },
         },
       },
@@ -21,8 +23,9 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-          automatic_installation = true,
           ensure_installed = lsp_handlers.lsp_servers_to_install(),
+          automatic_installation = true,
+          automatic_enable = false,
         },
         dependencies = {
           {

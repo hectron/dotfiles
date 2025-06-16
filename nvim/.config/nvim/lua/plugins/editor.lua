@@ -41,7 +41,6 @@ return {
     keys = {
       { "-", "<cmd>Oil<CR>", { desc = "Open parent directory" } },
     },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
   -- {
   --   "rgroli/other.nvim", -- projectionist/a.vim alternative

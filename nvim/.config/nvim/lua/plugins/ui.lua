@@ -1,17 +1,5 @@
 return {
   {
-    "echasnovski/mini.hipatterns",
-    config = function(_, _opts)
-      local hipatterns = require("mini.hipatterns")
-
-      hipatterns.setup({
-        highlighters = {
-          hex_color = hipatterns.gen_highlighter.hex_color(),
-        },
-      })
-    end,
-  },
-  {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
@@ -80,9 +68,30 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
+          lualine_c = { "filename" },
+          lualine_x = {
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+              color = function() return { fg = require("snacks").util.color("Statement") } end,
+            },
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.mode.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+              color = function() return { fg = require("snacks").util.color("Constant") } end,
+            },
+          },
           lualine_y = {
-            { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
+            {
+              "progress",
+              separator = " ",
+              padding = { left = 1, right = 0 },
+            },
+            {
+              "location",
+              padding = { left = 0, right = 1 },
+            },
           },
           lualine_z = {
             function()
@@ -130,5 +139,9 @@ return {
         desc = "[u]i [Z]en mode"
       }
     }
+  },
+  {
+    "folke/noice.nvim",
+    opts = {},
   },
 }

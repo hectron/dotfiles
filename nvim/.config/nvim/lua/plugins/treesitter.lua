@@ -17,7 +17,7 @@ return {
           render_modes = true,
         },
         dependencies = {
-          "echasnovski/mini.icons",
+          Util.DefaultIconProvider,
         },
       },
     },

@@ -1,3 +1,4 @@
+---@type table<vim.Option>
 local options = {
   backupcopy = "yes",                      -- preserves file inodes, needed for Dockerfile mounting
   completeopt = { "menuone", "noselect" }, -- for cmp
@@ -9,6 +10,7 @@ local options = {
   linebreak = true,                        -- visually split long lines
   number = true,                           -- set numbered lines
   pumheight = 10,                          -- popup menu height
+  relativenumber = true,
   scrolloff = 8,
   shiftwidth = 2,                          -- the number of spaces insert for each indentation
   showtabline = 2,                         -- always show tab line
@@ -35,7 +37,3 @@ vim.filetype.add({
     tf = "terraform",
   },
 })
-
--- this is set by installing nvim install --lts
--- use nvm's npm packages
--- vim.env.PATH = "/home/admin/.nvm/versions/node/v19.16.1/bin:" .. vim.env.PATH
