@@ -42,6 +42,7 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 
 # 'brew install --cask'
+cask "1password-cli"
 cask "alacritty"
 cask "authy"
 cask "cloudflare-warp"
@@ -53,6 +54,7 @@ cask "obsidian"
 cask "rectangle"
 cask "slack"
 cask "spotify"
+cask "zen"
 cask "zoom"
 
 # Depend on `homebrew/cask-fonts`
