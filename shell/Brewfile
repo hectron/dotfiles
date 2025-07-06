@@ -20,9 +20,10 @@
 # 'brew tap'
 
 # 'brew install'
-brew "asdf"
 brew "awscli"
 brew "direnv"
+brew "docker"
+brew "duckdb"
 brew "fzf"
 brew "gh"
 brew "git"
@@ -45,7 +46,6 @@ cask "alacritty"
 cask "authy"
 cask "cloudflare-warp"
 cask "discord"
-cask "docker"
 cask "firefox"
 cask "ghostty"
 cask "notion"
