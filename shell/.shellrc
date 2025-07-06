@@ -12,6 +12,7 @@
 # ==============================================================================
 # Helps with some shit with LESS
 export LESS="FSRX"
+eval "$(atuin init zsh)"
 
 # ==================
 # Functions

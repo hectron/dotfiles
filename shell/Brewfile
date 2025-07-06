@@ -20,6 +20,7 @@
 # 'brew tap'
 
 # 'brew install'
+brew "atuin"
 brew "awscli"
 brew "direnv"
 brew "docker"
