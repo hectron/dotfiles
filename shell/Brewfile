@@ -39,6 +39,7 @@ brew "subversion"
 brew "tealdeer"
 brew "terraform"
 brew "tmux"
+brew "yq"
 brew "zoxide"
 brew "zsh-autosuggestions"
 
