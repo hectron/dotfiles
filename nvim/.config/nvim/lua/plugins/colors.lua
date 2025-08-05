@@ -3,15 +3,15 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
-      flavour = "mocha",
+      flavour = "auto",
       transparent_background = true,
     },
-    lazy = false,
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-
-      vim.cmd.colorscheme([[catppuccin]])
-    end
+    -- lazy = false,
+    -- config = function(_, opts)
+    --   require("catppuccin").setup(opts)
+    --
+    --   vim.cmd.colorscheme([[catppuccin]])
+    -- end
   },
   {
     "folke/tokyonight.nvim",
@@ -24,9 +24,18 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      variant = "moon",
+      variant = "auto",
+      dark_variant = "moon",
       dim_inactive_windows = true,
+      styles = {
+        transparency = true,
+      },
     },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+
+      vim.cmd.colorscheme([[rose-pine]])
+    end
   },
   {
     "scottmckendry/cyberdream.nvim",
