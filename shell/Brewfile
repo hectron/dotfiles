@@ -22,6 +22,7 @@
 # 'brew install'
 brew "atuin"
 brew "awscli"
+brew "diff-so-fancy"
 brew "direnv"
 brew "docker"
 brew "duckdb"

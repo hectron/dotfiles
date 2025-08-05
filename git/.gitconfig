@@ -1,6 +1,8 @@
 [user]
   name  = Hector Rios
   email = that.hector@gmail.com
+[core]
+  whitespace = error
 [color]
   ui = auto
   branch = auto
@@ -14,7 +16,13 @@
 [fetch]
   prune = true
 [push]
+  autoSetupRemote = true
   default = current
+  followTags = true
+
+[pull]
+  default = current
+  rebase = true
 [rebase]
   autosquash = true
 [grep]
@@ -55,3 +63,24 @@
   merged = "!git branch -l --format='%(refname:short)' | grep -v -e '^master$' -e '^main$' | while read branch; do [ -z \"$(git diff origin/HEAD...${branch})\" ] && echo \"${branch}\"; done"
 [alias "push"]
   please = push --force-with-lease
+
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+
+[pager]
+  diff = diff-so-fancy | $PAGER
+
+[diff-so-fancy]
+  markEmptyLines = false
+
+[url "git@github.com:hectron/"]
+  insteadOf = "me:"
+[url "git@github.com"]
+  insteadOf = "gh:"
