@@ -16,16 +16,20 @@
 #
 # For more information on Homebrew concepts such as formula, kegs, etc check out the following page:
 # https://kb.novaordis.com/index.php/Brew_Concepts
+def work?
+  @work ||= ENV.fetch("WORK_LAPTOP", "true").downcase == "true"
+end
 
 # 'brew tap'
+tap "charmbracelet/tap"
 
 # 'brew install'
 brew "atuin"
 brew "awscli"
+brew "cargo-binstall"
 brew "charmbracelet/tap/freeze"
 brew "diff-so-fancy"
-brew "direnv"
-brew "docker"
+brew "docker" unless work?
 brew "duckdb"
 brew "fastfetch"
 brew "fzf"
@@ -44,7 +48,7 @@ brew "starship"
 brew "stow"
 brew "subversion"
 brew "tealdeer"
-brew "terraform"
+brew "terraform" unless work?
 brew "tmux"
 brew "yazi"
 brew "yq"
@@ -53,18 +57,17 @@ brew "zsh-autosuggestions"
 
 # 'brew install --cask'
 cask "1password-cli"
-cask "authy"
-cask "cloudflare-warp"
-cask "discord"
+cask "cloudflare-warp" unless work?
+cask "discord" unless work?
 cask "firefox"
 cask "kitty"
-cask "notion"
+cask "notion" unless work?
 cask "obsidian"
 cask "rectangle"
 cask "slack"
 cask "spotify"
 cask "zen"
-cask "zoom"
+cask "zoom" unless work?
 
 # Depend on `homebrew/cask-fonts`
 cask "font-iosevka-nerd-font"
