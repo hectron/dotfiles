@@ -60,12 +60,12 @@ cask "1password-cli"
 cask "cloudflare-warp" unless work?
 cask "discord" unless work?
 cask "firefox"
-cask "kitty"
 cask "notion" unless work?
 cask "obsidian"
 cask "rectangle"
 cask "slack"
 cask "spotify"
+cask "wezterm"
 cask "zen"
 cask "zoom" unless work?
 
