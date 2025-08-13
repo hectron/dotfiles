@@ -1,0 +1,7 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "Mintass/rose-pine"
+rev = "8343340"
+hash = "e2336631865c0f90276dcbc553d532fc"

@@ -1,0 +1,5 @@
+[mgr]
+show_hidden = true
+
+[tasks]
+image_bound = [0,0]
