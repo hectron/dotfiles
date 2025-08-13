@@ -4,10 +4,8 @@ return {
     version = "*",
     lazy = true,
     ft = { "markdown" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = "personal",
@@ -23,12 +21,12 @@ return {
       },
     },
     keys = {
-      { "<leader>od", "<Cmd>ObsidianToday<CR>",       desc = "[o]bsidian [d]iary (today)" },
-      { "<leader>of", "<Cmd>ObsidianSearch<CR>",      desc = "[o]bsidian [s]earch" },
-      { "<leader>oq", "<Cmd>ObsidianQuickSwitch<CR>", desc = "[o]bsidian [q]uick switch" },
-      { "<leader>on", "<Cmd>ObsidianNew<CR>",         desc = "[o]bsidian [n]ote" },
-      { "<leader>ot", "<Cmd>ObsidianTomorrow<CR>",    desc = "[o]bsidian [t]omorrow" },
-      { "<leader>oy", "<Cmd>ObsidianYesterday<CR>",   desc = "[o]bsidian [y]esterday" },
+      { "<leader>od", "<Cmd>Obsidian today<CR>",        desc = "[o]bsidian [d]iary (today)" },
+      { "<leader>os", "<Cmd>Obsidian search<CR>",       desc = "[o]bsidian [s]earch" },
+      { "<leader>oq", "<Cmd>Obsidian quick_switch<CR>", desc = "[o]bsidian [q]uick switch" },
+      { "<leader>on", "<Cmd>Obsidian new<CR>",          desc = "[o]bsidian [n]ote" },
+      { "<leader>ot", "<Cmd>Obsidian tags<CR>",         desc = "[o]bsidian [t]ags" },
+      { "<leader>oT", "<Cmd>Obsidian toc<CR>",          desc = "[o]bsidian [T]OC" },
     }
   },
 }

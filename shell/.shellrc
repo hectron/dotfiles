@@ -13,6 +13,7 @@
 # Helps with some shit with LESS
 export LESS="FSRX"
 eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
 
 # ==================
 # Functions
