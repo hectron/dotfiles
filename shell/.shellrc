@@ -13,7 +13,9 @@
 # Helps with some shit with LESS
 export LESS="FSRX"
 eval "$(atuin init zsh)"
+eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # ==================
 # Functions
@@ -51,12 +53,6 @@ export TLDR_COLOR_PARAMETER="white"
 export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
 
-################################################################################
-# mise
-#   @see https://mise.jdx.dev/getting-started.html
-#   check if installed: `brew info --json --installed | jq -r 'any(.[]; .name == "mise")'`
-################################################################################
-eval "$(mise activate zsh)"
 
 ################################################################################
 # FZF
