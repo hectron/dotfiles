@@ -1,21 +1,22 @@
+---@type Wezterm
 local wezterm = require("wezterm")
 
 -- Custom Themes
+---@type Config
 local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 50
 
 config.font_size = 14
---- config.font = wezterm.font("BerkeleyMono Nerd Font Mono")
-config.font = wezterm.font("TX-02")
+config.font = wezterm.font_with_fallback({ "TX-02", "JetBrainsMono Nerd Font Propo" })
 
 config.color_scheme = "rose-pine-moon"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_background_opacity = 0.93
 config.window_decorations = "RESIZE"
 config.window_padding = {
-  top = "1.5cell",
-  left = "1.5cell",
+  top = "1cell",
+  left = "1cell",
 }
 
 config.keys = {
