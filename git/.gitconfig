@@ -3,6 +3,7 @@
   email = that.hector@gmail.com
 [core]
   whitespace = error
+  pager = delta
 [color]
   ui = auto
   branch = auto
@@ -19,6 +20,8 @@
   autoSetupRemote = true
   default = current
   followTags = true
+[interactive]
+  diffFilter = delta --color-only
 
 [pull]
   default = current
@@ -74,11 +77,10 @@
   renames = copies
   interHunkContext = 10
 
-[pager]
-  diff = diff-so-fancy | $PAGER
-
-[diff-so-fancy]
-  markEmptyLines = false
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
 
 [url "git@github.com:hectron/"]
   insteadOf = "me:"
