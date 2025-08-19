@@ -53,6 +53,7 @@ brew "subversion"
 brew "tealdeer"
 brew "terraform" unless work?
 brew "tmux"
+brew "watch"
 brew "yazi"
 brew "yq"
 brew "zoxide"

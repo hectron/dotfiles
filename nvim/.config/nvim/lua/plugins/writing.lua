@@ -19,6 +19,7 @@ return {
       completion = {
         blink = true,
       },
+      ui = { enable = false },
     },
     keys = {
       { "<leader>od", "<Cmd>Obsidian today<CR>",        desc = "[o]bsidian [d]iary (today)" },
