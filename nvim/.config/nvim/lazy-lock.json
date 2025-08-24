@@ -13,6 +13,7 @@
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
   "mini.ai": { "branch": "main", "commit": "1cd4f021a05c29acd4ab511c0981da14217daf38" },
   "mini.colors": { "branch": "main", "commit": "dd4209469024b249cf9dfed851fd85ad3467ccd3" },
+  "mini.icons": { "branch": "main", "commit": "b8f6fa6f5a3fd0c56936252edcd691184e5aac0c" },
   "mini.pairs": { "branch": "main", "commit": "1e1ca3f60f58d4050bf814902b472eec9963a5dd" },
   "mini.surround": { "branch": "main", "commit": "7a8606333affe7ce637a0ba91bbafc46fc42bfa0" },
   "nvim-lspconfig": { "branch": "master", "commit": "61fdd3a8609071ce44519e405f3424d84ec94d9d" },

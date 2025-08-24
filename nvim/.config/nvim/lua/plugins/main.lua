@@ -137,15 +137,12 @@ return {
       "vim-test/vim-test", -- Run tests in conjuction with vimux
     },
     keys = {
-      { "<Leader>rb", ":wa<CR>:TestFile<CR>" },
-      { "<Leader>rf", ":wa<CR>:TestNearest<CR>" },
-      { "<Leader>rl", ":wa<CR>:TestLast<CR>" },
-      { "<Leader>rx", ":wa<CR>:VimuxCloseRunner<CR>" },
-      { "<Leader>ri", ":wa<CR>:VimuxInspectRunner<CR>" },
-      { "<Leader>rs", ":!ruby -c %<CR>" },
-      { "<Leader>AA", ":A<CR>" },
-      { "<Leader>AV", ":AV<CR>" },
-      { "<Leader>AS", ":AS<CR>" },
+      { "<Leader>rb", ":wa<CR>:TestFile<CR>", desc = "Vimux: test file" },
+      { "<Leader>rf", ":wa<CR>:TestNearest<CR>", desc = "Vimux: test nearest" },
+      { "<Leader>rl", ":wa<CR>:TestLast<CR>", desc = "Vimux: test last" },
+      { "<Leader>AA", ":A<CR>", "Vimux: alternate file" },
+      { "<Leader>AV", ":AV<CR>", "Vimux: alt" },
+      { "<Leader>AS", ":AS<CR>", "Vimux: alternate" },
     },
   },
   -- Language plugins
