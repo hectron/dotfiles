@@ -42,6 +42,7 @@ return {
       { "-", "<cmd>Oil<CR>", { desc = "Open parent directory" } },
     },
   },
+  -- TODO consider using yeet.nvim
   -- {
   --   "rgroli/other.nvim", -- projectionist/a.vim alternative
   --   ft = { "ruby" },

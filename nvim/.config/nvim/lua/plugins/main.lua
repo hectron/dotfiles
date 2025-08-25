@@ -1,134 +1,90 @@
+local Util = require("utils")
+
+local picker_keymaps = function(picker_name, config)
+  local desc_prefix = picker_name .. ": "
+
+  return {
+    { "<Leader><Leader>", config.files, desc = desc_prefix .. "file picker" },
+    { "<C-p>", config.files, desc = desc_prefix .. "file picker" },
+    { "<Leader>gw", config.grep_word, desc = desc_prefix .. "[g]rep [w]ords" },
+    { "<Leader>nc", config.dotfiles, desc = desc_prefix .. "[n]eovim [c]onfig" },
+
+    { "<Leader>fb", config.buffers, desc = desc_prefix .. "[f]ind [b]uffers" },
+    { "<Leader>fc", config.commands, desc = desc_prefix .. "[f]ind [c]ommands" },
+    { "<Leader>fd", config.diagnostics_document, desc = desc_prefix .. "[f]ind [d]ot[f]iles" },
+    { "<Leader>fg", config.live_grep, desc = desc_prefix .. "[f]ind via live [g]rep" },
+    { "<Leader>fm", config.man_pages, desc = desc_prefix .. "[f]ind [m]an pages" },
+    { "<Leader>fh", config.help_tags, desc = desc_prefix .. "[f]ind [h]elp tags" },
+  }
+end
+
 return {
   -- General DevEx
-
   {
     "folke/snacks.nvim",
     opts = {
-      picker = { enabled = true },
+      picker = { enabled = false },
     },
-    keys = {
-      -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
-      { "<leader>be", function() Snacks.picker.buffers() end, desc = "[b]uffer [e]xplore" },
-      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
-      -- find
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
-      { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-      {
-        "<leader>N",
-        desc = "Neovim News",
-        function()
-          Snacks.win({
-            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-            width = 0.6,
-            height = 0.6,
-            wo = {
-              spell = false,
-              wrap = false,
-              signcolumn = "yes",
-              statuscolumn = " ",
-              conceallevel = 3,
-            },
-          })
-        end,
-      },
-    },
-  },
-  {
-    "nvim-telescope/telescope.nvim", -- UI to browse through basically anything
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-    },
-    keys = {
-      {
-        "<C-p>",
-        "<cmd>Telescope find_files find_command=rg,--files,--iglob,!.git,--hidden<CR>",
-        desc = "Telescope: File picker",
-      },
-      {
-        "<LocalLeader>fb",
-        "<cmd>Telescope buffers<CR>",
-        desc = "Telescope: [f]ind [b]uffers",
-      },
-      {
-        "<LocalLeader>fc",
-        "<cmd>Telescope commands<CR>",
-        desc = "Telescope: [f]ind [c]ommands",
-      },
-      {
-        "<LocalLeader>fg",
-        "<cmd>Telescope live_grep<CR>",
-        desc = "Telescope: [f]uzzy [g]rep",
-      },
-      {
-        "<LocalLeader>fm",
-        "<cmd>Telescope keymaps<CR>",
-        desc = "Telescope: [f]ind key[m]aps",
-      },
-      {
-        "<LocalLeader>mp",
-        "<cmd>Telescope man_pages<CR",
-        desc = "Telescope: [m]an [p]ages",
-      },
-      {
-        "<LocalLeader>gh",
-        "<cmd>Telescope help_tags<CR>",
-        desc = "Telescope: [g]et [h]elp",
-      },
-      {
-        "<Leader>gw",
-        "<cmd>Telescope grep_string<CR>",
-        desc = "Telescope: [g]rep highlighted [w]ord",
-      },
-      {
-        "<LocalLeader>gq",
-        "<cmd>Telescope diagnostics<CR>",
-        desc = "Telescope: workspace diagnostics",
-      },
-      {
-        "<LocalLeader>bd",
-        "<cmd>Telescope diagnostics bufnr=0<CR>",
-        desc = "Telescope: [b]uffer [d]iagnostics",
-      },
-
-      --  git navigation
-      {
-        "<LocalLeader>gco",
-        "<cmd>Telescope git_commits<CR>",
-        desc = "Telescope: Show [g]it [c][o]mmits",
-      },
-      {
-        "<LocalLeader>ggs",
-        "<cmd>Telescope git_status<CR>",
-        desc = "Telescope: Show [g]it [g][s]tatus",
-      },
-      {
-        "<LocalLeader>ggc",
-        "<cmd>Telescope git_bcommits<CR>",
-        desc = "Telescope: Show buffer's [g]it [g][c]ommits",
-      },
-    },
-    opts = {
-      pickers = {
-        live_grep = {
-          additional_args = function(_)
-            -- show hidden files, respect the .gitignore, and ignore .git dir
-            return { "--hidden", "-g", "!.git/" }
+    keys = function(_, keys)
+      return {
+        -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
+        -- { "<leader>be", function() Snacks.picker.buffers() end,                                 desc = "[b]uffer [e]xplore" },
+        { "<leader>,",  function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
+        { "<leader>/",  function() Snacks.picker.grep() end,                                    desc = "Grep" },
+        { "<leader>:",  function() Snacks.picker.command_history() end,                         desc = "Command History" },
+        { "<leader>n",  function() Snacks.picker.notifications() end,                           desc = "Notification History" },
+        { "<leader>e",  function() Snacks.explorer() end,                                       desc = "File Explorer" },
+        -- find
+        -- { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
+        -- { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+        -- { "<leader>ff", function() Snacks.picker.files() end,                                   desc = "Find Files" },
+        -- { "<leader>fg", function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
+        -- { "<leader>fp", function() Snacks.picker.projects() end,                                desc = "Projects" },
+        -- { "<leader>fr", function() Snacks.picker.recent() end,                                  desc = "Recent" },
+        {
+          "<leader>N",
+          desc = "Neovim News",
+          function()
+            Snacks.win({
+              file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+              width = 0.6,
+              height = 0.6,
+              wo = {
+                spell = false,
+                wrap = false,
+                signcolumn = "yes",
+                statuscolumn = " ",
+                conceallevel = 3,
+              },
+            })
           end,
         },
-      },
-    },
+      }
+    end,
+  },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { Util.DefaultIconProvider },
+    opts = {},
+    keys = function(_, keys)
+      local fzf = require("fzf-lua")
+
+      return picker_keymaps(
+        "fzf-lua",
+        {
+          dotfiles = function() fzf.files({ cwd = vim.fn.stdpath("config") }) end,
+          files = fzf.files,
+          buffers = fzf.buffers,
+          commands = fzf.commands,
+          live_grep = fzf.live_grep,
+          keymaps = fzf.keymaps,
+          man_pages = fzf.man_pages,
+          help_tags = fzf.help_tags,
+          grep_word = fzf.grep_cword,
+          diagnostics_document = fzf.diagnostics_document,
+        }
+      )
+    end
   },
   {
     "benmills/vimux", -- Sends commands to tmux
@@ -137,12 +93,12 @@ return {
       "vim-test/vim-test", -- Run tests in conjuction with vimux
     },
     keys = {
-      { "<Leader>rb", ":wa<CR>:TestFile<CR>", desc = "Vimux: test file" },
+      { "<Leader>rb", ":wa<CR>:TestFile<CR>",    desc = "Vimux: test file" },
       { "<Leader>rf", ":wa<CR>:TestNearest<CR>", desc = "Vimux: test nearest" },
-      { "<Leader>rl", ":wa<CR>:TestLast<CR>", desc = "Vimux: test last" },
-      { "<Leader>AA", ":A<CR>", "Vimux: alternate file" },
-      { "<Leader>AV", ":AV<CR>", "Vimux: alt" },
-      { "<Leader>AS", ":AS<CR>", "Vimux: alternate" },
+      { "<Leader>rl", ":wa<CR>:TestLast<CR>",    desc = "Vimux: test last" },
+      { "<Leader>AA", ":A<CR>",                  "Vimux: alternate file" },
+      { "<Leader>AV", ":AV<CR>",                 "Vimux: alt" },
+      { "<Leader>AS", ":AS<CR>",                 "Vimux: alternate" },
     },
   },
   -- Language plugins
