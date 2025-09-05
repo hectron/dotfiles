@@ -11,8 +11,10 @@ local picker_keymaps = function(picker_name, config)
 
     { "<Leader>fb", config.buffers, desc = desc_prefix .. "[f]ind [b]uffers" },
     { "<Leader>fc", config.commands, desc = desc_prefix .. "[f]ind [c]ommands" },
-    { "<Leader>fd", config.diagnostics_document, desc = desc_prefix .. "[f]ind [d]ot[f]iles" },
+    { "<Leader>fd", config.diagnostics_document, desc = desc_prefix .. "[f]ind [d]iagnostics" },
+    { "<Leader>fD", config.dotfiles, desc = desc_prefix .. "[f]ind [D]ot[f]iles" },
     { "<Leader>fg", config.live_grep, desc = desc_prefix .. "[f]ind via live [g]rep" },
+    { "<Leader>fk", config.keymaps, desc = desc_prefix .. "[f]ind [k]eymaps" },
     { "<Leader>fm", config.man_pages, desc = desc_prefix .. "[f]ind [m]an pages" },
     { "<Leader>fh", config.help_tags, desc = desc_prefix .. "[f]ind [h]elp tags" },
   }
