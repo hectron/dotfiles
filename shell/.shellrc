@@ -3,9 +3,9 @@
 # Set up any custom aliases
 # ==============================================================================
 
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
-[[ -s "$HOME/.aliases" ]] && source "$HOME/.aliases"
-[[ -s "$HOME/.functions" ]] && source "$HOME/.functions"
+[[ -s "${HOME}/.profile" ]] && source "${HOME}/.profile"
+[[ -s "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
+[[ -s "${HOME}/.functions" ]] && source "${HOME}/.functions"
 
 # ==============================================================================
 # Utilities
@@ -36,8 +36,8 @@ man() {
 # ==============
 # Exports
 # ==============
-export EDITOR='nvim'
-export PATH="$PATH:$HOME/.local/bin"
+export EDITOR="nvim"
+export PATH="$PATH:${HOME}/.local/bin"
 export TERM="xterm-256color"
 
 ################################################################################
@@ -52,7 +52,6 @@ export TLDR_COLOR_COMMAND="red"
 export TLDR_COLOR_PARAMETER="white"
 export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
-
 
 ################################################################################
 # FZF
@@ -75,6 +74,3 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
-
-[[ -s "$HOME/.fzf.sh" ]] && source "$HOME/.fzf.sh"
-[[ -s "$HOME/.shellrc.local" ]] && source "$HOME/.shellrc.local"

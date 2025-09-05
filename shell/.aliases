@@ -3,19 +3,17 @@
 # ==============================================================================
 # General
 # ==============================================================================
-alias l='ls -CFlh'
 alias e="eza -lh --icons"
+alias l="e"
 
 # ==============================================================================
 # Git Aliases
 # ==============================================================================
 
-alias gap='git add -p'
-alias gb='git branch'
-alias prune='git remote prune origin'
+alias gap="git add -p"
+alias gb="git branch"
+alias prune="git remote prune origin"
 alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
-alias fuckit='git push --force-with-lease'
-alias me='cd $HOME/me'
-alias dotfiles='cd $HOME/me/dotfiles'
-
-# alias bat="batcat" # https://github.com/sharkdp/bat/issues/982
+alias fuckit="git push --force-with-lease"
+alias me="cd ${HOME}/me"
+alias dotfiles="cd ${HOME}/me/dotfiles"
