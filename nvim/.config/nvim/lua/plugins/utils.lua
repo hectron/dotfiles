@@ -14,5 +14,5 @@ return {
     keys = {
       { "<leader>st", function() Snacks.scratch() end, desc = "[s]cratch [t]oggle" },
     },
-  }
+  },
 }
