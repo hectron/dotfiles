@@ -36,7 +36,7 @@ return {
     opts = {},
   },
   {
-    "echasnovski/mini.colors",
+    "nvim-mini/mini.colors",
     opts = {},
   },
   {

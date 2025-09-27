@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.ai", -- Surrounds text
+    "nvim-mini/mini.ai", -- Surrounds text
     event = "InsertEnter",
     opts = function()
       local ai = require("mini.ai")
@@ -27,7 +27,7 @@ return {
     end
   },
   {
-    "echasnovski/mini.pairs", -- Allows for automatic open/close pairs
+    "nvim-mini/mini.pairs", -- Allows for automatic open/close pairs
     event = "InsertEnter",
     opts = {                  -- heavily borrowed this from Lazyvim's implementation
       modes = { insert = true, command = true, terminal = false },
@@ -82,7 +82,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.surround", -- Surrounds text
+    "nvim-mini/mini.surround", -- Surrounds text
     event = "InsertEnter",
     opts = {},
   },
@@ -132,5 +132,12 @@ return {
       },
     },
     opts_extend = { "sources.default" }
+  },
+  {
+    "MagicDuck/grug-far.nvim",
+    opts = {},
+    keys = {
+      { "<leader>sr", function() require("grug-far").open({ transient = true }) end, desc = "[grug-far] Search & replace across project" },
+    }
   },
 }
