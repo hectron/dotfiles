@@ -33,7 +33,6 @@ return {
             opts = {},
           },
         },
-        lazy = true,
       },
     },
     config = function()

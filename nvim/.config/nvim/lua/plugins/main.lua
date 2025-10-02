@@ -66,24 +66,24 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
+    event = { "VeryLazy" },
     dependencies = { Util.DefaultIconProvider },
     opts = {},
     keys = function(_, keys)
-      local fzf = require("fzf-lua")
 
       return picker_keymaps(
         "fzf-lua",
         {
-          dotfiles = function() fzf.files({ cwd = vim.fn.stdpath("config") }) end,
-          files = fzf.files,
-          buffers = fzf.buffers,
-          commands = fzf.commands,
-          live_grep = fzf.live_grep,
-          keymaps = fzf.keymaps,
-          man_pages = fzf.man_pages,
-          help_tags = fzf.help_tags,
-          grep_word = fzf.grep_cword,
-          diagnostics_document = fzf.diagnostics_document,
+          dotfiles = function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config") }) end,
+          files = function() return require("fzf-lua").files end,
+          buffers = function() return require("fzf-lua").buffers end,
+          commands = function() return require("fzf-lua").commands end,
+          live_grep = function() return require("fzf-lua").live_grep end,
+          keymaps = function() return require("fzf-lua").keymaps end,
+          man_pages = function() return require("fzf-lua").man_pages end,
+          help_tags = function() return require("fzf-lua").help_tags end,
+          grep_word = function() return require("fzf-lua").grep_cword end,
+          diagnostics_document = function() return require("fzf-lua").diagnostics_document end,
         }
       )
     end
