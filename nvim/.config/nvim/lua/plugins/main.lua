@@ -75,15 +75,15 @@ return {
         "fzf-lua",
         {
           dotfiles = function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config") }) end,
-          files = function() return require("fzf-lua").files end,
-          buffers = function() return require("fzf-lua").buffers end,
-          commands = function() return require("fzf-lua").commands end,
-          live_grep = function() return require("fzf-lua").live_grep end,
-          keymaps = function() return require("fzf-lua").keymaps end,
-          man_pages = function() return require("fzf-lua").man_pages end,
-          help_tags = function() return require("fzf-lua").help_tags end,
-          grep_word = function() return require("fzf-lua").grep_cword end,
-          diagnostics_document = function() return require("fzf-lua").diagnostics_document end,
+          files = function() require("fzf-lua").files() end,
+          buffers = function() require("fzf-lua").buffers() end,
+          commands = function() require("fzf-lua").commands() end,
+          live_grep = function() require("fzf-lua").live_grep() end,
+          keymaps = function() require("fzf-lua").keymaps() end,
+          man_pages = function() require("fzf-lua").man_pages() end,
+          help_tags = function() require("fzf-lua").help_tags() end,
+          grep_word = function() require("fzf-lua").grep_cword() end,
+          diagnostics_document = function() require("fzf-lua").diagnostics_document() end,
         }
       )
     end

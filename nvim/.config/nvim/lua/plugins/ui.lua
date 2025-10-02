@@ -44,13 +44,10 @@ return {
 		end,
 	},
 	{
-		"nvim-tree/nvim-web-devicons",
-	},
-	{
 		"nvim-lualine/lualine.nvim",
     event = "VeryLazy",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+      "nvim-mini/mini.icons",
 		},
 		opts = function()
 			local opts = {
@@ -141,6 +138,7 @@ return {
 	},
 	{
 		"folke/noice.nvim",
+    event = "VeryLazy",
 		opts = {
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
