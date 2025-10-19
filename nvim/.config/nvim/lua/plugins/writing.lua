@@ -30,4 +30,8 @@ return {
       { "<leader>oT", "<Cmd>Obsidian toc<CR>",          desc = "[o]bsidian [T]OC" },
     }
   },
+  {
+    "OXY2DEV/helpview.nvim",
+    lazy = false,
+  }
 }

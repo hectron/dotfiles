@@ -82,18 +82,7 @@ M.lsp_servers = {
   "puppet",
   "ruby_lsp",
   "rust_analyzer",
-  {
-    "lua_ls",
-    opts = {
-      settings = {
-        Lua = {
-          hint = {
-            enable = true,
-          },
-        },
-      },
-    },
-  },
+  "lua_ls",
   "terraformls",
   "ts_ls",
   "vimls",

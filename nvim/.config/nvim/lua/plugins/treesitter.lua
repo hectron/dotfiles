@@ -4,11 +4,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = Util.LazyFileEvents,
+    lazy = false,
+    branch = "main",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
-      "RRethy/nvim-treesitter-endwise",
       {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
@@ -42,6 +41,7 @@ return {
         "python",
         "puppet",
         "query",
+        "regexp",
         "ruby",
         "rust",
         "yaml",
@@ -74,8 +74,10 @@ return {
       },
     },
     config = function(_, opts)
-      local configs = require("nvim-treesitter.configs")
-      configs.setup(opts)
+      local treesitter = require("nvim-treesitter")
+      treesitter.setup(opts)
+
+      treesitter.install(opts.ensure_installed)
     end,
   },
 }

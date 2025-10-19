@@ -10,7 +10,7 @@ config.initial_rows = 50
 config.font_size = 14
 config.font = wezterm.font_with_fallback({ "TX-02", "JetBrainsMono Nerd Font Propo" })
 
-config.color_scheme = "rose-pine-moon"
+config.color_scheme = "catppuccin-latte"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_background_opacity = 0.93
 config.macos_window_background_blur = 20

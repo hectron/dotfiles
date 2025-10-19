@@ -22,10 +22,15 @@ return {
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
+  -- {
+  --   "lewis6991/gitsigns.nvim", -- show line diffs inline
+  --   event = Util.LazyFileEvents,
+  --   opts = {},
+  -- },
   {
-    "lewis6991/gitsigns.nvim", -- show line diffs inline
-    event = Util.LazyFileEvents,
-    opts = {},
+    "nvim-mini/mini.diff",
+    opts = {
+    },
   },
   {
     "stevearc/oil.nvim",
@@ -37,7 +42,26 @@ return {
       },
     },
     -- Optional dependencies
-    dependencies = { Util.DefaultIconProvider },
+    dependencies = {
+      Util.DefaultIconProvider,
+      {
+        "benomahony/oil-git.nvim",
+        config = function()
+          local colors = require("cyberdream.colors")
+
+          local opts = {
+            highlights = {
+              OilGitAdded = { fg = colors.light.green },
+              OilGitModified = { fg = colors.light.orange },
+              OilGitRenamed = { fg = colors.light.purple },
+              OilGitUntracked = { fg = colors.light.blue },
+              OilGitIgnored = { fg = colors.light.grey },
+            },
+          }
+          require("oil-git").setup(opts)
+        end
+      },
+    },
     keys = {
       { "-", "<cmd>Oil<CR>", { desc = "Open parent directory" } },
     },
