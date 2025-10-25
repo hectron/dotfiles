@@ -1,4 +1,4 @@
-local Util = require("utils")
+local Util = require("core.config")
 
 return {
   {

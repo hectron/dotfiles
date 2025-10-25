@@ -1,4 +1,4 @@
-local Util = require("utils")
+local Util = require("core.config")
 
 local picker_keymaps = function(picker_name, config)
   local desc_prefix = picker_name .. ": "

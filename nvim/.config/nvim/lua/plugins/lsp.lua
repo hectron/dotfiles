@@ -27,7 +27,7 @@ return {
     config = function(_, opts)
       opts = vim.tbl_deep_extend("force", {}, opts or {})
 
-      opts.ensure_installed = require("lsp_handlers").lsp_servers
+      opts.ensure_installed = require("core.utils.lsp_handlers").lsp_servers
 
       require("mason-lspconfig").setup(opts)
     end
