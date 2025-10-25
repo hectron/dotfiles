@@ -29,7 +29,7 @@ return {
   {
     "nvim-mini/mini.pairs", -- Allows for automatic open/close pairs
     event = "InsertEnter",
-    opts = {                  -- heavily borrowed this from Lazyvim's implementation
+    opts = {                -- heavily borrowed this from Lazyvim's implementation
       modes = { insert = true, command = true, terminal = false },
       -- skip autopair when next character is one of these
       skip_next = [=[[%w%%%'%[%"%.%`%$]]=],

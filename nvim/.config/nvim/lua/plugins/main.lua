@@ -4,19 +4,19 @@ local picker_keymaps = function(picker_name, config)
   local desc_prefix = picker_name .. ": "
 
   return {
-    { "<Leader><Leader>", config.files, desc = desc_prefix .. "file picker" },
-    { "<C-p>", config.files, desc = desc_prefix .. "file picker" },
-    { "<Leader>gw", config.grep_word, desc = desc_prefix .. "[g]rep [w]ords" },
-    { "<Leader>nc", config.dotfiles, desc = desc_prefix .. "[n]eovim [c]onfig" },
+    { "<Leader><Leader>", config.files,                desc = desc_prefix .. "file picker" },
+    { "<C-p>",            config.files,                desc = desc_prefix .. "file picker" },
+    { "<Leader>gw",       config.grep_word,            desc = desc_prefix .. "[g]rep [w]ords" },
+    { "<Leader>nc",       config.dotfiles,             desc = desc_prefix .. "[n]eovim [c]onfig" },
 
-    { "<Leader>fb", config.buffers, desc = desc_prefix .. "[f]ind [b]uffers" },
-    { "<Leader>fc", config.commands, desc = desc_prefix .. "[f]ind [c]ommands" },
-    { "<Leader>fd", config.diagnostics_document, desc = desc_prefix .. "[f]ind [d]iagnostics" },
-    { "<Leader>fD", config.dotfiles, desc = desc_prefix .. "[f]ind [D]ot[f]iles" },
-    { "<Leader>fg", config.live_grep, desc = desc_prefix .. "[f]ind via live [g]rep" },
-    { "<Leader>fk", config.keymaps, desc = desc_prefix .. "[f]ind [k]eymaps" },
-    { "<Leader>fm", config.man_pages, desc = desc_prefix .. "[f]ind [m]an pages" },
-    { "<Leader>fh", config.help_tags, desc = desc_prefix .. "[f]ind [h]elp tags" },
+    { "<Leader>fb",       config.buffers,              desc = desc_prefix .. "[f]ind [b]uffers" },
+    { "<Leader>fc",       config.commands,             desc = desc_prefix .. "[f]ind [c]ommands" },
+    { "<Leader>fd",       config.diagnostics_document, desc = desc_prefix .. "[f]ind [d]iagnostics" },
+    { "<Leader>fD",       config.dotfiles,             desc = desc_prefix .. "[f]ind [D]ot[f]iles" },
+    { "<Leader>fg",       config.live_grep,            desc = desc_prefix .. "[f]ind via live [g]rep" },
+    { "<Leader>fk",       config.keymaps,              desc = desc_prefix .. "[f]ind [k]eymaps" },
+    { "<Leader>fm",       config.man_pages,            desc = desc_prefix .. "[f]ind [m]an pages" },
+    { "<Leader>fh",       config.help_tags,            desc = desc_prefix .. "[f]ind [h]elp tags" },
   }
 end
 
@@ -31,11 +31,11 @@ return {
       return {
         -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
         -- { "<leader>be", function() Snacks.picker.buffers() end,                                 desc = "[b]uffer [e]xplore" },
-        { "<leader>,",  function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
-        { "<leader>/",  function() Snacks.picker.grep() end,                                    desc = "Grep" },
-        { "<leader>:",  function() Snacks.picker.command_history() end,                         desc = "Command History" },
-        { "<leader>n",  function() Snacks.picker.notifications() end,                           desc = "Notification History" },
-        { "<leader>e",  function() Snacks.explorer() end,                                       desc = "File Explorer" },
+        { "<leader>,", function() Snacks.picker.buffers() end,         desc = "Buffers" },
+        { "<leader>/", function() Snacks.picker.grep() end,            desc = "Grep" },
+        { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>n", function() Snacks.picker.notifications() end,   desc = "Notification History" },
+        { "<leader>e", function() Snacks.explorer() end,               desc = "File Explorer" },
         -- find
         -- { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
         -- { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -70,7 +70,6 @@ return {
     dependencies = { Util.DefaultIconProvider },
     opts = {},
     keys = function()
-
       return picker_keymaps(
         "fzf-lua",
         {

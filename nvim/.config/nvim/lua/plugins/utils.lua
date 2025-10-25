@@ -12,7 +12,7 @@ return {
       zen = {},
     },
     keys = {
-      { "<leader>st", function() Snacks.scratch() end, desc = "[s]cratch [t]oggle" },
+      { "<leader>st", function() Snacks.scratch() end,     desc = "[s]cratch [t]oggle" },
       { "<leader>sp", function() Snacks.picker.lazy() end, desc = "[s]earch for [p]lugin spec" },
     },
   },
