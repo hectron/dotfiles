@@ -22,15 +22,18 @@ return {
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
-  -- {
-  --   "lewis6991/gitsigns.nvim", -- show line diffs inline
-  --   event = Util.LazyFileEvents,
-  --   opts = {},
-  -- },
   {
-    "nvim-mini/mini.diff",
+    "lewis6991/gitsigns.nvim", -- show line diffs inline
+    event = Util.LazyFileEvents,
     opts = {
+      signcolumn = false,
+      numhl = true,
+      linehl = false, -- this is a really cool option
+      current_line_blame = true,
     },
+    keys = {
+      { "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsigns: [g]it blame [l]ine" },
+    }
   },
   {
     "stevearc/oil.nvim",

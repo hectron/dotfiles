@@ -27,7 +27,7 @@ return {
     opts = {
       picker = { enabled = false },
     },
-    keys = function(_, keys)
+    keys = function()
       return {
         -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
         -- { "<leader>be", function() Snacks.picker.buffers() end,                                 desc = "[b]uffer [e]xplore" },
@@ -69,7 +69,7 @@ return {
     event = { "VeryLazy" },
     dependencies = { Util.DefaultIconProvider },
     opts = {},
-    keys = function(_, keys)
+    keys = function()
 
       return picker_keymaps(
         "fzf-lua",

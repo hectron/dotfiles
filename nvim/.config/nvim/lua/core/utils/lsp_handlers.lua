@@ -43,7 +43,7 @@ function M.on_attach(_, bufnr)
   -- Diagnostics
   set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "previous [d]iagnostic" })
   set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "next [d]iagnostic" })
-  set("n", "<Leader>le", vim.diagnostic.open_float, { desc = "[l]ine [e]xplain diagnostic" })
+  set("n", "<Leader>el", vim.diagnostic.open_float, { desc = "[l]ine [e]xplain diagnostic" })
   -- set("n", "<Leader>q", vim.set_loclist)
 
   -- Refactoring
