@@ -47,7 +47,13 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = {
-      "nvim-mini/mini.icons",
+      {
+        "nvim-mini/mini.icons",
+        config = function(_, opts)
+          require("mini.icons").setup(opts)
+          MiniIcons.mock_nvim_web_devicons()
+        end,
+      },
     },
     opts = function()
       local opts = {
@@ -55,6 +61,7 @@ return {
           theme = "auto",
           globalstatus = vim.o.laststatus == 3,
           disabled_filetypes = { statusline = { "dashboard" } },
+          section_separators = { left = '', right = '' },
         },
         sections = {
           lualine_a = { "mode" },
@@ -87,7 +94,7 @@ return {
           lualine_y = {
             {
               "progress",
-              separator = " ",
+              separator = ' ',
               padding = { left = 1, right = 0 },
             },
             {

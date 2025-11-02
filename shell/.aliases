@@ -12,6 +12,7 @@ alias l="e"
 
 alias gap="git add -p"
 alias gb="git branch"
+alias gst="git status"
 alias prune="git remote prune origin"
 alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
 alias fuckit="git push --force-with-lease"
