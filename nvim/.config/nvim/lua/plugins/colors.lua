@@ -23,7 +23,7 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      variant = "dawn",
+      variant = "auto",
       dark_variant = "moon",
       dim_inactive_windows = true,
       styles = {
@@ -38,18 +38,18 @@ return {
       vim.cmd.colorscheme([[rose-pine]])
      end
   },
-  {
-    "scottmckendry/cyberdream.nvim",
-    opts = {
-      variant = "light",
-      transparent = true,
-      borderless_pickers = true,
-    },
-    -- config = function(_, opts)
-    --   require("cyberdream").setup(opts)
-    --   vim.cmd.colorscheme([[cyberdream]])
-    -- end,
-  },
+  -- {
+  --   "scottmckendry/cyberdream.nvim",
+  --   opts = {
+  --     variant = "light",
+  --     transparent = true,
+  --     borderless_pickers = true,
+  --   },
+  --   -- config = function(_, opts)
+  --   --   require("cyberdream").setup(opts)
+  --   --   vim.cmd.colorscheme([[cyberdream]])
+  --   -- end,
+  -- },
   -- {
   --   "hectron/spinel.nvim",
   --   opts = {
