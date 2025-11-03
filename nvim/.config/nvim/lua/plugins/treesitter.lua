@@ -52,32 +52,25 @@ return {
         "vimdoc",
       },                   -- this is available in the list of official parsers
       ignore_install = {}, -- list of parsers to ignore installing
-      highlight = {
-        enable = true,
-      },
-      incremental_selection = {
-        enable = true,
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["av"] = "@block.outer",
-            ["iv"] = "@block.inner",
-          },
-        },
-      },
-      endwise = {
-        enable = true,
-      },
     },
     config = function(_, opts)
       local treesitter = require("nvim-treesitter")
       treesitter.setup(opts)
 
       treesitter.install(opts.ensure_installed)
+
+      for _, parser in ipairs(opts.ensure_installed) do
+        local filetypes = parser
+
+        vim.treesitter.language.register(parser, filetypes)
+
+        vim.api.nvim_create_autocmd({ "FileType" }, {
+          pattern = filetypes,
+          callback = function(event)
+            vim.treesitter.start(event.buf, parser)
+          end,
+        })
+      end
     end,
   },
 }
