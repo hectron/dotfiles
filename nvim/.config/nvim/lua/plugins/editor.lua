@@ -23,12 +23,12 @@ return {
     },
   },
   {
-    "lewis6991/gitsigns.nvim", -- show line diffs inline
+    "lewis6991/gitsigns.nvim",
     event = Util.LazyFileEvents,
     opts = {
       signcolumn = false,
       numhl = true,
-      linehl = false, -- this is a really cool option
+      linehl = false,
       current_line_blame = true,
     },
     keys = {
@@ -49,20 +49,7 @@ return {
       Util.DefaultIconProvider,
       {
         "benomahony/oil-git.nvim",
-        config = function()
-          local colors = require("cyberdream.colors")
-
-          local opts = {
-            highlights = {
-              OilGitAdded = { fg = colors.light.green },
-              OilGitModified = { fg = colors.light.orange },
-              OilGitRenamed = { fg = colors.light.purple },
-              OilGitUntracked = { fg = colors.light.blue },
-              OilGitIgnored = { fg = colors.light.grey },
-            },
-          }
-          require("oil-git").setup(opts)
-        end
+        opts = {},
       },
     },
     keys = {

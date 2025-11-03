@@ -1,24 +1,20 @@
 return {
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   opts = {
-  --     flavour = "latte",
-  --     transparent_background = true,
-  --   },
-  --   config = function(_, opts)
-  --     require("catppuccin").setup(opts)
-  --     vim.cmd.colorscheme([[catppuccin]])
-  --   end,
-  -- },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   opts = {
-  --     dim_inactive = true,
-  --     transparent = true,
-  --     style = "day",
-  --   }
-  -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = true,
+    opts = {
+      transparent_background = true,
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      dim_inactive = true,
+      transparent = true,
+    },
+    lazy = true,
+  },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -38,23 +34,4 @@ return {
       vim.cmd.colorscheme([[rose-pine]])
      end
   },
-  -- {
-  --   "scottmckendry/cyberdream.nvim",
-  --   opts = {
-  --     variant = "light",
-  --     transparent = true,
-  --     borderless_pickers = true,
-  --   },
-  --   -- config = function(_, opts)
-  --   --   require("cyberdream").setup(opts)
-  --   --   vim.cmd.colorscheme([[cyberdream]])
-  --   -- end,
-  -- },
-  -- {
-  --   "hectron/spinel.nvim",
-  --   opts = {
-  --     transparent = true,
-  --     style = "dark",
-  --   },
-  -- },
 }

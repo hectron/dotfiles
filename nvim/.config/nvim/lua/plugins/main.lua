@@ -29,20 +29,10 @@ return {
     },
     keys = function()
       return {
-        -- { "<C-p>", function() Snacks.picker.files() end, desc = "File picker" },
-        -- { "<leader>be", function() Snacks.picker.buffers() end,                                 desc = "[b]uffer [e]xplore" },
         { "<leader>,", function() Snacks.picker.buffers() end,         desc = "Buffers" },
         { "<leader>/", function() Snacks.picker.grep() end,            desc = "Grep" },
         { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
         { "<leader>n", function() Snacks.picker.notifications() end,   desc = "Notification History" },
-        { "<leader>e", function() Snacks.explorer() end,               desc = "File Explorer" },
-        -- find
-        -- { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
-        -- { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-        -- { "<leader>ff", function() Snacks.picker.files() end,                                   desc = "Find Files" },
-        -- { "<leader>fg", function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
-        -- { "<leader>fp", function() Snacks.picker.projects() end,                                desc = "Projects" },
-        -- { "<leader>fr", function() Snacks.picker.recent() end,                                  desc = "Recent" },
         {
           "<leader>N",
           desc = "Neovim News",

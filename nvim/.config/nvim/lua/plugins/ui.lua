@@ -65,10 +65,11 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          lualine_b = { "branch", "diff" },
           lualine_c = {
             { "filetype", icon_only = true, separator = '', padding = { left = 1, right = 0 } },
             { "filename", path = 1, separator = '', padding = { left = 0, right = 0 } },
+            { "diagnostics", sources = { "nvim_diagnostic", "nvim_lsp" } },
           },
           lualine_x = {
             {

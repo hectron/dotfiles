@@ -1,6 +1,8 @@
 local M = {}
 
-function M.on_attach(_, bufnr)
+---@param client vim.lsp.Client
+---@param bufnr integer
+function M.on_attach(client, bufnr)
   --- Wrapper for `vim.keymap.set`.
   ---
   --- Sets default opts values to:
@@ -35,7 +37,9 @@ function M.on_attach(_, bufnr)
   set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "Hover" })
   set({ "n", "i" }, "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
     { desc = "Signature help" })
-  set("n", "gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "inlay hint" })
+  if client:supports_method("textDocument/inlayHint") then
+    set("n", "gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "inlay hint" })
+  end
   set("n", "gi", vim.lsp.buf.implementation, { desc = "[g]o to [i]mplementation" })
   set("n", "gr", vim.lsp.buf.references, { desc = "[g]et [r]eferences" })
   set("n", "<Leader>ds", vim.lsp.buf.document_symbol, { desc = "[d]ocument [s]ymbol" })
@@ -43,7 +47,7 @@ function M.on_attach(_, bufnr)
   -- Diagnostics
   set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "previous [d]iagnostic" })
   set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "next [d]iagnostic" })
-  set("n", "<Leader>el", vim.diagnostic.open_float, { desc = "[l]ine [e]xplain diagnostic" })
+  set("n", "<Leader>le", vim.diagnostic.open_float, { desc = "[l]ine [e]xplain diagnostic" })
   -- set("n", "<Leader>q", vim.set_loclist)
 
   -- Refactoring
