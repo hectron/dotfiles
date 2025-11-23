@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     local buffer_number = event.buf
 
@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(_event)
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
   end,

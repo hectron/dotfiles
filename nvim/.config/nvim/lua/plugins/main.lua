@@ -20,6 +20,8 @@ local picker_keymaps = function(picker_name, config)
   }
 end
 
+---@module "lazy"
+---@type LazyPluginSpec[]
 return {
   -- General DevEx
   {

@@ -1,5 +1,7 @@
 local Util = require("core.config")
 
+---@module "lazy"
+---@type LazyPluginSpec[]
 return {
   {
     "nvim-treesitter/nvim-treesitter",
