@@ -10,9 +10,14 @@ config.initial_rows = 50
 config.font_size = 14
 config.font = wezterm.font_with_fallback({ "TX-02", "JetBrainsMono Nerd Font Propo" })
 
-config.color_scheme = wezterm.gui.get_appearance() == "Dark" and "rose-pine-moon" or "rose-pine-dawn"
+if wezterm.gui.get_appearance() ~= "Dark" then
+  config.color_scheme = "catppuccin-latte"
+else
+  local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm")
+  config.colors = theme.moon.colors()
+end
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.93
+-- config.window_background_opacity = wezterm.gui.get_appearance() == "Dark" and 0.93 or 1
 config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
 config.window_padding = {

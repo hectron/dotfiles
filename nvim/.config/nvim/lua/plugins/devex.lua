@@ -39,8 +39,7 @@ return {
       skip_ts = { "string" },
       -- skip autopair when next character is closing pair
       -- and there are more closing pairs than opening pairs
-      skip_unbalanced = true,
-      -- better deal with markdown code blocks
+      skip_unbalanced = true, -- better deal with markdown code blocks
       markdown = true,
     },
     config = function(_, opts)
@@ -143,4 +142,23 @@ return {
       { "<leader>sr", function() require("grug-far").open({ transient = true }) end, desc = "[grug-far] Search & replace across project" },
     }
   },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+        "LazyGit",
+        "LazyGitConfig",
+        "LazyGitCurrentFile",
+        "LazyGitFilter",
+        "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+        { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  }
 }
