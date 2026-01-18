@@ -4,40 +4,32 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    -- lazy = true,
+    lazy = true,
     opts = {
       transparent_background = true,
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme([[catppuccin]])
-    end
   },
   {
     "folke/tokyonight.nvim",
+    lazy = true,
     opts = {
       dim_inactive = true,
       transparent = true,
     },
-    lazy = true,
   },
   {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
       variant = "auto",
-      dark_variant = "moon",
-      -- dim_inactive_windows = true,
       styles = {
-        -- bold = false,
-        italic = false,
         transparency = true,
       },
     },
-    -- config = function(_, opts)
-    --   require("rose-pine").setup(opts)
-    --
-    --   vim.cmd.colorscheme([[rose-pine]])
-    --  end
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+
+      vim.cmd.colorscheme([[rose-pine]])
+     end
   },
 }
