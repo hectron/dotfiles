@@ -5,3 +5,8 @@ deps = []
 use = "Mintass/rose-pine"
 rev = "8343340"
 hash = "e2336631865c0f90276dcbc553d532fc"
+
+[[flavor.deps]]
+use = "Mintass/rose-pine-dawn"
+rev = "d82f54f"
+hash = "15ae5f83d3770b9ffc276af77f642e2b"
