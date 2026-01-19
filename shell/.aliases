@@ -18,3 +18,4 @@ alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %a
 alias fuckit="git push --force-with-lease"
 alias me="cd ${HOME}/me"
 alias dotfiles="cd ${HOME}/me/dotfiles"
+alias notes="cd ${NOTES_DIR}"
