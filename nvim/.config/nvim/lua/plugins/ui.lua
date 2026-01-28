@@ -133,7 +133,10 @@ return {
   {
     "folke/zen-mode.nvim",
     opts = {
-      plugins = { tmux = { enabled = true } },
+      plugins = {
+        tmux = { enabled = true },
+        wezterm = { enabled = true, font = "+4" },
+      },
     },
     dependencies = {
       { "folke/snacks.nvim" },

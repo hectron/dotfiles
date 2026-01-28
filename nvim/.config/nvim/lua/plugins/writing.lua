@@ -6,6 +6,8 @@ return {
     version = "*",
     lazy = true,
     ft = { "markdown" },
+    ---@module "obsidian"
+    ---@type obsidian.config
     opts = {
       legacy_commands = false,
       workspaces = {
