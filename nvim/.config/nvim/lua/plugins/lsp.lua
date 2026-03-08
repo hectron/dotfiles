@@ -4,6 +4,12 @@ return {
   {
     "folke/lazydev.nvim",
     ft = { "lua" },
+    dependencies = {
+      {
+        'DrKJeff16/wezterm-types',
+        version = false, -- Get the latest version
+      },
+    },
     opts = {
       library = {
         -- See the configuration section for more details
@@ -11,6 +17,7 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "snacks.nvim",        words = { "Snacks" } },
         { path = "lazy.nvim",          words = { "LazyVim" } },
+        { path = "wezterm-types",      mods = { "wezterm" } },
       },
     },
   },
