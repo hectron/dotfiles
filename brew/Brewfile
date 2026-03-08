@@ -2,22 +2,24 @@
 # vim: filetype=ruby
 
 # This handles installing software using Homebrew via it's built-in `brew bundle` command.
+#
 # For more information on how to write a `Brewfile` file, check out the following page:
 # https://github.com/Homebrew/homebrew-bundle?tab=readme-ov-file
-
+#
 # At a high-level:
 #
-# - A `formula` is what is generally available via `brew install`.
-# - A `cask` is an application distributed in binary form (e.g. Firefox, Alacritty, etc).
-# - A `tap` is a git repo containing multiple formulae/casks
-# 
+#   - A `formula` is what is generally available via `brew install`.
+#   - A `cask` is an application distributed in binary form (e.g. Firefox, Alacritty, etc).
+#   - A `tap` is a git repo containing multiple formulae/casks
+#
 # As a general rule of thumb, setup taps first so that you can then access
 # formulae/casks that might not be available otherwise.
 #
 # For more information on Homebrew concepts such as formula, kegs, etc check out the following page:
 # https://kb.novaordis.com/index.php/Brew_Concepts
+
 def work?
-  @work ||= ENV.fetch("WORK_LAPTOP", "true").downcase == "true"
+  @work ||= ENV.fetch("WORK_LAPTOP", "false").downcase == "true"
 end
 
 # 'brew tap'
@@ -29,7 +31,6 @@ brew "awscli"
 brew "bat"
 brew "cargo-binstall"
 brew "charmbracelet/tap/freeze"
-# brew "docker" unless work?
 brew "duckdb"
 brew "eza"
 brew "fastfetch"
@@ -52,6 +53,7 @@ brew "stow"
 brew "subversion"
 brew "tealdeer"
 brew "terraform" unless work?
+brew "tree-sitter-cli"
 brew "tmux"
 brew "watch"
 brew "yazi"
@@ -61,19 +63,21 @@ brew "zsh-autosuggestions"
 
 # 'brew install --cask'
 cask "1password-cli"
-cask "cloudflare-warp" unless work?
-cask "discord" unless work?
 cask "firefox"
-cask "notion" unless work?
 cask "obsidian"
 cask "rectangle"
-cask "slack"
-cask "spotify"
 cask "wezterm"
-cask "zen"
-cask "zoom" unless work?
 
-# Depend on `homebrew/cask-fonts`
+unless work?
+  cask "cloudflare-warp"
+  cask "discord"
+  cask "notion"
+  cask "signal"
+  cask "slack"
+  cask "zoom"
+end
+
 cask "font-iosevka-nerd-font"
+cask "font-iosevka-charon-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-ubuntu-mono-nerd-font"
