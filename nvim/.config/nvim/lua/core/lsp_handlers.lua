@@ -1,5 +1,36 @@
 local M = {}
 
+M.lsp_servers = {
+  "bashls",
+  "dockerls",
+  "gopls",
+  "jsonnet_ls",
+  "pyright",
+  "puppet",
+  "ruby_lsp",
+  "rust_analyzer",
+  "lua_ls",
+  "terraformls",
+  "ts_ls",
+  "vimls",
+  "yamlls",
+}
+
+function M.bootstrap()
+  vim.lsp.config("*", {
+    capabilities = {
+      textDocument = {
+        semanticTokens = {
+          multilineTokenSupport = true,
+        }
+      }
+    },
+    root_markers = { ".git" },
+  })
+
+  vim.lsp.enable(M.lsp_servers)
+end
+
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 function M.on_attach(client, bufnr)
@@ -30,7 +61,7 @@ function M.on_attach(client, bufnr)
   -- Navigation
   set("n", "gD", vim.lsp.buf.declaration, { desc = "[g]o to [D]eclaration" })
   set("n", "gd", vim.lsp.buf.definition, { desc = "[g]o to [d]efinition" })
-  set("n", "<Leader>D", vim.lsp.buf.type_definition, { desc = "type [D]efinition"})
+  set("n", "<Leader>D", vim.lsp.buf.type_definition, { desc = "type [D]efinition" })
   set("n", "<Leader>F", vim.lsp.buf.format, { desc = "[F]ormat" })
 
   -- Information
@@ -48,7 +79,6 @@ function M.on_attach(client, bufnr)
   set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "previous [d]iagnostic" })
   set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "next [d]iagnostic" })
   set("n", "<Leader>le", vim.diagnostic.open_float, { desc = "[l]ine [e]xplain diagnostic" })
-  -- set("n", "<Leader>q", vim.set_loclist)
 
   -- Refactoring
   set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "[r]e[n]ame" })
@@ -57,7 +87,8 @@ function M.on_attach(client, bufnr)
   -- Workspaces
   set("n", "<Leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[w]orkspace [a]dd folder" })
   set("n", "<Leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[w]orkspace [r]emove folder" })
-  set("n", "<Leader>wl", function() vim.print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, { desc = "[w]orkspace [l]ist folders" })
+  set("n", "<Leader>wl", function() vim.print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+    { desc = "[w]orkspace [l]ist folders" })
   set("n", "<Leader>ws", vim.lsp.buf.workspace_symbol, { desc = "[w]orkspace [s]ymbol" })
 
   -- Set up diagnostics
@@ -75,23 +106,6 @@ function M.on_attach(client, bufnr)
     }
   })
 end
-
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-M.lsp_servers = {
-  "bashls",
-  "dockerls",
-  "gopls",
-  "jsonnet_ls",
-  "pyright",
-  "puppet",
-  "ruby_lsp",
-  "rust_analyzer",
-  "lua_ls",
-  "terraformls",
-  "ts_ls",
-  "vimls",
-  "yamlls",
-}
 
 function M.lsp_servers_to_install()
   local servers = {}

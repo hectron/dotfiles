@@ -29,6 +29,13 @@ return {
     end
   },
   {
+    "nvim-mini/mini.move",
+    event = "VeryLazy",
+    opts = {
+      reindent_linewise = true,
+    },
+  },
+  {
     "nvim-mini/mini.pairs", -- Allows for automatic open/close pairs
     event = "InsertEnter",
     opts = {                -- heavily borrowed this from Lazyvim's implementation

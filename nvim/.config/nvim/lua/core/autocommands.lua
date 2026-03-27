@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
     if client then
-      require("core.utils.lsp_handlers").on_attach(client, buffer_number)
+      require("core.lsp_handlers").on_attach(client, buffer_number)
     end
   end,
 })

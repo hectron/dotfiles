@@ -5,7 +5,7 @@
 --- and will dynamically configure the theme to properly load
 ---
 --- The key in `plugins` MUST match the `vim.cmd.colorscheme` name
-local active_colorscheme = "rose-pine"
+local active_colorscheme = os.getenv("BASE_THEME") or "catppuccin"
 
 local lazy_config = {}
 local plugins = {

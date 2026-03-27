@@ -60,7 +60,7 @@ end)
 local catppuccin = false
 
 if catppuccin then
-  config.color_scheme = dark_mode and "catppuccin-latte" or "catppuccin-mocha"
+  config.color_scheme = dark_mode and "catppuccin-macchiato" or "catppuccin-latte"
 else
   config.color_scheme = dark_mode and "rose-pine" or "rose-pine-dawn"
 end

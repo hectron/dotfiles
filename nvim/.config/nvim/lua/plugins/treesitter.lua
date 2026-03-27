@@ -16,6 +16,9 @@ return {
         version = "8.*",
         opts = {
           render_modes = true,
+          completions = { lsp = { enabled = true } },
+          html = { enabled = false },
+          latex = { enabled = false },
         },
         dependencies = {
           Util.DefaultIconProvider,
@@ -43,7 +46,6 @@ return {
         "python",
         "puppet",
         "query",
-        "regexp",
         "ruby",
         "rust",
         "yaml",

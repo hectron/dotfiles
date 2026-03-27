@@ -22,6 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 require("core.options")
 require("core.keymaps")
+require("core.lsp_handlers").bootstrap()
 
 require("lazy").setup({
   ui = {
