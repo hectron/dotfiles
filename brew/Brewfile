@@ -19,15 +19,19 @@
 # https://kb.novaordis.com/index.php/Brew_Concepts
 
 def work?
-  @work ||= ENV.fetch("WORK_LAPTOP", "false").downcase == "true"
+  @work ||= ENV.fetch("HOMEBREW_WORK_LAPTOP", "false").downcase == "true"
 end
 
 # 'brew tap'
 tap "charmbracelet/tap"
 
 # 'brew install'
+# brew install --build-from-source gettext
+# This is a dependency that generally is auto installed but on a work computer, it has to be built from source.
+# We can't write it in the Ruby DSL because `brew bundle` doesn't respect --build-from-source.
+# It does a prefetch for all formula, and it tries to download the bottle regardless of args -- resulting in a 403.
 brew "atuin"
-brew "awscli"
+brew "awscli" unless work?
 brew "bat"
 brew "cargo-binstall"
 brew "charmbracelet/tap/freeze"
@@ -52,7 +56,6 @@ brew "starship"
 brew "stow"
 brew "subversion"
 brew "tealdeer"
-brew "terraform" unless work?
 brew "tree-sitter-cli"
 brew "tmux"
 brew "watch"
@@ -69,6 +72,8 @@ cask "rectangle"
 cask "wezterm"
 
 unless work?
+  brew "awscli"
+  brew "terraform"
   cask "cloudflare-warp"
   cask "discord"
   cask "notion"
