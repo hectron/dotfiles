@@ -6,25 +6,35 @@ return {
     version = "*",
     lazy = true,
     ft = { "markdown" },
-    ---@module "obsidian"
-    ---@type obsidian.config
-    opts = {
-      legacy_commands = false,
-      workspaces = {
+    opts = function()
+      local workspaces = {
         {
           name = "personal",
-          path = "~/me/notes",
+          path = "~/me/notes"
+        }
+      }
+
+      local work_notes_dir = os.getenv("WORK_NOTES_DIR")
+
+      if work_notes_dir and vim.fn.isdirectory(work_notes_dir) then
+        table.insert(workspaces, { name = "work", path = work_notes_dir })
+      end
+
+      ---@module "obsidian"
+      ---@type obsidian.config
+      return {
+        legacy_commands = false,
+        workspaces = workspaces,
+        daily_notes = {
+          folder = "diary/" .. os.date("%Y"),
+          schedule = "calendar",
         },
-      },
-      daily_notes = {
-        folder = "diary/" .. os.date("%Y"),
-        schedule = "calendar",
-      },
-      completion = {
-        blink = true,
-      },
-      ui = { enable = false },
-    },
+        completion = {
+          blink = true,
+        },
+        ui = { enable = false },
+      }
+    end,
     keys = {
       { "<leader>od", "<Cmd>Obsidian today<CR>",        desc = "[o]bsidian [d]iary (today)" },
       { "<leader>os", "<Cmd>Obsidian search<CR>",       desc = "[o]bsidian [s]earch" },
