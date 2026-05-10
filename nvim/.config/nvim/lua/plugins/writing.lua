@@ -32,7 +32,7 @@ return {
         completion = {
           blink = true,
         },
-        ui = { enable = false },
+        ui = { enabled = false },
       }
     end,
     keys = {
