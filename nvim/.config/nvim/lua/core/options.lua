@@ -44,8 +44,15 @@ opt.updatetime = 300    -- faster completion (4000ms default)
 opt.wrap = true         -- wrap lines
 opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+
 vim.filetype.add({
   extension = {
     tf = "terraform",
   },
 })
+
+require('vim._core.ui2').enable()

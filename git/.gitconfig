@@ -1,6 +1,8 @@
 [user]
   name  = Hector Rios
   email = that.hector@gmail.com
+[includeIf "gitdir:~/bt/"]
+  path = ~/.gitconfig-paypal
 [core]
   whitespace = error
   pager = delta
@@ -86,3 +88,6 @@
   insteadOf = "me:"
 [url "git@github.com"]
   insteadOf = "gh:"
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+	useHttpPath = true

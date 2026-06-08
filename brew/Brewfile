@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 # vim: filetype=ruby
 
-# This handles installing software using Homebrew via it's built-in `brew bundle` command.
-#
 # For more information on how to write a `Brewfile` file, check out the following page:
 # https://github.com/Homebrew/homebrew-bundle?tab=readme-ov-file
 #
@@ -38,6 +36,7 @@ brew "charmbracelet/tap/freeze"
 brew "duckdb"
 brew "eza"
 brew "fastfetch"
+brew "fd"
 brew "fzf"
 brew "gh"
 brew "git"
@@ -56,6 +55,7 @@ brew "starship"
 brew "stow"
 brew "subversion"
 brew "tealdeer"
+brew "television"
 brew "tree-sitter-cli"
 brew "tmux"
 brew "watch"

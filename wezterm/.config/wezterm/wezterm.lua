@@ -1,6 +1,7 @@
 ---@type Wezterm
 local wezterm = require("wezterm")
 -- Use this in case of pairing to force dark mode
+-- local dark_mode = true --- wezterm.gui.get_appearance() == "Dark"
 local dark_mode = wezterm.gui.get_appearance() == "Dark"
 
 ---@type Config
@@ -11,9 +12,9 @@ config.initial_rows = 50
 config.font_size = 14
 config.font = wezterm.font_with_fallback({
   { family = "TX-02", weight = "Medium" },
+  "JetBrainsMono Nerd Font Propo",
   { family = "Iosevka Charon Mono", weight = "Medium" },
   { family = "PragmataPro Mono" },
-  "JetBrainsMono Nerd Font Propo"
 })
 
 config.hide_tab_bar_if_only_one_tab = true

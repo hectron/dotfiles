@@ -4,7 +4,6 @@
 # ==============================================================================
 
 [[ -s "${HOME}/.profile" ]] && source "${HOME}/.profile"
-[[ -s "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 [[ -s "${HOME}/.functions" ]] && source "${HOME}/.functions"
 
 # ==============================================================================
@@ -75,3 +74,6 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
+
+[[ -s "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
+[[ -s "${HOME}/.work_aliases" ]] && source "${HOME}/.work_aliases"
