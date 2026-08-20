@@ -21,7 +21,7 @@ def work?
 end
 
 # 'brew tap'
-tap "charmbracelet/tap"
+tap "charmbracelet/tap", trusted: true
 
 # 'brew install'
 # brew install --build-from-source gettext
