@@ -3,7 +3,7 @@
 </div>
 
 <h3 align="center">
-	Rosé Pine Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
+ Rosé Pine Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
 </h3>
 
 ## 👀 Preview

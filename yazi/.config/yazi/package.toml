@@ -3,8 +3,8 @@ deps = []
 
 [[flavor.deps]]
 use = "Mintass/rose-pine"
-rev = "8343340"
-hash = "e2336631865c0f90276dcbc553d532fc"
+rev = "d91f8f2"
+hash = "87da3630653b6d272e43658418599188"
 
 [[flavor.deps]]
 use = "Mintass/rose-pine-dawn"
