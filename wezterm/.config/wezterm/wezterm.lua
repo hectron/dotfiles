@@ -9,17 +9,17 @@ local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 50
 
-config.font_size = 14
+config.font_size = 15
 config.font = wezterm.font_with_fallback({
-  { family = "TX-02", weight = "Medium" },
+  { family = "TX-02" },
+  { family = "PragmataPro Mono" },
   "JetBrainsMono Nerd Font Propo",
   { family = "Iosevka Charon Mono", weight = "Medium" },
-  { family = "PragmataPro Mono" },
 })
 
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = wezterm.gui.get_appearance() == "Dark" and 0.93 or 1
 config.macos_window_background_blur = 20
+config.window_background_opacity = dark_mode and 0.95 or 1
 config.window_decorations = "RESIZE"
 config.window_padding = {
   top = "1cell",
