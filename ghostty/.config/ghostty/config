@@ -1,6 +1,6 @@
-font-family = "Iosevka Nerd Font Mono"
+font-family = "TX-02"
 font-size = 15
-theme = Catppuccin Frappe
+theme = Rose Pine
 
 window-padding-x = 10
 window-padding-y = 10
