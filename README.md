@@ -27,11 +27,17 @@ rake "install[tmux, alacritty, neovim]"
 ### Installing/upgrading software
 
 > [!TIP]
-> This repository also provides a `Brewfile`, which can be used by Homebrew to automatically provision software.
+> This repository now uses `mise` to install tools and programs, and it uses package management backends to install software.
+> For example, you can install tools via Homebrew/Apt/Apk through `mise bootstrap`.
 
 ```sh
 cd ~
-brew bundle
+
+# Install software, or first time setup stuff
+mise bootstrap
+
+# Install tools via mise
+mise install
 ```
 
 ## Directory Structure
