@@ -6,11 +6,11 @@
 
 # Requires yazi, which is installed via Brewfile
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
 }
 
 ##
@@ -18,12 +18,11 @@ function y() {
 ##
 
 reload!() {
-  if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+  if [ -n "$($SHELL -c 'echo $ZSH_VERSION')" ]; then
     source $HOME/.zshrc
-  elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+  elif [ -n "$($SHELL -c 'echo $BASH_VERSION')" ]; then
     source $HOME/.bashrc
   else
     echo "Unknown shell?! in function reload!"
   fi
 }
-

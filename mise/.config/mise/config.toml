@@ -1,0 +1,58 @@
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
+
+# mise install
+[tools]
+atuin = "latest"
+aws-cli = "latest"
+bat = "latest"
+cargo-binstall = "latest"
+delta = "latest" # git-delta
+eza = "latest"
+fastfetch = "latest"
+fd = "latest"
+fzf = "latest"
+glow = "latest"
+gum = "latest"
+jq = "latest"
+lazygit = "latest"
+neovim = "latest"
+ripgrep = "latest"
+starship = "latest"
+tealdeer = "latest"
+tree-sitter = "latest"
+tmux = "latest"
+yazi = "latest"
+yq = "latest"
+zoxide = "latest"
+
+lua = "latest"
+lua-language-server = "latest"
+"npm:bash-language-server" = "latest"
+ruby = "latest"
+rust = "1.88.0"
+shellcheck = "latest"
+shfmt = "latest"
+stylua = "latest"
+television = "latest"
+terraform-ls = "latest"
+
+# mise boostrap
+[bootstrap.packages]
+"brew:git" = "latest"
+"brew:gnupg" = "latest"
+"brew:libyaml" = "latest"
+"brew:libpq" = "latest"
+"brew:stow" = "latest"
+"brew:subversion" = "latest"
+"brew:watch" = "latest"
+"brew:zsh-autosuggestions" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:firefox" = "latest"
+"brew-cask:obsidian" = "latest"
+"brew-cask:rectangle" = "latest"
+"brew-cask:wezterm" = "latest"
+
+[env]
+BASE_THEME = "rose-pine"
+
