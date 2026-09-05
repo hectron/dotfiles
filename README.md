@@ -1,5 +1,7 @@
 # Dotfiles
 
+<img width="1052" height="883" alt="image" src="https://github.com/user-attachments/assets/bc3b9b88-1cc2-4653-a254-7914f10aa803" />
+
 This is a collection of dotfiles that I tend to use. They are all managed via [`mise`][mise].
 
 To get started, install [`mise`][mise] and then:
