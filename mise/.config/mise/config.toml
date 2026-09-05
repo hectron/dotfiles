@@ -1,5 +1,6 @@
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+
 dotfiles.root = "~/me/dotfiles"
 dotfiles.default_mode = "symlink"
 
@@ -70,7 +71,7 @@ adopt = true
 "~/.functions" = "shell/.functions"
 "~/.shellrc" = "shell/.shellrc"
 "~/.tmux.conf" = "tmux/.tmux.conf"
-"~/.git*" = "git/.git*"
+# "~/.git*" = "git/.git*"
 "~/.config/mise/config.toml" = "mise/.config/mise/config.toml"
 "~/.config/nvim" = { source = "~/me/mivimal-dotfiles" }
 "~/.config/wezterm" = "wezter/.config"
