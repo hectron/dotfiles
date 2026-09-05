@@ -67,11 +67,11 @@ adopt = true
 "~/me/mivimal-dotfiles" = { url = "git@github.com:hectron/mivimal-dotfiles.git" }
 
 [dotfiles]
-"~/.aliases" = { source = "shell/.aliases" }
-"~/.functions" = { source = "shell/.functions" }
-"~/.shellrc" = { source = "shell/.shellrc" }
-"~/.tmux.conf" = { source = "tmux/.tmux.conf" }
+"~/.aliases" = { source = "~/me/dotfiles/shell/.aliases" }
+"~/.functions" = { source = "~/me/dotfiles/shell/.functions" }
+"~/.shellrc" = { source = "~/me/dotfiles/shell/.shellrc" }
+"~/.tmux.conf" = { source = "~/me/dotfiles/tmux/.tmux.conf" }
 # "~/.git*" = "git/.git*"
-"~/.config/mise/config.toml" = { source = "mise/.config/mise/config.toml" }
+"~/.config/mise/config.toml" = { source = "~/me/dotfiles/mise/.config/mise/config.toml" }
+"~/.config/wezterm" = { source = "~/me/dotfiles/wezterm/.config/wezterm" }
 "~/.config/nvim" = { source = "~/me/mivimal-dotfiles" }
-"~/.config/wezterm" = { source = "wezterm/.config" }
