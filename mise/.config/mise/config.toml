@@ -37,7 +37,10 @@ stylua = "latest"
 television = "latest"
 terraform-ls = "latest"
 
-# mise boostrap
+[bootstrap.brew]
+adopt = true
+
+# mise bootstrap
 [bootstrap.packages]
 "brew:git" = "latest"
 "brew:gnupg" = "latest"
@@ -52,6 +55,10 @@ terraform-ls = "latest"
 "brew-cask:obsidian" = "latest"
 "brew-cask:rectangle" = "latest"
 "brew-cask:wezterm" = "latest"
+
+[bootstrap.repos]
+"~/me/dotfiles" = { url = "git@github.com:hectron/dotfiles.git" }
+"~/me/mivimal-dotfiles" = { url = "git@github.com:hectron/mivimal-dotfiles.git" }
 
 [env]
 BASE_THEME = "rose-pine"
