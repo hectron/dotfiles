@@ -1,51 +1,26 @@
 # Dotfiles
 
-This is a collection of dotfiles that I tend to use. It also contains a `Brewfile`, which contains instructions on what software and fonts to install via Homebrew.
+This is a collection of dotfiles that I tend to use. They are all managed via [`mise`][mise].
 
-## Dependencies
+To get started, install [`mise`][mise] and then:
 
-| Tool | Reason |
-| --- | --- |
-| [Stow](https://www.gnu.org/software/stow/manual/stow.html) | Symlinking dotfiles |
-| [Make](https://www.gnu.org/software/make/) | Provides commands to help with installation |
-
-## Installing
-
-```sh
-git clone git@github.com:hectron/dotfiles.git && cd $_
-
-# Test installing the dotfiles
-rake dry_install
-
-# Install dotfiles
-rake clean_install
-
-# Install a sub-set of stowable dirs
-rake "install[tmux, alacritty, neovim]"
+```zsh
+mkdir -p ~/.config/mise/
+ln -s mise/.config/mise/config.toml ~/.config/mise/config.toml
+mise bootstrap
 ```
 
-### Installing/upgrading software
+## Installing tools
 
-> [!TIP]
-> This repository now uses `mise` to install tools and programs, and it uses package management backends to install software.
-> For example, you can install tools via Homebrew/Apt/Apk through `mise bootstrap`.
-
-```sh
-cd ~
-
-# Install software, or first time setup stuff
-mise bootstrap
-
-# Install tools via mise
+```zsh
 mise install
 ```
 
 ## Directory Structure
 
-The top-level directories are organized to group things conceptually. In
-practice, the directory structure inside the top-level directory will be what
-is set up by `stow`. Each directory that is stowed contains the folder
-structure **that is relative to the user's home directory**. For example:
+The top-level directories are organized to group things conceptually. In practice, the directory structure inside the top-level directory was what was set up by `stow` when I first
+set up my dotfiles. Each directory that is stowed contains the folder structure **that is relative to the user's home directory**. For example:
+
 
 | Repo folder | Destination |
 | --- | --- |
@@ -56,4 +31,6 @@ structure **that is relative to the user's home directory**. For example:
 
 ## Colors
 
-This setup primarily uses [**Catppuccin**](https://github.com/catppuccin/nvim) as the theme.
+This setup primarily uses [**Rose Pine**](https://rosepinetheme.com/) as the theme.
+
+[mise]: https://mise.jdx.dev/

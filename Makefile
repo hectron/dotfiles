@@ -1,17 +1,11 @@
-stow_dirs := $(wildcard */)
-
-.PHONY: *
-
-default:
-
-dry-run:
-	stow --simulate --restow --target $(HOME) --verbose $(stow_dirs)
+dry-install:
+	echo "ln -s mise/.config/mise/config.toml $(HOME)/.config/mise/config.toml"
 
 install:
-	stow --restow --target $(HOME) $(stow_dirs)
+	ln -s mise/.config/mise/config.toml $(HOME)/.config/mise/config.toml
 
 uninstall:
-	stow --target $(HOME) -D $(stow_dirs)
+	rm $(HOME)/.config/mise/config.toml
 
 dry-uninstall:
-	stow --no --verbose --target $(HOME) -D $(stow_dirs)
+	echo "rm $(HOME)/.config/mise/config.toml"
