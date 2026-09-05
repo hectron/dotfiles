@@ -1,5 +1,10 @@
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+dotfiles.root = "~/me/dotfiles"
+dotfiles.default_mode = "symlink"
+
+[env]
+BASE_THEME = "rose-pine"
 
 # mise install
 [tools]
@@ -60,6 +65,12 @@ adopt = true
 "~/me/dotfiles" = { url = "git@github.com:hectron/dotfiles.git" }
 "~/me/mivimal-dotfiles" = { url = "git@github.com:hectron/mivimal-dotfiles.git" }
 
-[env]
-BASE_THEME = "rose-pine"
-
+[dotfiles]
+"~/.aliases" = "shell/.aliases"
+"~/.functions" = "shell/.functions"
+"~/.shellrc" = "shell/.shellrc"
+"~/.tmux.conf" = "tmux/.tmux.conf"
+"~/.git*" = "git/.git*"
+"~/.config/mise/config.toml" = "mise/.config/mise/config.toml"
+"~/.config/nvim" = { source = "~/me/mivimal-dotfiles" }
+"~/.config/wezterm" = "wezter/.config"
