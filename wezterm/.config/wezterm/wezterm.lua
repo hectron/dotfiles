@@ -1,5 +1,8 @@
 ---@type Wezterm
 local wezterm = require("wezterm")
+local current_desktop = os.getenv("XDG_CURRENT_DESKTOP")
+local is_linux = current_desktop == "ubuntu:GNOME"
+
 -- Use this in case of pairing to force dark mode
 -- local dark_mode = true --- wezterm.gui.get_appearance() == "Dark"
 local dark_mode = wezterm.gui.get_appearance() == "Dark"
@@ -9,7 +12,7 @@ local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 50
 
-config.font_size = 15
+config.font_size = is_linux and 11 or 15
 config.font = wezterm.font_with_fallback({
   { family = "TX-02" },
   { family = "PragmataPro Mono" },
