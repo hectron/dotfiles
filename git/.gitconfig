@@ -1,6 +1,7 @@
 [user]
   name  = Hector Rios
   email = that.hector@gmail.com
+  signingKey = 7AACCF14E456745D39469531193EA91E8585D83B
 [includeIf "gitdir:~/bt/"]
   path = ~/.gitconfig-paypal
 [core]
@@ -91,3 +92,7 @@
 [credential "https://github.com"]
 	helper = !gh auth git-credential
 	useHttpPath = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[commit]
+	gpgsign = true
