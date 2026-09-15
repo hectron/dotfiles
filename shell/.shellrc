@@ -39,6 +39,7 @@ export NOTES_DIR="${HOME}/me/notes"
 export EDITOR="nvim"
 export PATH="$PATH:${HOME}/.local/bin"
 export TERM="xterm-256color"
+export GPG_TTY=$(tty)
 
 ################################################################################
 # TLDR

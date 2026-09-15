@@ -29,9 +29,6 @@ return {
           folder = "diary/" .. os.date("%Y"),
           schedule = "calendar",
         },
-        completion = {
-          blink = true,
-        },
         ui = { enabled = false },
       }
     end,
