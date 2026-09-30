@@ -7,10 +7,10 @@ This is a collection of dotfiles that I tend to use. They are all managed via [`
 To get started, install [`mise`][mise] and then:
 
 ```zsh
-mkdir -p ~/.config/mise/
-ln -s mise/.config/mise/config.toml ~/.config/mise/config.toml
-mise bootstrap
+make bootstrap
 ```
+
+This links `mise`'s config into place, then lets `mise bootstrap` take it from there — cloning repos, installing packages, and symlinking the rest of the dotfiles.
 
 ## Installing tools
 
@@ -29,7 +29,7 @@ set up my dotfiles. Each directory that is stowed contains the folder structure 
 | `./nvim/.config/nvim/` | `$HOME/.config/nvim/` |
 | `./shell/Brewfile` | `$HOME/Brewfile` |
 | `./git/.gitconfig` | `$HOME/.gitconfig` |
-| `./alacritty/.config/alacritty/` | `$HOME/.config/alacritty/` |
+| `./wezterm/.config/wezterm/` | `$HOME/.config/wezterm/` |
 
 ## Colors
 

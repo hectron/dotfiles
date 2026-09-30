@@ -26,7 +26,7 @@ return {
         legacy_commands = false,
         workspaces = workspaces,
         daily_notes = {
-          folder = "diary/" .. os.date("%Y"),
+          folder = "daily/" .. os.date("%Y"),
           schedule = "calendar",
         },
         ui = { enabled = false },

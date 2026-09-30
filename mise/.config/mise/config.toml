@@ -71,7 +71,9 @@ adopt = true
 "~/.functions" = { source = "~/me/dotfiles/shell/.functions" }
 "~/.shellrc" = { source = "~/me/dotfiles/shell/.shellrc" }
 "~/.tmux.conf" = { source = "~/me/dotfiles/tmux/.tmux.conf" }
-# "~/.git*" = "git/.git*"
+"~/.gitconfig" = { source = "~/me/dotfiles/git/.gitconfig" }
+"~/.gitignore_global" = { source = "~/me/dotfiles/git/.gitignore_global" }
 "~/.config/mise/config.toml" = { source = "~/me/dotfiles/mise/.config/mise/config.toml" }
 "~/.config/wezterm" = { source = "~/me/dotfiles/wezterm/.config/wezterm" }
+"~/.config/yazi" = { source = "~/me/dotfiles/yazi/.config/yazi" }
 "~/.config/nvim" = { source = "~/me/mivimal-dotfiles" }

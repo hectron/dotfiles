@@ -1,11 +1,6 @@
-dry-install:
-	echo "ln -s mise/.config/mise/config.toml $(HOME)/.config/mise/config.toml"
+.PHONY: bootstrap
 
-install:
-	ln -s mise/.config/mise/config.toml $(HOME)/.config/mise/config.toml
-
-uninstall:
-	rm $(HOME)/.config/mise/config.toml
-
-dry-uninstall:
-	echo "rm $(HOME)/.config/mise/config.toml"
+bootstrap:
+	mkdir -p $(HOME)/.config/mise
+	ln -sfn $(CURDIR)/mise/.config/mise/config.toml $(HOME)/.config/mise/config.toml
+	mise bootstrap

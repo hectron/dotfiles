@@ -23,3 +23,9 @@ alias notes="cd ${NOTES_DIR}"
 alias work-notes="cd ${WORK_NOTES_DIR}"
 alias wttr="curl 'v2d.wttr.in/?u'"
 alias mvim="NVIM_APPNAME=mivimal nvim"
+alias list-cosmosai-models="curl -s -H \"Authorization: Bearer \$COSMOSAI_API_KEY\" ${COSMOSAI_BASE_URL}/v1/models | jq -rc '.data[].id' | sort"
+
+# ==============================================================================
+# GPG / YubiKey
+# ==============================================================================
+alias gpg-relearn='gpg-connect-agent "scd serialno" "learn --force" /bye'
