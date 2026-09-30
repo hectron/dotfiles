@@ -20,14 +20,13 @@ mise install
 
 ## Directory Structure
 
-The top-level directories are organized to group things conceptually. In practice, the directory structure inside the top-level directory was what was set up by `stow` when I first
-set up my dotfiles. Each directory that is stowed contains the folder structure **that is relative to the user's home directory**. For example:
+The top-level folders are grouped by tool, a layout left over from when `stow` did the linking. `mise bootstrap` handles that now (see the `[dotfiles]` table in `mise/.config/mise/config.toml`), but the folders still mirror paths **relative to your home directory**, e.g.:
 
 
 | Repo folder | Destination |
 | --- | --- |
 | `./nvim/.config/nvim/` | `$HOME/.config/nvim/` |
-| `./shell/Brewfile` | `$HOME/Brewfile` |
+| `./shell/.aliases` | `$HOME/.aliases` |
 | `./git/.gitconfig` | `$HOME/.gitconfig` |
 | `./wezterm/.config/wezterm/` | `$HOME/.config/wezterm/` |
 
