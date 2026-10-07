@@ -3,9 +3,8 @@ local wezterm = require("wezterm")
 local current_desktop = os.getenv("XDG_CURRENT_DESKTOP")
 local is_linux = current_desktop == "ubuntu:GNOME"
 
--- Use this in case of pairing to force dark mode
--- local dark_mode = true --- wezterm.gui.get_appearance() == "Dark"
-local dark_mode = wezterm.gui.get_appearance() == "Dark"
+wezterm.GLOBAL.dark_mode = wezterm.GLOBAL.dark_mode == nil and (wezterm.gui.get_appearance() == "Dark") or
+wezterm.GLOBAL.dark_mode
 
 ---@type Config
 local config = wezterm.config_builder()
@@ -22,16 +21,11 @@ config.font = wezterm.font_with_fallback({
 
 config.hide_tab_bar_if_only_one_tab = true
 config.macos_window_background_blur = 20
-config.window_background_opacity = dark_mode and 0.95 or 1
+config.window_background_opacity = wezterm.GLOBAL.dark_mode and 0.95 or 1
 config.window_decorations = "RESIZE"
 config.window_padding = {
   top = "1cell",
   left = "1cell",
-}
-
-config.keys = {
-  { key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString= "\x1bb" }) },
-  { key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString= "\x1bf" }) },
 }
 
 -- Allow zenmode to run
@@ -58,16 +52,31 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
   window:set_config_overrides(overrides)
 end)
 
---------------------------------------------------------------------------------
--- Custom Themes
---------------------------------------------------------------------------------
-local catppuccin = false
+config.keys = {
+  { key = "LeftArrow",  mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
+  { key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
+  {
+    key = "D",
+    mods = "CMD",
+    action = wezterm.action_callback(function(window, pane)
+      wezterm.GLOBAL.dark_mode = not wezterm.GLOBAL.dark_mode
+      --------------------------------------------------------------------------------
+      -- Custom Themes
+      --------------------------------------------------------------------------------
+      local catppuccin = false
+      local scheme = wezterm.GLOBAL.dark_mode and "rose-pine" or "rose-pine-dawn"
 
-if catppuccin then
-  config.color_scheme = dark_mode and "catppuccin-macchiato" or "catppuccin-latte"
-else
-  config.color_scheme = dark_mode and "rose-pine" or "rose-pine-dawn"
-end
+      if catppuccin then
+        scheme = wezterm.GLOBAL.dark_mode and "catppuccin-macchiato" or "catppuccin-latte"
+      end
+
+      local overrides = window:get_config_overrides() or {}
+      overrides.color_scheme = scheme
+      overrides.window_background_opacity = wezterm.GLOBAL.dark_mode and 0.95 or 1
+      window:set_config_overrides(overrides)
+    end),
+  }
+}
 
 
 return config

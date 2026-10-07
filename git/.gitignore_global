@@ -36,3 +36,5 @@ Temporary Items
 .claude/settings.local.json
 **/.config/snowflake/cortex
 .cortex/
+
+**/.claude/settings.local.json
