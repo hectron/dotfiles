@@ -3,14 +3,17 @@ local wezterm = require("wezterm")
 local current_desktop = os.getenv("XDG_CURRENT_DESKTOP")
 local is_linux = current_desktop == "ubuntu:GNOME"
 
-wezterm.GLOBAL.dark_mode = wezterm.GLOBAL.dark_mode == nil and (wezterm.gui.get_appearance() == "Dark") or
-wezterm.GLOBAL.dark_mode
+local get_color_scheme = function(is_dark_mode)
+  return is_dark_mode and "rose-pine" or "rose-pine-dawn"
+end
+
+wezterm.GLOBAL.dark_mode = wezterm.GLOBAL.dark_mode == nil and (wezterm.gui.get_appearance() == "Dark") or wezterm.GLOBAL.dark_mode
 
 ---@type Config
 local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 50
-
+config.color_scheme = get_color_scheme(wezterm.GLOBAL.dark_mode)
 config.font_size = is_linux and 11 or 15
 config.font = wezterm.font_with_fallback({
   { family = "TX-02" },
@@ -58,20 +61,11 @@ config.keys = {
   {
     key = "D",
     mods = "CMD",
-    action = wezterm.action_callback(function(window, pane)
+    action = wezterm.action_callback(function(window, _)
       wezterm.GLOBAL.dark_mode = not wezterm.GLOBAL.dark_mode
-      --------------------------------------------------------------------------------
-      -- Custom Themes
-      --------------------------------------------------------------------------------
-      local catppuccin = false
-      local scheme = wezterm.GLOBAL.dark_mode and "rose-pine" or "rose-pine-dawn"
-
-      if catppuccin then
-        scheme = wezterm.GLOBAL.dark_mode and "catppuccin-macchiato" or "catppuccin-latte"
-      end
 
       local overrides = window:get_config_overrides() or {}
-      overrides.color_scheme = scheme
+      overrides.color_scheme = get_color_scheme(wezterm.GLOBAL.dark_mode)
       overrides.window_background_opacity = wezterm.GLOBAL.dark_mode and 0.95 or 1
       window:set_config_overrides(overrides)
     end),
